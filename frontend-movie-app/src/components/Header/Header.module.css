@@ -11,3 +11,13 @@
     display: flex;
     align-items: center;
 }
+
+.HeaderNavContainer {
+    background-color: #121212;
+    width: 1366px;
+    height: 60px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

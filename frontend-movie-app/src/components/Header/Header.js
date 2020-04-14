@@ -7,11 +7,13 @@ import NavDrawer from '../Drawer/NavDrawer';
 export default function Header() {
     return (
         <header className={classes.Header}>
-            <nav className={classes.HeaderNavDrawer}>
-                <NavDrawer />
-                <Logo />
-            </nav>
-            <NavButtons />
+            <div className={classes.HeaderNavContainer}>
+                <nav className={classes.HeaderNavDrawer}>
+                    <NavDrawer />
+                    <Logo />
+                </nav>
+                <NavButtons />
+            </div>
         </header>
     );
 };

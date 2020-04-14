@@ -1,0 +1,16 @@
+.MovieBackdropOverlay div {
+    display: flex;
+    color: #FFF;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.MovieBackdropOverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
