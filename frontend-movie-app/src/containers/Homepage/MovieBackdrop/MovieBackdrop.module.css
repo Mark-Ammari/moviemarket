@@ -1,0 +1,29 @@
+.MovieBackdrop {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: red;
+}
+
+.MovieBackdropImage {
+    height: 500px;
+    width: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.Filter {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(18, 18, 18, 0) 10%, rgba(18, 18, 18, .1) 40%, rgba(18, 18, 18, .5) 75%, rgba(18, 18, 18, 1) 100%) repeat scroll 0 0;
+    position: absolute;
+    height: 200px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    z-index: -1;
+    bottom: 0;
+}

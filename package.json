@@ -1,0 +1,24 @@
+{
+  "name": "movie-app",
+  "version": "1.0.0",
+  "description": "Movie App",
+  "main": "server.js",
+  "scripts": {
+    "client": "npm start --prefix frontend-movie-app",
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd frontend-movie-app && npm install && npm run build"
+  },
+  "author": "Mark Ammari",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1",
+    "flatted": "^2.0.2",
+    "mongoose": "^5.9.9",
+    "nodemon": "^2.0.3"
+  }
+}
