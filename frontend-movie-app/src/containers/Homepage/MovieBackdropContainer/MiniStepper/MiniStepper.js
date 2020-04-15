@@ -15,6 +15,10 @@ const useStyles = makeStyles({
   dotActive: {
     background: "#F5C518"
   },
+  dot: {
+    width: 10,
+    height: 10
+  }
 });
 
 export default function MiniStepper(props) {
@@ -30,7 +34,8 @@ export default function MiniStepper(props) {
         classes={{
           root: classes.root,
           dotActive: classes.dotActive,
-          dots: classes.dots
+          dots: classes.dots,
+          dot: classes.dot
         }}
       />
     </div>

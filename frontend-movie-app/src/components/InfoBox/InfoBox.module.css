@@ -1,0 +1,21 @@
+.InfoBox {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px
+}
+
+.InfoBox h1 {
+    color: #F5C518
+}
+
+.InfoBox h4 {
+    color: #fff;
+    border-left: 3px solid #F5C518 ;
+    padding-left: 10px;
+    margin-bottom: 0px;
+}
+
+.InfoBox p {
+    color: #5c5c5c;
+    font-size: 10pt;
+    margin-top: 5px;
+}

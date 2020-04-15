@@ -7,11 +7,19 @@ import { Provider } from 'react-redux';
 import { combineReducers, compose, applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import trendingReducer from './store/reducers/trending';
+import movieNowPlayingReducer from './store/reducers/movieNowPlaying';
+import moviePopularReducer from './store/reducers/moviePopular';
+import movieTopRatedReducer from './store/reducers/movieTopRated';
+import movieUpcomingReducer from './store/reducers/movieUpcoming';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  trending: trendingReducer
+  trending: trendingReducer,
+  nowPlaying: movieNowPlayingReducer,
+  popular: moviePopularReducer,
+  topRated: movieTopRatedReducer,
+  upcoming: movieUpcomingReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
