@@ -1,5 +1,5 @@
 .MovieBackdrop {
-    width: 1366px;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -10,69 +10,163 @@
 
 .ImagesContainer {
     display: flex;
-    width: auto;
+    width: 100%;
+    height: 300px;
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    transition: 1s ease-in-out;
 }
 
 .MovieBackdropImage {
-    position: relative;
+    position: absolute;
+    width: 100%;
+    height: auto
 }
 
 .MoviePosterImage {
     margin-right: 10px;
+    width: 100%;
+    display: none;
+    height: auto
 }
 
 .Filter {
-    height: 550px;
+    height: 300px;
     width: 100%;
     position: absolute;
     bottom: 0;
+    z-index: 1;
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(18, 18, 18, 0) 100%)
 }
 
 .MovieBackdropImage img {
-    height: 550px;
-    width: 1006px
+    height: 300px;
+    position: absolute;
+    width: 100vw;
 }
 
 .MoviePosterImage img {
     height: 550px;
+    position: absolute;
     width: 350px
 }
 
-@media only screen and (max-width: 1365px) {
-    .MovieBackdrop {
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    .MovieBackdropImage img {
-        height: auto;
-        width: 100%;
+@media only screen and (max-width: 500px) {
+    .ImagesContainer {
+        height: 200px;
     }
     .Filter {
-        height: 100%;
+        height: 200px;
+    }
+    .MovieBackdropImage img {
+        height: 200px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(18, 18, 18, 0) 100%)
     }
     .MoviePosterImage {
-        margin-right: 10px;
         display: none;
     }
 }
 
+@media only screen and (max-width: 501px) {
+    .MoviePosterImage {
+        display: none;
+    }
+    .ImagesContainer {
+        height: 250px;
+    }
+    .Filter {
+        height: 250px;
+    }
+    .MovieBackdropImage img {
+        height: 250px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .ImagesContainer {
+        height: 400px;
+    }
+    .Filter {
+        height: 400px;
+    }
+    .MovieBackdropImage img {
+        height: 400px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .ImagesContainer {
+        height: 475px;
+    }
+    .Filter {
+        height: 475px;
+    }
+    .MovieBackdropImage img {
+        height: 475px;
+        width: 100%;
+    }
+}
+
 @media only screen and (min-width: 1366px) {
+    .MovieBackdrop {
+        width: 1366px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    
+    .ImagesContainer {
+        display: flex;
+        width: 100%;
+        height: 550px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    
+    .MovieBackdropImage {
+        position: absolute;
+        width: 1006px;
+        height: 550px;
+        top: 0;
+        right: 0
+    }
+    
     .MoviePosterImage {
         margin-right: 10px;
-        display: block;
+        width: 350px;
+        height: 550px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block
+    }
+    
+    .Filter {
+        height: 550px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(18, 18, 18, 0) 100%)
+    }
+    
+    .MovieBackdropImage img {
+        height: 550px;
+        position: absolute;
+        width: 1006px;
+    }
+    
+    .MoviePosterImage img {
+        height: 550px;
+        position: absolute;
+        width: 350px;
     }
 }

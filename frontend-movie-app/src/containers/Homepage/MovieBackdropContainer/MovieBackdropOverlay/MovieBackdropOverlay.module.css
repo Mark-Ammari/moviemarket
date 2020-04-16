@@ -3,6 +3,7 @@
     color: #FFF;
     margin-bottom: 10px;
     align-items: center;
+    z-index: 1;
 }
 
 .MovieBackdropOverlay {
@@ -10,7 +11,10 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    width: 100%;
+    width: 1006px;
     position: absolute;
     bottom: 0;
+    right: 0;
+    z-index: 1;
+    margin-bottom: 10px;
 }

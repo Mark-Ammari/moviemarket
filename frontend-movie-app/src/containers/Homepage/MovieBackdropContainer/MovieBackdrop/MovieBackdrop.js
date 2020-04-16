@@ -1,71 +1,91 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classes from './MovieBackdrop.module.css';
 import CarouselPointers from '../CarouselPointers/CarouselPointers';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import MovieBackdropOverlay from '../MovieBackdropOverlay/MovieBackdropOverlay';
 import MiniStepper from '../MiniStepper/MiniStepper';
+import { motion, AnimatePresence } from 'framer-motion';
+import { wrap } from '@popmotion/popcorn';
 
-class MovieBackdrop extends Component {
-    state = {
-        pointer: 0,
-        fade: false
+const variantSlide = {
+    enter: (direction) => {
+        return {
+            x: direction > 0 ? -500 : 500,
+            opacity: 0
+        };
+    },
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1
+    },
+    exit: (direction) => {
+        return {
+            zIndex: 0,
+            x: direction < 0 ? 500 : -500,
+            opacity: 0
+        };
     }
-
-    addPointerHandler = () => {
-        if (this.state.pointer >= this.props.trending.results.length - 1) {
-            this.setState({ pointer: 0 })
-        } else {
-            this.setState({ pointer: this.state.pointer + 1 })
-        }
-    }
-
-    subPointerHandler = () => {
-        if (this.state.pointer <= 0) {
-            this.setState({ pointer: this.props.trending.results.length - 1 })
-        } else {
-            this.setState({ pointer: this.state.pointer - 1 })
-        }
-    }
-
-    componentDidMount() {
-        setInterval(() => {
-            if (this.state.pointer >= this.props.trending.results.length - 1) {
-                this.setState({ pointer: 0 })
-            } else {
-                this.setState({ pointer: this.state.pointer + 1 })
-            }
-        }, 7500)
-    }
-
-    render() {
-        console.log(this.props.trending.results)
-        return (
-            <div className={classes.MovieBackdrop}>
-                <div className={classes.ImagesContainer}>
-                    <div id="fadeMovieBackdrop" className={classes.MoviePosterImage}>
-                        <img src={`https://image.tmdb.org/t/p/original${this.props.trending.results[this.state.pointer].poster_path}`} alt="poster" />
-                    </div>
-                    <div id="fadeMovieBackdrop" className={classes.MovieBackdropImage}>
-                        <img src={`https://image.tmdb.org/t/p/original${this.props.trending.results[this.state.pointer].backdrop_path}`} alt="backdrop" />
-                        <div className={classes.Filter}></div>
-                        <MovieBackdropOverlay
-                            name={this.props.trending.results[this.state.pointer].name || this.props.trending.results[this.state.pointer].title}
-                            rating={this.props.trending.results[this.state.pointer].vote_average}
-                            description={this.props.trending.results[this.state.pointer].overview}
-                        />
-                    </div>
-                    <CarouselPointers rightClick={this.addPointerHandler} leftClick={this.subPointerHandler} />
-                </div>
-                <MiniStepper pointer={this.state.pointer} steps={this.props.trending.results.length}/>
-            </div>
-        );
-    };
 };
 
-const mapStateToProps = state => {
-    return {
-        trending: state.trending.trending
-    }
-}
+export default function MovieBackdrop() {
 
-export default connect(mapStateToProps)(MovieBackdrop);
+    const [[page, direction], setPage] = useState([0, 0]);
+    const trending = useSelector(state => state.trending.trending)
+
+    const paginate = (newDirection) => {
+        setPage([page + newDirection, newDirection]);
+    };
+
+    const imageIndex = wrap(0, trending.results.length, page)
+
+    return (
+        <div className={classes.MovieBackdrop}>
+            <div className={classes.ImagesContainer}>
+                <div id="fadeMovieBackdrop" className={classes.MoviePosterImage}>
+                    <AnimatePresence initial={false} custom={direction}>
+                        <motion.img
+                            key={page}
+                            src={`https://image.tmdb.org/t/p/original${trending.results[imageIndex].poster_path}`}
+                            alt="backdrop"
+                            variants={variantSlide}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 200 },
+                                opacity: { duration: 1 },
+                            }}
+                        />
+                    </AnimatePresence>
+                </div>
+                <div id="fadeMovieBackdrop" className={classes.MovieBackdropImage}>
+                    <AnimatePresence initial={false} custom={direction}>
+                        <motion.img
+                            key={page}
+                            src={`https://image.tmdb.org/t/p/original${trending.results[imageIndex].backdrop_path}`}
+                            alt="backdrop"
+                            variants={variantSlide}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 200 },
+                                opacity: { duration: 1 },
+                            }}
+                        />
+                    </AnimatePresence>
+                </div>
+                <div className={classes.Filter}></div>
+                <MovieBackdropOverlay
+                    name={trending.results[imageIndex].name || trending.results[imageIndex].title}
+                    rating={trending.results[imageIndex].vote_average}
+                    description={trending.results[imageIndex].overview}
+                />
+                <CarouselPointers rightClick={() => paginate(1)} leftClick={() => paginate(-1)} />
+            </div>
+            <MiniStepper pointer={imageIndex} steps={trending.results.length} />
+        </div>
+    );
+};
+

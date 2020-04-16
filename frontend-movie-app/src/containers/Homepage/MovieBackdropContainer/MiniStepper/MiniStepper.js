@@ -4,9 +4,10 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 400,
-    flexGrow: 1,
+    Width: 300,
     borderRadius: 5,
+    zIndex: 1,
+    margin: "auto"
   },
   stepper: {
     paddingTop: 10,
