@@ -15,7 +15,7 @@ export default function movieUpcomingReducer(state = initialState, action) {
         case actionTypes.FETCH_MOVIES_UPCOMING_SUCCESS:
             return {
                 upcoming: action.upcoming,
-                loading: true
+                loading: false
             }
         case actionTypes.FETCH_MOVIES_UPCOMING_FAIL:
             return {

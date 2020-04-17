@@ -4,13 +4,13 @@ import InfoBox from '../../../../components/InfoBox/InfoBox';
 
 export default function FilmSection(props) {
     return (
-        <section className={classes.FeaturedSection}>
+        <section className={classes.FilmSection}>
             <InfoBox
                 heading={props.heading}
                 title={props.title}
                 subtitle={props.subtitle}
             />
-            <div>
+            <div className={classes.FilmSectionChildren}>
                 {props.children}
             </div>
         </section>

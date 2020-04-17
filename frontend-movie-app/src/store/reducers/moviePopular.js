@@ -15,7 +15,7 @@ export default function moviePopularReducer(state = initialState, action) {
         case actionTypes.FETCH_MOVIES_POPULAR_SUCCESS:
             return {
                 popular: action.popular,
-                loading: true
+                loading: false
             }
         case actionTypes.FETCH_MOVIES_POPULAR_FAIL:
             return {

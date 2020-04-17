@@ -15,7 +15,7 @@ export default function movieTopRatedReducer(state = initialState, action) {
         case actionTypes.FETCH_MOVIES_TOP_RATED_SUCCESS:
             return {
                 topRated: action.topRated,
-                loading: true
+                loading: false
             }
         case actionTypes.FETCH_MOVIES_TOP_RATED_FAIL:
             return {

@@ -15,7 +15,7 @@ export default function movieNowPlayingReducer(state = initialState, action) {
         case actionTypes.FETCH_MOVIES_NOW_PLAYING_SUCCESS:
             return {
                 nowPlaying: action.nowPlaying,
-                loading: true
+                loading: false
             }
         case actionTypes.FETCH_MOVIES_NOW_PLAYING_FAIL:
             return {

@@ -1,4 +1,25 @@
-.FeaturedSection {
+.FilmSection {
     margin: auto;
-    width: 1366px
+    max-width: 1366px
+}
+
+.FilmSectionChildren {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 5px;
+}
+
+.FilmSectionChildren::-webkit-scrollbar {
+    border-radius: 5px;
+    height: 10px;
+    background: #4c4c4c
+}
+
+.FilmSectionChildren::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #3c3c3c
 }

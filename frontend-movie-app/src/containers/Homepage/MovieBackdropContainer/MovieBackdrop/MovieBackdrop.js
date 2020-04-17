@@ -10,7 +10,7 @@ import { wrap } from '@popmotion/popcorn';
 const variantSlide = {
     enter: (direction) => {
         return {
-            x: direction > 0 ? -500 : 500,
+            x: direction > 0 ? -2000 : 2000,
             opacity: 0
         };
     },
@@ -22,7 +22,7 @@ const variantSlide = {
     exit: (direction) => {
         return {
             zIndex: 0,
-            x: direction < 0 ? 500 : -500,
+            x: direction < 0 ? 2000 : -2000,
             opacity: 0
         };
     }
@@ -54,7 +54,7 @@ export default function MovieBackdrop() {
                             exit="exit"
                             transition={{
                                 x: { type: "spring", stiffness: 300, damping: 200 },
-                                opacity: { duration: 1 },
+                                opacity: { duration: 0.2 },
                             }}
                         />
                     </AnimatePresence>
@@ -71,12 +71,24 @@ export default function MovieBackdrop() {
                             exit="exit"
                             transition={{
                                 x: { type: "spring", stiffness: 300, damping: 200 },
-                                opacity: { duration: 1 },
+                                opacity: { duration: 0.2 },
                             }}
                         />
+
                     </AnimatePresence>
                 </div>
-                <div className={classes.Filter}></div>
+                <motion.div
+                    key={page}
+                    className={classes.Filter}
+                    variants={variantSlide}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                        x: { type: "spring", stiffness: 300, damping: 200 },
+                        opacity: { duration: 0.2 },
+                    }}
+                ></motion.div>
                 <MovieBackdropOverlay
                     name={trending.results[imageIndex].name || trending.results[imageIndex].title}
                     rating={trending.results[imageIndex].vote_average}

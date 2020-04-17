@@ -1,0 +1,62 @@
+.BackdropCard img {
+    width: 300px;
+    height: 175px;
+    z-index: 2;
+}
+
+.BackdropCardIsSrc {
+    width: 300px;
+    height: 175px;
+    background: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F5C518;
+}
+
+.BackdropCardIsSrc > .Filter {
+    display: none;
+}
+
+.BackdropCardIsSrc p {
+    color: #FFF;
+    margin: 0 3px;
+    font-size: 10pt;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.BackdropCard h4 {
+    color: #FFF;
+    margin: 0 3px;
+    font-size: 10pt;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.BackdropCard {
+    transition: 0.25s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.BackdropCardNavLink {
+    text-decoration: none;
+}
+
+.BackdropCardNavLink:hover > .BackdropCard {
+    transform: scale(1.05);
+}
+
+.BackdropCard:hover > .Filter {
+    display: block;
+}
+
+.Filter {
+    height: 175px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    display: none;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(18, 18, 18, 0) 100%)
+}
+
