@@ -3,8 +3,12 @@ import classes from './TVSection.module.css';
 import { connect } from 'react-redux';
 import FilmSection from '../FilmSection/FilmSection';
 import BackdropCard from '../../../../components/Cards/BackdropCard/BackdropCard';
+import LoadSkeletonBackdropCard from '../../../../components/Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
 
 class TVSection extends Component {
+    state = {
+        loadCard: [0, 1, 2, 3, 4]
+    }
     render() {
         return (
             <div className={classes.TVSection}>
@@ -13,7 +17,11 @@ class TVSection extends Component {
                     title="Latest TV Shows"
                     subtitle="List of popular TV Shows updated daily."
                 >
-                    {this.props.loadTVPopular ? null :
+                    {this.props.loadTVPopular ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.tvPopular.results.map((popular, key) => {
                             return <BackdropCard
                                 isSrc={popular.backdrop_path}
@@ -31,7 +39,11 @@ class TVSection extends Component {
                     title="Latest Top Rated TV Shows"
                     subtitle="List of Top Rated TV Shows updated daily."
                 >
-                    {this.props.loadTVTopRated ? null :
+                    {this.props.loadTVTopRated ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.tvTopRated.results.map((topRated, key) => {
                             return <BackdropCard
                                 isSrc={topRated.backdrop_path}
@@ -49,7 +61,11 @@ class TVSection extends Component {
                     title="Latest TV Shows Airing Today"
                     subtitle="List of TV Shows playing today."
                 >
-                    {this.props.loadTVAiringToday ? null :
+                    {this.props.loadTVAiringToday ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.tvAiringToday.results.map((airingToday, key) => {
                             return <BackdropCard
                                 isSrc={airingToday.backdrop_path}
@@ -67,7 +83,11 @@ class TVSection extends Component {
                     title="Upcomming Shows For The Next 7 Days"
                     subtitle="List of TV Shows currently on the air."
                 >
-                    {this.props.loadTVOnTheAir ? null :
+                    {this.props.loadTVOnTheAir ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.tvOnTheAir.results.map((onTheAir, key) => {
                             return <BackdropCard
                                 isSrc={onTheAir.backdrop_path}

@@ -3,8 +3,12 @@ import classes from './MovieSection.module.css';
 import { connect } from 'react-redux';
 import FilmSection from '../FilmSection/FilmSection';
 import BackdropCard from '../../../../components/Cards/BackdropCard/BackdropCard';
+import LoadSkeletonBackdropCard from '../../../../components/Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
 
 class MovieSection extends Component {
+    state = {
+        loadCards: [0, 1, 2, 3, 4]
+    }
     render() {
         return (
             <div className={classes.MovieSection}>
@@ -13,7 +17,11 @@ class MovieSection extends Component {
                     title="Latest Popular Movies"
                     subtitle="List of popular movies updated daily."
                 >
-                    {this.props.loadMoviePopular ? null :
+                    {this.props.loadMoviePopular ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key}/>
+                        })
+                        :
                         this.props.moviePopular.results.map((popular, key) => {
                             return <BackdropCard
                                 isSrc={popular.backdrop_path}
@@ -31,7 +39,11 @@ class MovieSection extends Component {
                     title="Latest Top Rated Movies"
                     subtitle="List of Top Rated movies updated daily."
                 >
-                    {this.props.loadMovieTopRated ? null :
+                    {this.props.loadMovieTopRated ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.movieTopRated.results.map((topRated, key) => {
                             return <BackdropCard
                                 isSrc={topRated.backdrop_path}
@@ -49,7 +61,11 @@ class MovieSection extends Component {
                     title="Latest Movies In Theaters"
                     subtitle="List of movies playing in the movie theatres."
                 >
-                    {this.props.loadMovieNowPlaying ? null :
+                    {this.props.loadMovieNowPlaying ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.movieNowPlaying.results.map((nowPlaying, key) => {
                             return <BackdropCard
                                 isSrc={nowPlaying.backdrop_path}
@@ -67,7 +83,11 @@ class MovieSection extends Component {
                     title="Movies Coming Soon"
                     subtitle="List of upcoming movies in theatres."
                 >
-                    {this.props.loadMovieUpcoming ? null :
+                    {this.props.loadMovieUpcoming ?
+                        this.state.loadCards.map((load, key) => {
+                            return <LoadSkeletonBackdropCard key={key} />
+                        })
+                        :
                         this.props.movieUpcoming.results.map((upcoming, key) => {
                             return <BackdropCard
                                 isSrc={upcoming.backdrop_path}

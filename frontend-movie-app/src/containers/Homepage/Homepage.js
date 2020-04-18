@@ -5,12 +5,19 @@ import classes from './Homepage.module.css';
 import MovieSection from './SectionContainer/MovieSection/MovieSection';
 import TabletPanel from './TabletPanel/TabletPanel';
 import TVSection from './SectionContainer/TVSection/TVSection';
+import LoadMovieBackdrop from './MovieBackdropContainer/LoadMovieBackdrop/LoadMovieBackdrop';
+import LoadMiniStepper from './MovieBackdropContainer/LoadMiniStepper/LoadMiniStepper';
 
 class Homepage extends Component {
     render() {
         return (
             <div className={classes.Homepage}>
-                {this.props.loadTrending ? null :
+                {this.props.loadTrending ?
+                    <>
+                        <LoadMovieBackdrop />
+                        <LoadMiniStepper />
+                    </>
+                    :
                     <MovieBackdrop />
                 }
                 <TabletPanel
