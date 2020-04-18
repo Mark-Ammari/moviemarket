@@ -13,11 +13,13 @@ class MovieSection extends Component {
                     title="Latest Popular Movies"
                     subtitle="List of popular movies updated daily."
                 >
-                    {this.props.loadPopular ? null :
-                        this.props.popular.results.map((popular, key) => {
+                    {this.props.loadMoviePopular ? null :
+                        this.props.moviePopular.results.map((popular, key) => {
                             return <BackdropCard
                                 isSrc={popular.backdrop_path}
                                 key={key}
+                                id={popular.id}
+                                type="movie"
                                 src={`https://image.tmdb.org/t/p/original${popular.backdrop_path}`}
                                 title={popular.name || popular.title || popular["original_title"]}
                             />
@@ -29,12 +31,13 @@ class MovieSection extends Component {
                     title="Latest Top Rated Movies"
                     subtitle="List of Top Rated movies updated daily."
                 >
-                    {this.props.loadTopRated ? null :
-                        this.props.topRated.results.map((topRated, key) => {
-                            console.log(topRated)
+                    {this.props.loadMovieTopRated ? null :
+                        this.props.movieTopRated.results.map((topRated, key) => {
                             return <BackdropCard
                                 isSrc={topRated.backdrop_path}
                                 key={key}
+                                id={topRated.id}
+                                type="movie"
                                 src={`https://image.tmdb.org/t/p/original${topRated.backdrop_path}`}
                                 title={topRated.name || topRated.title || topRated["original_title"]}
                             />
@@ -46,11 +49,13 @@ class MovieSection extends Component {
                     title="Latest Movies In Theaters"
                     subtitle="List of movies playing in the movie theatres."
                 >
-                    {this.props.loadNowPlaying ? null :
-                        this.props.nowPlaying.results.map((nowPlaying, key) => {
+                    {this.props.loadMovieNowPlaying ? null :
+                        this.props.movieNowPlaying.results.map((nowPlaying, key) => {
                             return <BackdropCard
                                 isSrc={nowPlaying.backdrop_path}
+                                id={nowPlaying.id}
                                 key={key}
+                                type="movie"
                                 src={`https://image.tmdb.org/t/p/original${nowPlaying.backdrop_path}`}
                                 title={nowPlaying.name || nowPlaying.title || nowPlaying["original_title"]}
                             />
@@ -62,11 +67,13 @@ class MovieSection extends Component {
                     title="Movies Coming Soon"
                     subtitle="List of upcoming movies in theatres."
                 >
-                    {this.props.loadUpcoming ? null :
-                        this.props.upcoming.results.map((upcoming, key) => {
+                    {this.props.loadMovieUpcoming ? null :
+                        this.props.movieUpcoming.results.map((upcoming, key) => {
                             return <BackdropCard
                                 isSrc={upcoming.backdrop_path}
                                 key={key}
+                                id={upcoming.id}
+                                type="movie"
                                 src={`https://image.tmdb.org/t/p/original${upcoming.backdrop_path}`}
                                 title={upcoming.name || upcoming.title || upcoming["original_title"]}
                             />
@@ -80,17 +87,17 @@ class MovieSection extends Component {
 
 const mapStateToProps = state => {
     return {
-        loadPopular: state.popular.loading,
-        popular: state.popular.popular,
+        loadMoviePopular: state.moviePopular.loading,
+        moviePopular: state.moviePopular.popular,
 
-        loadTopRated: state.topRated.loading,
-        topRated: state.topRated.topRated,
+        loadMovieTopRated: state.movieTopRated.loading,
+        movieTopRated: state.movieTopRated.topRated,
 
-        loadNowPlaying: state.nowPlaying.loading,
-        nowPlaying: state.nowPlaying.nowPlaying,
+        loadMovieNowPlaying: state.movieNowPlaying.loading,
+        movieNowPlaying: state.movieNowPlaying.nowPlaying,
 
-        loadUpcoming: state.upcoming.loading,
-        upcoming: state.upcoming.upcoming
+        loadMovieUpcoming: state.movieUpcoming.loading,
+        movieUpcoming: state.movieUpcoming.upcoming
     }
 }
 

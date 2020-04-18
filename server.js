@@ -8,6 +8,7 @@ server.use(express.json());
 
 const trending = require('./routes/API/movie_API/trending');
 const movie = require('./routes/API/movie_API/movie');
+const tv = require('./routes/API/movie_API/tv');
 
 server.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -23,6 +24,7 @@ server.use((req, res, next) => {
 
 server.use('/', trending);
 server.use('/movie', movie);
+server.use('/tv', tv);
 
 // production
 if (process.env.NODE_ENV === 'production') {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import classes from './MovieBackdrop.module.css';
 import CarouselPointers from '../CarouselPointers/CarouselPointers';
 import { useSelector } from 'react-redux';

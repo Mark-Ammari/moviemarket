@@ -11,15 +11,23 @@ import movieNowPlayingReducer from './store/reducers/movieNowPlaying';
 import moviePopularReducer from './store/reducers/moviePopular';
 import movieTopRatedReducer from './store/reducers/movieTopRated';
 import movieUpcomingReducer from './store/reducers/movieUpcoming';
+import tvAiringTodayReducer from './store/reducers/tvAiringToday';
+import tvOnTheAirReducer from './store/reducers/tvOnTheAir';
+import tvPopularReducer from './store/reducers/tvPopular';
+import tvTopRatedReducer from './store/reducers/tvTopRated';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   trending: trendingReducer,
-  nowPlaying: movieNowPlayingReducer,
-  popular: moviePopularReducer,
-  topRated: movieTopRatedReducer,
-  upcoming: movieUpcomingReducer
+  movieNowPlaying: movieNowPlayingReducer,
+  moviePopular: moviePopularReducer,
+  movieTopRated: movieTopRatedReducer,
+  movieUpcoming: movieUpcomingReducer,
+  tvAiringToday: tvAiringTodayReducer,
+  tvOnTheAir: tvOnTheAirReducer,
+  tvPopular: tvPopularReducer,
+  tvTopRated: tvTopRatedReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

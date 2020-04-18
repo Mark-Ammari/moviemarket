@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieBackdrop from './MovieBackdropContainer/MovieBackdrop/MovieBackdrop';
-import FilmSection from './SectionContainer/FilmSection/FilmSection';
 import classes from './Homepage.module.css';
-import BackdropCard from '../../components/Cards/BackdropCard/BackdropCard';
 import MovieSection from './SectionContainer/MovieSection/MovieSection';
+import TabletPanel from './TabletPanel/TabletPanel';
+import TVSection from './SectionContainer/TVSection/TVSection';
 
 class Homepage extends Component {
     render() {
-        
         return (
             <div className={classes.Homepage}>
                 {this.props.loadTrending ? null :
                     <MovieBackdrop />
                 }
-                <MovieSection />
+                <TabletPanel
+                    movieSection={
+                        <MovieSection />
+                    }
+                    showSection={
+                        <TVSection />
+                    }
+                />
             </div>
         );
     };
