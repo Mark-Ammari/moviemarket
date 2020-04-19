@@ -51,5 +51,15 @@ router.get('/top_rated', (req, res) => {
     .catch(err => console.log(err))
 })
 
+//GET /movie/genre/list
+router.get('/genre/list', (req, res) => {
+    config.movie_uri.get('/genre/tv/list', {
+        params: {
+            "api_key": config.api_key
+        }
+    })
+    .then(response => res.json(response.data))
+    .catch(err => console.log(err))
+})
 
 module.exports = router

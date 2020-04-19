@@ -4,19 +4,24 @@ import {
   makeStyles,
   Drawer,
   List,
-  Divider,
-  ListItemText,
+  IconButton,
+  AppBar,
   ListItem,
-  ListItemIcon,
-  IconButton
+  ListItemText
 } from '@material-ui/core/';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { MenuRounded } from '@material-ui/icons';
+
+import { MenuRounded, CloseRounded, MovieRounded, TvRounded } from '@material-ui/icons';
+import Logo from '../Logo/Logo';
+import NavDropdown from '../NavDropdown/NavDropdown';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
     width: 250,
+    maxWidth: 360,
+    color: "#F5C518",
+    backgroundColor: "#292929",
   },
   fullList: {
     width: 'auto',
@@ -29,6 +34,18 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: "#2E2E2E",
     },
+  },
+  drawer: {
+    background: "#121212"
+  },
+  appbar: {
+    background: "transparent",
+    height: 60,
+    width: 250,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   }
 });
 
@@ -37,14 +54,22 @@ export default function NavDrawer() {
   const [state, setState] = React.useState({
     left: false
   });
+  const history = useHistory()
+  const tvGenreList = useSelector(state => state.tvGenreList.genreList)
+  const loadTVGenreList = useSelector(state => state.tvGenreList.loading)
+  const movieGenreList = useSelector(state => state.movieGenreList.genreList)
+  const loadMovieGenreList = useSelector(state => state.movieGenreList.loading)
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
     setState({ ...state, [anchor]: open });
   };
+
+  const goToGenrePage = (type, name, id) => {
+    history.push({
+      pathname: `/${type}/genre/${name}`,
+      search: `?id=${id}`
+    })
+  }
 
   const list = (anchor) => (
     <div
@@ -55,30 +80,48 @@ export default function NavDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <AppBar position="static" className={classes.appbar}>
+        <Logo />
+        <IconButton onClick={toggleDrawer('left', false)} style={{ marginRight: "10px" }} className={classes.root}>
+          <CloseRounded />
+        </IconButton>
+      </AppBar>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <NavDropdown
+          title="Movies"
+          icon={<MovieRounded />}
+        >
+          {loadMovieGenreList ? null :
+            movieGenreList.map((genre, key) => {
+              return <ListItem key={key} button onClick={goToGenrePage.bind(this, "movies", genre.name.split(" ").join("-").toLowerCase(), genre.id)}>
+                <ListItemText primary={genre.name} />
+              </ListItem>
+            })
+          }
+        </NavDropdown>
+        <NavDropdown
+          title="Shows"
+          icon={<TvRounded />}
+        >
+          {loadTVGenreList ? null :
+            tvGenreList.map((genre, key) => {
+              return <ListItem key={key} button onClick={goToGenrePage.bind(this, "shows", genre.name.split(" ").join("-").toLowerCase(), genre.id)}>
+                <ListItemText primary={genre.name} />
+              </ListItem>
+            })
+          }
+        </NavDropdown>
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+
     </div>
   );
 
   return (
     <div>
       <IconButton className={classes.root} onClick={toggleDrawer('left', true)}><MenuRounded /></IconButton>
-      <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+      <Drawer classes={{
+        paper: classes.drawer
+      }} anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
         {list('left')}
       </Drawer>
     </div>

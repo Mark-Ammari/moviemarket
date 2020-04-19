@@ -35,7 +35,7 @@ router.get('/popular', (req, res) => {
 
 // GET /movie/top_rated
 router.get('/top_rated', (req, res) => {
-    config.movie_uri.get('movie/top_rated',
+    config.movie_uri.get('/movie/top_rated',
         {
             params:
             {
@@ -50,7 +50,7 @@ router.get('/top_rated', (req, res) => {
 
 // GET /movie/upcoming
 router.get('/upcoming', (req, res) => {
-    config.movie_uri.get('movie/upcoming',
+    config.movie_uri.get('/movie/upcoming',
         {
             params:
             {
@@ -61,6 +61,17 @@ router.get('/upcoming', (req, res) => {
         })
         .then(response => res.json(response.data))
         .catch(err => res.send({ success: false, message: err.message }))
+})
+
+//GET /movie/genre/list
+router.get('/genre/list', (req, res) => {
+    config.movie_uri.get('/genre/movie/list', {
+        params: {
+            "api_key": config.api_key
+        }
+    })
+    .then(response => res.json(response.data))
+    .catch(err => console.log(err))
 })
 
 module.exports = router

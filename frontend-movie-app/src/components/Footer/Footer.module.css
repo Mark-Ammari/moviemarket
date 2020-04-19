@@ -1,0 +1,31 @@
+.Footer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #121212;
+    align-items: center;
+    height: 40px;
+    padding: 40px 0px
+}
+
+.Footer p {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10pt;
+    text-align: center;
+}
+
+.Footer img {
+    width: 25px;
+    color: white;
+    height: auto;
+    margin: 0em 1em;
+}
+
+.Footer a:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

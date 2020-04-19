@@ -1,7 +1,7 @@
 export const FETCH_TRENDING_MOVIES_START = "FETCH_TRENDING_MOVIES_START";
 export const FETCH_TRENDING_MOVIES_SUCCESS = "FETCH_TRENDING_MOVIES_SUCCESS";
 export const FETCH_TRENDING_MOVIES_FAIL = "FETCH_TRENDING_MOVIES_FAIL";
-
+//----------------------------------------------------------------------------------------
 export const FETCH_MOVIES_UPCOMING_START = "FETCH_MOVIES_UPCOMING_START";
 export const FETCH_MOVIES_UPCOMING_SUCCESS = "FETCH_MOVIES_UPCOMING_SUCCESS";
 export const FETCH_MOVIES_UPCOMING_FAIL = "FETCH_MOVIES_UPCOMING_FAIL";
@@ -33,3 +33,12 @@ export const FETCH_TV_ON_THE_AIR_FAIL = "FETCH_TV_ON_THE_AIR_FAIL";
 export const FETCH_TV_TOP_RATED_START = "FETCH_TV_TOP_RATED_START";
 export const FETCH_TV_TOP_RATED_SUCCESS = "FETCH_TV_TOP_RATED_SUCCESS";
 export const FETCH_TV_TOP_RATED_FAIL = "FETCH_TV_TOP_RATED_FAIL";
+//------------------------------------------------------------------------------------------
+export const FETCH_TV_GENRE_LIST_START = "FETCH_TV_GENRE_LIST_START";
+export const FETCH_TV_GENRE_LIST_SUCCESS = "FETCH_TV_GENRE_LIST_SUCCESS";
+export const FETCH_TV_GENRE_LIST_FAIL = "FETCH_TV_GENRE_LIST_FAIL";
+
+export const FETCH_MOVIE_GENRE_LIST_START = "FETCH_MOVIE_GENRE_LIST_START";
+export const FETCH_MOVIE_GENRE_LIST_SUCCESS = "FETCH_MOVIE_GENRE_LIST_SUCCESS";
+export const FETCH_MOVIE_GENRE_LIST_FAIL = "FETCH_MOVIE_GENRE_LIST_FAIL";
+//------------------------------------------------------------------------------------------
