@@ -12,9 +12,10 @@ function tvAiringTodaySuccess(airingToday) {
         airingToday: airingToday
     }
 }
-function tvAiringTodayFail() {
+function tvAiringTodayFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_AIRING_TODAY_FAIL
+        type: actionTypes.FETCH_TV_AIRING_TODAY_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchTVAiringToday = () => {
@@ -26,7 +27,7 @@ export const FetchTVAiringToday = () => {
             })
             .catch(err => {
                 console.log(err.data)
-                dispatch(tvAiringTodayFail());
+                dispatch(tvAiringTodayFail(err.response.data));
             })
     }
 }
@@ -42,9 +43,10 @@ function tvOnTheAirSuccess(onTheAir) {
         onTheAir: onTheAir
     }
 }
-function tvOnTheAirFail() {
+function tvOnTheAirFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_ON_THE_AIR_FAIL
+        type: actionTypes.FETCH_TV_ON_THE_AIR_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchTVOnTheAir = () => {
@@ -56,7 +58,7 @@ export const FetchTVOnTheAir = () => {
             })
             .catch(err => {
                 console.log(err.data)
-                dispatch(tvOnTheAirFail());
+                dispatch(tvOnTheAirFail(err.response.data));
             })
     }
 }
@@ -72,9 +74,10 @@ function tvTopRatedSuccess(topRated) {
         topRated: topRated
     }
 }
-function tvTopRatedFail() {
+function tvTopRatedFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_TOP_RATED_FAIL
+        type: actionTypes.FETCH_TV_TOP_RATED_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchTVTopRated = () => {
@@ -86,7 +89,7 @@ export const FetchTVTopRated = () => {
             })
             .catch(err => {
                 console.log(err.data)
-                dispatch(tvTopRatedFail());
+                dispatch(tvTopRatedFail(err.response.data));
             })
     }
 }
@@ -102,9 +105,10 @@ function tvPopularSuccess(popular) {
         popular: popular
     }
 }
-function tvPopularFail() {
+function tvPopularFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_POPULAR_FAIL
+        type: actionTypes.FETCH_TV_POPULAR_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchTVPopular = () => {
@@ -116,7 +120,7 @@ export const FetchTVPopular = () => {
             })
             .catch(err => {
                 console.log(err.data)
-                dispatch(tvPopularFail());
+                dispatch(tvPopularFail(err.response.data));
             })
     }
 }
@@ -132,9 +136,10 @@ function tvGenreListSuccess(genreList) {
         genreList: genreList
     }
 }
-function tvGenreListFail() {
+function tvGenreListFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_GENRE_LIST_FAIL
+        type: actionTypes.FETCH_TV_GENRE_LIST_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchTVGenreList = () => {
@@ -145,8 +150,7 @@ export const FetchTVGenreList = () => {
                 dispatch(tvGenreListSuccess(res.data.genres));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(tvGenreListFail());
+                dispatch(tvGenreListFail(err.response.data));
             })
     }
 }

@@ -15,7 +15,7 @@ router.get('/now_playing', (req, res) => {
             }
         })
         .then(response => res.json(response.data))
-        .catch(err => res.send({ success: false, message: err.message }))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 // GET /movie/popular
@@ -30,7 +30,7 @@ router.get('/popular', (req, res) => {
             }
         })
         .then(response => res.json(response.data))
-        .catch(err => res.send({ success: false, message: err.message }))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 // GET /movie/top_rated
@@ -45,7 +45,7 @@ router.get('/top_rated', (req, res) => {
             }
         })
         .then(response => res.json(response.data))
-        .catch(err => res.send({ success: false, message: err.message }))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 // GET /movie/upcoming
@@ -60,7 +60,7 @@ router.get('/upcoming', (req, res) => {
             }
         })
         .then(response => res.json(response.data))
-        .catch(err => res.send({ success: false, message: err.message }))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/genre/list
@@ -71,7 +71,23 @@ router.get('/genre/list', (req, res) => {
         }
     })
     .then(response => res.json(response.data))
-    .catch(err => console.log(err))
+    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+})
+
+//GET /movie/discover
+router.get('/discover', (req, res) => {
+    config.movie_uri.get('/discover/movie', {
+        params: {
+            "api_key": config.api_key,
+            "sort_by": req.query["sort_by"],
+            "include_adult": req.query["include_adult"],
+            "include_video": req.query["include_video"],
+            "page": req.query.page,
+            "with_genres": req.query["with_genres"]
+        }
+    })
+    .then(response => res.json(response.data))
+    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 module.exports = router

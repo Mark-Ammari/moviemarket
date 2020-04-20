@@ -10,8 +10,10 @@ import {
 import {
   FetchTVGenreList
 } from './store/actions/tv';
-import AboutFilmpage from './containers/AboutFilmpage/AboutFilmpage';
+// import AboutFilmpage from './containers/AboutFilmpage/AboutFilmpage';
 import Footer from './components/Footer/Footer';
+import Genrepage from './containers/Genrepage/Genrepage';
+import Errorpage from './containers/Errorpage/Errorpage';
 
 class App extends Component {
   componentDidMount() {
@@ -24,7 +26,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/:type/:title/:id" component={AboutFilmpage} />
+          <Route exact path="/:type/genre/:name" component={Genrepage} />
+          {/* <Route path="/:type/:title/:id" component={AboutFilmpage} /> */}
+          <Route component={Errorpage}/>
         </Switch>
         <Footer />
       </BrowserRouter>

@@ -1,0 +1,12 @@
+.Errorpage {
+    width: 100%;
+    height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Errorpage img {
+    width: 275px;
+    height: auto;
+}

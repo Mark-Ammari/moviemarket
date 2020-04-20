@@ -12,9 +12,10 @@ function movieNowPlayingSuccess(nowPlaying) {
         nowPlaying: nowPlaying
     }
 }
-function movieNowPlayingFail() {
+function movieNowPlayingFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIES_NOW_PLAYING_FAIL
+        type: actionTypes.FETCH_MOVIES_NOW_PLAYING_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchMovieNowPlaying = () => {
@@ -25,8 +26,7 @@ export const FetchMovieNowPlaying = () => {
                 dispatch(movieNowPlayingSuccess(res.data));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(movieNowPlayingFail());
+                dispatch(movieNowPlayingFail(err.response.data));
             })
     }
 }
@@ -42,9 +42,10 @@ function moviePopularSuccess(popular) {
         popular: popular
     }
 }
-function moviePopularFail() {
+function moviePopularFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIES_POPULAR_FAIL
+        type: actionTypes.FETCH_MOVIES_POPULAR_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchMoviePopular = () => {
@@ -55,8 +56,7 @@ export const FetchMoviePopular = () => {
                 dispatch(moviePopularSuccess(res.data));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(moviePopularFail());
+                dispatch(moviePopularFail(err.response.data));
             })
     }
 }
@@ -72,9 +72,10 @@ function movieTopRatedSuccess(topRated) {
         topRated: topRated
     }
 }
-function movieTopRatedFail() {
+function movieTopRatedFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIES_TOP_RATED_FAIL
+        type: actionTypes.FETCH_MOVIES_TOP_RATED_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchMovieTopRated = () => {
@@ -85,8 +86,7 @@ export const FetchMovieTopRated = () => {
                 dispatch(movieTopRatedSuccess(res.data));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(movieTopRatedFail());
+                dispatch(movieTopRatedFail(err.response.data));
             })
     }
 }
@@ -102,9 +102,10 @@ function movieUpcomingSuccess(upcoming) {
         upcoming: upcoming
     }
 }
-function movieUpcomingFail() {
+function movieUpcomingFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIES_UPCOMING_FAIL
+        type: actionTypes.FETCH_MOVIES_UPCOMING_FAIL,
+        errorMessage: errorMessage
     }
 }
 export const FetchMovieUpcoming = () => {
@@ -115,8 +116,7 @@ export const FetchMovieUpcoming = () => {
                 dispatch(movieUpcomingSuccess(res.data));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(movieUpcomingFail());
+                dispatch(movieUpcomingFail(err.response.data));
             })
     }
 }
@@ -132,9 +132,10 @@ function movieGenreListSuccess(genreList) {
         genreList: genreList
     }
 }
-function movieGenreListFail() {
+function movieGenreListFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIE_GENRE_LIST_FAIL
+        type: actionTypes.FETCH_MOVIE_GENRE_LIST_FAIL,
+        errorMessage: errorMessage   
     }
 }
 export const FetchMovieGenreList = () => {
@@ -145,8 +146,8 @@ export const FetchMovieGenreList = () => {
                 dispatch(movieGenreListSuccess(res.data.genres));
             })
             .catch(err => {
-                console.log(err.data)
-                dispatch(movieGenreListFail());
+                console.log(err)
+                dispatch(movieGenreListFail(err.response.data));
             })
     }
 }

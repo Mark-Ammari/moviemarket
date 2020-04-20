@@ -14,9 +14,11 @@ function trendingSuccess(trending) {
     }
 }
 
-function trendingFail() {
+function trendingFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TRENDING_MOVIES_FAIL
+        type: actionTypes.FETCH_TRENDING_MOVIES_FAIL,
+        errorMessage: errorMessage
+        
     }
 }
 
@@ -25,12 +27,11 @@ export default function FetchTrending() {
         dispatch(trendingStart());
         movieURI.get('/trending/all/day')
         .then(res => {
-            // console.log(res.data);
+            console.log(res);
             dispatch(trendingSuccess(res.data));
         })
         .catch(err => {
-            console.log(err.data)
-            dispatch(trendingFail());
+            dispatch(trendingFail(err.response.data));
         })
     }
 }

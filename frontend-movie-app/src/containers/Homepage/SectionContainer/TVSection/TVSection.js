@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import FilmSection from '../FilmSection/FilmSection';
 import BackdropCard from '../../../../components/Cards/BackdropCard/BackdropCard';
 import LoadSkeletonBackdropCard from '../../../../components/Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
+import ErrorWrapper from '../../../../components/ErrorWrapper/ErrorWrapper';
 
 class TVSection extends Component {
     state = {
@@ -22,16 +23,17 @@ class TVSection extends Component {
                             return <LoadSkeletonBackdropCard key={key} />
                         })
                         :
-                        this.props.tvPopular.results.map((popular, key) => {
-                            return <BackdropCard
-                                isSrc={popular.backdrop_path}
-                                key={key}
-                                type="show"
-                                id={popular.id}
-                                src={`https://image.tmdb.org/t/p/original${popular.backdrop_path}`}
-                                title={popular.name || popular.title || popular["original_title"]}
-                            />
-                        })
+                        this.props.tvPopularError ? <ErrorWrapper width="1366px" height={215} /> :
+                            this.props.tvPopular.results.map((popular, key) => {
+                                return <BackdropCard
+                                    isSrc={popular.backdrop_path}
+                                    key={key}
+                                    type="show"
+                                    id={popular.id}
+                                    src={`https://image.tmdb.org/t/p/original${popular.backdrop_path}`}
+                                    title={popular.name || popular.title || popular["original_title"]}
+                                />
+                            })
                     }
                 </FilmSection>
                 <FilmSection
@@ -44,16 +46,18 @@ class TVSection extends Component {
                             return <LoadSkeletonBackdropCard key={key} />
                         })
                         :
-                        this.props.tvTopRated.results.map((topRated, key) => {
-                            return <BackdropCard
-                                isSrc={topRated.backdrop_path}
-                                key={key}
-                                type="show"
-                                id={topRated.id}
-                                src={`https://image.tmdb.org/t/p/original${topRated.backdrop_path}`}
-                                title={topRated.name || topRated.title || topRated["original_title"]}
-                            />
-                        })
+                        this.props.tvTopRatedError ? <ErrorWrapper width="1366px" height={215} /> :
+                            this.props.tvTopRated.results.map((topRated, key) => {
+                                return <BackdropCard
+                                    isSrc={topRated.backdrop_path}
+                                    key={key}
+                                    type="show"
+                                    id={topRated.id}
+                                    src={`https://image.tmdb.org/t/p/original${topRated.backdrop_path}`}
+                                    title={topRated.name || topRated.title || topRated["original_title"]}
+                                />
+                            })
+
                     }
                 </FilmSection>
                 <FilmSection
@@ -66,16 +70,17 @@ class TVSection extends Component {
                             return <LoadSkeletonBackdropCard key={key} />
                         })
                         :
-                        this.props.tvAiringToday.results.map((airingToday, key) => {
-                            return <BackdropCard
-                                isSrc={airingToday.backdrop_path}
-                                id={airingToday.id}
-                                key={key}
-                                type="show"
-                                src={`https://image.tmdb.org/t/p/original${airingToday.backdrop_path}`}
-                                title={airingToday.name || airingToday.title || airingToday["original_title"]}
-                            />
-                        })
+                        this.props.tvAiringTodayError ? <ErrorWrapper width="1366px" height={215} /> :
+                            this.props.tvAiringToday.results.map((airingToday, key) => {
+                                return <BackdropCard
+                                    isSrc={airingToday.backdrop_path}
+                                    id={airingToday.id}
+                                    key={key}
+                                    type="show"
+                                    src={`https://image.tmdb.org/t/p/original${airingToday.backdrop_path}`}
+                                    title={airingToday.name || airingToday.title || airingToday["original_title"]}
+                                />
+                            })
                     }
                 </FilmSection>
                 <FilmSection
@@ -88,16 +93,17 @@ class TVSection extends Component {
                             return <LoadSkeletonBackdropCard key={key} />
                         })
                         :
-                        this.props.tvOnTheAir.results.map((onTheAir, key) => {
-                            return <BackdropCard
-                                isSrc={onTheAir.backdrop_path}
-                                key={key}
-                                id={onTheAir.id}
-                                type="show"
-                                src={`https://image.tmdb.org/t/p/original${onTheAir.backdrop_path}`}
-                                title={onTheAir.name || onTheAir.title || onTheAir["original_title"]}
-                            />
-                        })
+                        this.props.tvOnTheAirError ? <ErrorWrapper width="1366px" height={215} /> :
+                            this.props.tvOnTheAir.results.map((onTheAir, key) => {
+                                return <BackdropCard
+                                    isSrc={onTheAir.backdrop_path}
+                                    key={key}
+                                    id={onTheAir.id}
+                                    type="show"
+                                    src={`https://image.tmdb.org/t/p/original${onTheAir.backdrop_path}`}
+                                    title={onTheAir.name || onTheAir.title || onTheAir["original_title"]}
+                                />
+                            })
                     }
                 </FilmSection>
             </div>
@@ -109,15 +115,19 @@ const mapStateToProps = state => {
     return {
         loadTVPopular: state.tvPopular.loading,
         tvPopular: state.tvPopular.popular,
+        tvPopularError: state.tvPopular.error,
 
         loadTVTopRated: state.tvTopRated.loading,
         tvTopRated: state.tvTopRated.topRated,
+        tvTopRatedError: state.tvTopRated.error,
 
         loadTVOnTheAir: state.tvOnTheAir.loading,
         tvOnTheAir: state.tvOnTheAir.onTheAir,
+        tvOnTheAirError: state.tvOnTheAir.error,
 
         loadTVAiringToday: state.tvAiringToday.loading,
-        tvAiringToday: state.tvAiringToday.airingToday
+        tvAiringToday: state.tvAiringToday.airingToday,
+        tvAiringTodayError: state.tvAiringToday.error
     }
 }
 

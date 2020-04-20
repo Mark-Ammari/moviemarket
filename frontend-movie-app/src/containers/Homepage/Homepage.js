@@ -20,6 +20,7 @@ import {
     FetchTVOnTheAir,
 } from '../../store/actions/tv';
 import FetchTrending from '../../store/actions/trending';
+import ErrorWrapper from '../../components/ErrorWrapper/ErrorWrapper';
 
 class Homepage extends Component {
     componentDidMount() {
@@ -42,7 +43,10 @@ class Homepage extends Component {
                         <LoadMiniStepper />
                     </>
                     :
-                    <MovieBackdrop />
+                    this.props.trendingError ?
+                        <ErrorWrapper width="1366px" height={400} />
+                        :
+                        <MovieBackdrop />
                 }
                 <TabletPanel
                     movieSection={
@@ -60,6 +64,7 @@ class Homepage extends Component {
 const mapStateToProps = state => {
     return {
         loadTrending: state.trending.loading,
+        trendingError: state.trending.error
     };
 };
 
