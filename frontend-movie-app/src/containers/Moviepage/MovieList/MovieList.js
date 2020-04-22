@@ -6,7 +6,6 @@ import PosterCard from '../../../components/Cards/PosterCard/PosterCard';
 export default function MovieList() {
     const movieList = useSelector(state => state.movieDiscover.discover);
     const loading = useSelector(state => state.movieDiscover.loading)
-    console.log(movieList.results)
     return (
         <div className={classes.MovieListContainer}>
             <section className={classes.MovieListSection}>

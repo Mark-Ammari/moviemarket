@@ -14,7 +14,7 @@ import { MenuRounded, CloseRounded, MovieRounded, TvRounded } from '@material-ui
 import Logo from '../Logo/Logo';
 import NavDropdown from '../NavDropdown/NavDropdown';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -64,13 +64,6 @@ export default function NavDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const goToGenrePage = (type, name, id) => {
-    history.push({
-      pathname: `/${type}/genre/${name}`,
-      search: `?id=${id}`
-    })
-  }
-
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -93,9 +86,12 @@ export default function NavDrawer() {
         >
           {loadMovieGenreList ? null :
             movieGenreList.map((genre, key) => {
-              return <ListItem key={key} button onClick={goToGenrePage.bind(this, "movies", genre.name.split(" ").join("-").toLowerCase(), genre.id)}>
+              return <NavLink to={`/movies/genre/${genre.name.split(" ").join("-").toLowerCase()}/${genre.id}`} key={key}>
+              <ListItem 
+              button>
                 <ListItemText primary={genre.name} />
               </ListItem>
+            </NavLink>
             })
           }
         </NavDropdown>
@@ -105,9 +101,12 @@ export default function NavDrawer() {
         >
           {loadTVGenreList ? null :
             tvGenreList.map((genre, key) => {
-              return <ListItem key={key} button onClick={goToGenrePage.bind(this, "shows", genre.name.split(" ").join("-").toLowerCase(), genre.id)}>
-                <ListItemText primary={genre.name} />
-              </ListItem>
+              return <NavLink to={`/shows/genre/${genre.name}/${genre.id}`} key={key}>
+                <ListItem 
+                button>
+                  <ListItemText primary={genre.name} />
+                </ListItem>
+              </NavLink>
             })
           }
         </NavDropdown>
