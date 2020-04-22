@@ -1,0 +1,62 @@
+.PosterCard img {
+    width: 200px;
+    height: auto;
+    z-index: 2;
+}
+
+.PosterCardIsSrc {
+    width: 200px;
+    height: auto;
+    background: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F5C518;
+    margin-bottom: 4px;
+}
+
+.PosterCardIsSrc > .Filter {
+    display: none;
+}
+
+.PosterCardIsSrc p {
+    color: #FFF;
+    margin: 0 3px;
+    font-size: 10pt;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.PosterCard h4 {
+    color: #FFF;
+    margin: 0 3px;
+    font-size: 10pt;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.PosterCard {
+    transition: 0.25s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.PosterCardNavLink {
+    text-decoration: none;
+}
+
+.PosterCardNavLink:hover > .PosterCard {
+    transform: scale(1.05);
+}
+
+.PosterCard:hover > .Filter {
+    display: block;
+}
+
+.Filter {
+    height: 100%;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    display: none;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(18, 18, 18, 0) 100%)
+}

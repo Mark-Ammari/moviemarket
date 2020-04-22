@@ -135,7 +135,7 @@ function movieGenreListSuccess(genreList) {
 function movieGenreListFail(errorMessage) {
     return {
         type: actionTypes.FETCH_MOVIE_GENRE_LIST_FAIL,
-        errorMessage: errorMessage   
+        errorMessage: errorMessage
     }
 }
 export const FetchMovieGenreList = () => {
@@ -146,8 +146,45 @@ export const FetchMovieGenreList = () => {
                 dispatch(movieGenreListSuccess(res.data.genres));
             })
             .catch(err => {
-                console.log(err)
                 dispatch(movieGenreListFail(err.response.data));
+            })
+    }
+}
+// ---------------------------------------------------------------
+function movieDiscoverStart() {
+    return {
+        type: actionTypes.FETCH_MOVIE_DISCOVER_START
+    }
+}
+function movieDiscoverSuccess(discover) {
+    return {
+        type: actionTypes.FETCH_MOVIE_DISCOVER_SUCCESS,
+        discover: discover
+    }
+}
+function movieDiscoverFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_MOVIE_DISCOVER_FAIL,
+        errorMessage: errorMessage
+    }
+}
+export const FetchMovieDiscover = (sortBy, includeAdult, includeVideo, page, withGenres) => {
+    return dispatch => {
+        dispatch(movieDiscoverStart());
+        movieURI.get('/movie/discover', {
+            params: {
+                "sort_by": sortBy,
+                "include_adult": includeAdult,
+                "include_video": includeVideo,
+                "page": page,
+                "with_genres": withGenres
+            }
+        })
+            .then(res => {
+                dispatch(movieDiscoverSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(movieDiscoverFail(err.response.data));
             })
     }
 }

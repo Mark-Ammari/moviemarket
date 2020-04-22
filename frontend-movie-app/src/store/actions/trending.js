@@ -18,7 +18,6 @@ function trendingFail(errorMessage) {
     return {
         type: actionTypes.FETCH_TRENDING_MOVIES_FAIL,
         errorMessage: errorMessage
-        
     }
 }
 

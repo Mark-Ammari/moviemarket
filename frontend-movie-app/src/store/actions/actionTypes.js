@@ -42,3 +42,11 @@ export const FETCH_MOVIE_GENRE_LIST_START = "FETCH_MOVIE_GENRE_LIST_START";
 export const FETCH_MOVIE_GENRE_LIST_SUCCESS = "FETCH_MOVIE_GENRE_LIST_SUCCESS";
 export const FETCH_MOVIE_GENRE_LIST_FAIL = "FETCH_MOVIE_GENRE_LIST_FAIL";
 //------------------------------------------------------------------------------------------
+export const FETCH_TV_DISCOVER_START = "FETCH_TV_DISCOVER_START";
+export const FETCH_TV_DISCOVER_SUCCESS = "FETCH_TV_DISCOVER_SUCCESS";
+export const FETCH_TV_DISCOVER_FAIL = "FETCH_TV_DISCOVER_FAIL";
+
+export const FETCH_MOVIE_DISCOVER_START = "FETCH_MOVIE_DISCOVER_START";
+export const FETCH_MOVIE_DISCOVER_SUCCESS = "FETCH_MOVIE_DISCOVER_SUCCESS";
+export const FETCH_MOVIE_DISCOVER_FAIL = "FETCH_MOVIE_DISCOVER_FAIL";
+//------------------------------------------------------------------------------------------

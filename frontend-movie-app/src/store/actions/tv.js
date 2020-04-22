@@ -154,3 +154,41 @@ export const FetchTVGenreList = () => {
             })
     }
 }
+// ---------------------------------------------------------------
+function tvDiscoverStart() {
+    return {
+        type: actionTypes.FETCH_TV_DISCOVER_START
+    }
+}
+function tvDiscoverSuccess(discover) {
+    return {
+        type: actionTypes.FETCH_TV_DISCOVER_SUCCESS,
+        discover: discover
+    }
+}
+function tvDiscoverFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_TV_DISCOVER_FAIL,
+        errorMessage: errorMessage
+    }
+}
+export const FetchTVDiscover = (sortBy, includeAdult, includeVideo, page, withGenres) => {
+    return dispatch => {
+        dispatch(tvDiscoverStart());
+        movieURI.get('/tv/discover', {
+            params: {
+                "sort_by": sortBy,
+                "include_adult": includeAdult,
+                "include_video": includeVideo,
+                "page": page,
+                "with_genres": withGenres
+            }
+        })
+            .then(res => {
+                dispatch(tvDiscoverSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(tvDiscoverFail(err.response.data));
+            })
+    }
+}

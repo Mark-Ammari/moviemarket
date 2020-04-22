@@ -12,8 +12,8 @@ import {
 } from './store/actions/tv';
 // import AboutFilmpage from './containers/AboutFilmpage/AboutFilmpage';
 import Footer from './components/Footer/Footer';
-import Genrepage from './containers/Genrepage/Genrepage';
 import Errorpage from './containers/Errorpage/Errorpage';
+import Moviepage from './containers/Moviepage/Moviepage';
 
 class App extends Component {
   componentDidMount() {
@@ -26,8 +26,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/:type/genre/:name" component={Genrepage} />
-          {/* <Route path="/:type/:title/:id" component={AboutFilmpage} /> */}
+          <Route exact path="/movies/genre/:name" component={Moviepage} />
+          {/* <Route exact path="/tv/genre/:name" component={Genrepage} /> */}
           <Route component={Errorpage}/>
         </Switch>
         <Footer />

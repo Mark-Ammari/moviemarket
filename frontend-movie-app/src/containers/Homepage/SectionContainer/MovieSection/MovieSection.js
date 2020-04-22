@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './MovieSection.module.css';
 import { connect } from 'react-redux';
-import FilmSection from '../FilmSection/FilmSection';
+import FilmSection from '../../../../components/FilmSection/FilmSection';
 import BackdropCard from '../../../../components/Cards/BackdropCard/BackdropCard';
 import LoadSkeletonBackdropCard from '../../../../components/Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
 import ErrorWrapper from '../../../../components/ErrorWrapper/ErrorWrapper';

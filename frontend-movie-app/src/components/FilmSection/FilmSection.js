@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './FilmSection.module.css';
-import InfoBox from '../../../../components/InfoBox/InfoBox';
+import InfoBox from '../InfoBox/InfoBox';
 
 export default function FilmSection(props) {
     return (
