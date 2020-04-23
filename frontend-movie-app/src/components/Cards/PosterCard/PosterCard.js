@@ -5,7 +5,6 @@ import { WarningRounded } from '@material-ui/icons';
 
 export default function PosterCard(props) {
     return (
-        //to={`/${props.type}/${props.title.split(" ").join("-")}/${props.id}`}
         <NavLink className={classes.PosterCardNavLink}  to={`/${props.type}/${props.title.split(" ").join("-")}/${props.id}`}>
             <div style={{ margin: props.margin || '10px' }} className={classes.PosterCard}>
                 {props.isSrc ?

@@ -26,8 +26,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/movies/genre/:name/:id" component={Moviepage} />
-          <Route exact path="/shows/genre/:name/:id" component={Moviepage} />
+          <Route path="/movies/genre/:name/:id" component={Moviepage} />
+          {/* <Route path="/shows/genre/:name/:id" component={Moviepage} /> */}
           <Route component={Errorpage}/>
         </Switch>
         <Footer />
