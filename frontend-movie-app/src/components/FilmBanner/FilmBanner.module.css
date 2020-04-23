@@ -1,0 +1,161 @@
+.FilmBannerContainer {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.FilmBanner {
+    background-image: url(../../assets/filmbannermobile.jpg);
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 300px;
+    margin: 0;
+    background-size: contain;
+}
+
+.FilmBannerText {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    width: 300px;
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1em
+}
+
+.FilmBannerText h1, h2 {
+    margin: 2.5px 0
+}
+
+.FilmBannerText h1 {
+    font-size: 28pt;
+}
+
+.FilmBannerText h2 {
+}
+
+.FilmBannerText p {
+    font-size: 10pt;
+    margin: 2.5px 0;
+    margin-top: 5px;
+}
+
+.FilmBannerText p:last-child {
+    color: #5c5c5c;
+    font-size: 8pt;
+}
+
+@media only screen and (max-width: 400px) {
+    .FilmBannerContainer {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .FilmBanner {
+        height: 200px;
+    }
+    
+    .FilmBannerText h1, h2 {
+        margin: 2.5px 0
+    }
+    
+    .FilmBannerText h1 {
+        font-size: 22pt;
+    }
+    
+    .FilmBannerText h2 {
+        font-size: 16pt;
+    }
+}
+
+@media only screen and (min-width: 401px) {
+    .FilmBannerContainer {
+        display: block;
+    }
+    .FilmBanner {
+        height: 200px;
+        background-size: cover;
+    }
+    
+    .FilmBannerText h1, h2 {
+        margin: 2.5px 0
+    }
+    
+    .FilmBannerText h1 {
+        font-size: 22pt;
+    }
+    
+    .FilmBannerText h2 {
+        font-size: 16pt;
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .FilmBanner {
+        height: 200px;
+        background-image: url(../../assets/filmbanner.jpg);
+    }
+    
+    .FilmBannerText h1, h2 {
+        margin: 2.5px 0
+    }
+    
+    .FilmBannerText h1 {
+        font-size: 22pt;
+    }
+    
+    .FilmBannerText h2 {
+        font-size: 16pt;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .FilmBanner {
+        width: 100%;
+        background-image: url(../../assets/filmbanner.jpg);
+    }
+    
+    .FilmBannerText h1, h2 {
+        margin: 2.5px 0
+    }
+    
+    .FilmBannerText h1 {
+        font-size: 34pt;
+    }
+    
+    .FilmBannerText h2 {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (min-width: 1366px) {
+    .FilmBanner {
+        width: 1366px;
+        height: 300px;
+        background-image: url(../../assets/filmbanner.jpg);
+    }
+    
+    .FilmBannerText h1, h2 {
+        margin: 2.5px 0
+    }
+    
+    .FilmBannerText h1 {
+        font-size: 34pt;
+    }
+    
+    .FilmBannerText h2 {
+        font-size: 20pt;
+    }
+    .FilmBannerContainer {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }    
+}

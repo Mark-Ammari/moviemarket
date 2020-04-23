@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classes from './MovieSection.module.css';
 import { connect } from 'react-redux';
-import FilmSection from '../../../../components/FilmSection/FilmSection';
-import BackdropCard from '../../../../components/Cards/BackdropCard/BackdropCard';
-import LoadSkeletonBackdropCard from '../../../../components/Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
-import ErrorWrapper from '../../../../components/ErrorWrapper/ErrorWrapper';
+import FilmSection from '../../FilmSection/FilmSection';
+import BackdropCard from '../../Cards/BackdropCard/BackdropCard';
+import LoadSkeletonBackdropCard from '../../Cards/LoadSkeletonBackdropCard/LoadSkeletonBackdropCard';
+import ErrorWrapper from '../../ErrorWrapper/ErrorWrapper';
 
 class MovieSection extends Component {
     state = {

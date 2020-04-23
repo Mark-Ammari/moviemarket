@@ -1,4 +1,4 @@
-.MovieListSection {
+.ShowListSection {
     display: grid;
     width: 1366px;
     grid-template-columns: 200px 200px 200px 200px;
@@ -7,14 +7,14 @@
     gap: 50px;
 }
 
-.MovieListContainer {
+.ShowListContainer {
     width: 100%;
     overflow: hidden;
     padding: 10px 0px;
 }
 
 @media only screen and (max-width: 500px) {
-    .MovieListSection {
+    .ShowListSection {
         display: grid;
         width: 100%;
         grid-template-columns: 200px;
@@ -23,7 +23,7 @@
         gap: 50px;
     }
     
-    .MovieListContainer {
+    .ShowListContainer {
         width: 100%;
         overflow: hidden;
         padding: 10px 0px;
@@ -31,7 +31,7 @@
 }
 
 @media only screen and (min-width: 501px) {
-    .MovieListSection {
+    .ShowListSection {
         display: grid;
         width: 100%;
         grid-template-columns: 200px 200px;
@@ -40,14 +40,14 @@
         gap: 50px;
     }
     
-    .MovieListContainer {
+    .ShowListContainer {
         width: 100%;
         padding: 10px 0px;
     } 
 }
 
 @media only screen and (min-width: 767px) {
-    .MovieListSection {
+    .ShowListSection {
         display: grid;
         width: 100%;
         grid-template-columns: 200px 200px 200px;
@@ -56,14 +56,14 @@
         gap: 50px;
     }
     
-    .MovieListContainer {
+    .ShowListContainer {
         width: 100%;
         padding: 10px 0px;
     } 
 }
 
 @media only screen and (min-width: 992px) {
-    .MovieListSection {
+    .ShowListSection {
         display: grid;
         width: 100%;
         grid-template-columns: 200px 200px 200px 200px;
@@ -72,7 +72,7 @@
         gap: 50px;
     }
     
-    .MovieListContainer {
+    .ShowListContainer {
         width: 100%;
         padding: 10px 0px;
     } 

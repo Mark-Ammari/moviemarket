@@ -14,6 +14,7 @@ import {
 import Footer from './components/Footer/Footer';
 import Errorpage from './containers/Errorpage/Errorpage';
 import Moviepage from './containers/Moviepage/Moviepage';
+import Showpage from './containers/Showpage/Showpage';
 
 class App extends Component {
   componentDidMount() {
@@ -27,7 +28,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/movies/genre/:name/:id" component={Moviepage} />
-          {/* <Route path="/shows/genre/:name/:id" component={Moviepage} /> */}
+          <Route path="/shows/genre/:name/:id" component={Showpage} />
           <Route component={Errorpage}/>
         </Switch>
         <Footer />

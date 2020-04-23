@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieBackdrop from './MovieBackdropContainer/MovieBackdrop/MovieBackdrop';
 import classes from './Homepage.module.css';
-import MovieSection from './SectionContainer/MovieSection/MovieSection';
+import MovieSection from '../../components/SectionContainer/MovieSection/MovieSection';
 import TabletPanel from './TabletPanel/TabletPanel';
-import TVSection from './SectionContainer/TVSection/TVSection';
+import TVSection from '../../components/SectionContainer/TVSection/TVSection';
 import LoadMovieBackdrop from './MovieBackdropContainer/LoadMovieBackdrop/LoadMovieBackdrop';
 import LoadMiniStepper from './MovieBackdropContainer/LoadMiniStepper/LoadMiniStepper';
 import {

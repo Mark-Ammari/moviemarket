@@ -1,12 +1,12 @@
 .PosterCard img {
     width: 200px;
-    height: auto;
+    height: 280.17px;
     z-index: 2;
 }
 
 .PosterCardIsSrc {
     width: 200px;
-    height: auto;
+    height: 280.17px;
     background: #121212;
     display: flex;
     align-items: center;
