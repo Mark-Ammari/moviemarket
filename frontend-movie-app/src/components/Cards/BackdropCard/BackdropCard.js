@@ -5,7 +5,7 @@ import { WarningRounded } from '@material-ui/icons';
 
 export default function BackdropCard(props) {
     return (
-        <NavLink className={classes.BackdropCardNavLink} to={`/${props.type}/${props.title.split(" ").join("-")}/${props.id}`}>
+        <NavLink className={classes.BackdropCardNavLink} to={`/${props.type}/${props.title.split(" ").join("-").toLowerCase()}/${props.id}`}>
             <div style={{ margin: props.margin || '10px' }} className={classes.BackdropCard}>
                 {props.isSrc ?
                     <img
