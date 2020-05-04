@@ -10,11 +10,11 @@ import {
 import {
   FetchTVGenreList
 } from './store/actions/tv';
-import AboutFilmpage from './containers/AboutFilmpage/AboutFilmpage';
 import Footer from './components/Footer/Footer';
 import Errorpage from './containers/Errorpage/Errorpage';
 import Moviepage from './containers/Moviepage/Moviepage';
 import Showpage from './containers/Showpage/Showpage';
+import AboutMoviepage from './containers/AboutMoviePage/AboutMoviepage';
 
 class App extends Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route path="/movies/genre/:name/:id" component={Moviepage} />
           <Route path="/shows/genre/:name/:id" component={Showpage} />
-          <Route path="/:type/:title/:id" component={AboutFilmpage} />
+          <Route path="/movie/:title/:id" component={AboutMoviepage} />
           <Route component={Errorpage}/>
         </Switch>
         <Footer />

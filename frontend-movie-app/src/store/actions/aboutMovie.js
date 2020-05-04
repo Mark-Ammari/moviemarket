@@ -53,7 +53,7 @@ export const FetchMovieImages = (id) => {
         dispatch(movieImagesStart());
         movieURI.get(`/movie/images/${id}`)
             .then(res => {
-                dispatch(movieImagessSuccess(res.data));
+                dispatch(movieImagesSuccess(res.data));
             })
             .catch(err => {
                 dispatch(movieImagesFail(err.response.data));
@@ -68,13 +68,13 @@ function movieVideosStart() {
 }
 function movieVideosSuccess(videos) {
     return {
-        type: actionTypes.FETCH_MOVIE_VIDEOS_START,
+        type: actionTypes.FETCH_MOVIE_VIDEOS_SUCCESS,
         videos: videos
     }
 }
 function movieVideosFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_MOVIE_VIDEOS_START,
+        type: actionTypes.FETCH_MOVIE_VIDEOS_FAIL,
         errorMessage: errorMessage
     }
 }
@@ -126,7 +126,7 @@ function movieRecommendationsStart() {
         type: actionTypes.FETCH_MOVIE_RECOMMENDATIONS_START
     }
 }
-function movieRecommendationsSuccess(Recommendations) {
+function movieRecommendationsSuccess(recommendations) {
     return {
         type: actionTypes.FETCH_MOVIE_RECOMMENDATIONS_SUCCESS,
         recommendations: recommendations
@@ -160,13 +160,13 @@ function movieReviewsStart() {
         type: actionTypes.FETCH_MOVIE_REVIEWS_START
     }
 }
-function movieRecommendationsSuccess(reviews) {
+function movieReviewsSuccess(reviews) {
     return {
         type: actionTypes.FETCH_MOVIE_REVIEWS_SUCCESS,
         reviews: reviews
     }
 }
-function movieRecommendationsFail(errorMessage) {
+function movieReviewsFail(errorMessage) {
     return {
         type: actionTypes.FETCH_MOVIE_REVIEWS_FAIL,
         errorMessage: errorMessage
@@ -194,10 +194,10 @@ function movieSimilarStart() {
         type: actionTypes.FETCH_MOVIE_SIMILAR_START
     }
 }
-function movieSimilarSuccess(Similar) {
+function movieSimilarSuccess(similar) {
     return {
         type: actionTypes.FETCH_MOVIE_SIMILAR_SUCCESS,
-        Similar: Similar
+        similar: similar
     }
 }
 function movieSimilarFail(errorMessage) {
@@ -209,7 +209,7 @@ function movieSimilarFail(errorMessage) {
 export const FetchMovieSimilar = (id, page) => {
     return dispatch => {
         dispatch(movieSimilarStart());
-        movieURI.get(`/movie/Similar/${id}`, {
+        movieURI.get(`/movie/similar/${id}`, {
             params: {
                 page: page
             }
