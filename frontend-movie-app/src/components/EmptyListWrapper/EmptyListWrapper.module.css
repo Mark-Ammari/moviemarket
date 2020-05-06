@@ -1,0 +1,26 @@
+.EmptyListWrapper {
+    background: #121212;
+    margin: auto;
+}
+
+.EmptyListWrapperMessage {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 5px;
+    color: white;
+    font-size: 10pt;
+}
+
+.EmptyListWrapperMessage p {
+    margin: 0px
+}
+.EmptyListWrapperMessage p:nth-child(2) {
+    color: #5c5c5c
+}
+
+.EmptyListWrapperContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    height: 100%
+}

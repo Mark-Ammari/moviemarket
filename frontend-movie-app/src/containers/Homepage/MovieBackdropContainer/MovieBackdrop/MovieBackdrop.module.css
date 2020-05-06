@@ -73,13 +73,13 @@
         display: none;
     }
     .ImagesContainer {
-        height: 250px;
+        height: 300px;
     }
     .Filter {
-        height: 250px;
+        height: 300px;
     }
     .MovieBackdropImage img {
-        height: 250px;
+        height: 300px;
         width: 100%;
     }
 }

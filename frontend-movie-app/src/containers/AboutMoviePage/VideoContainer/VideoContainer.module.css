@@ -1,5 +1,7 @@
 .VideoContainer {
-
+    max-width: 560px;
+    margin: auto;
+    overflow-x: hidden
 }
 .Video iframe {
     width: 560px;
