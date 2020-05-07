@@ -59,11 +59,11 @@
 
 @media only screen and (min-width: 767px) {
     .LoadSkeletonVideo {
-        width: 560px;
-        height: 315px;
+        width: 767px;
+        height: 450px;
     }
     .Video {
-        width: 560px;
+        width: 767px;
         margin: auto;
     }    
 }

@@ -172,7 +172,7 @@ function movieReviewsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchMovieReviews= (id, page) => {
+export const FetchMovieReviews = (id, page) => {
     return dispatch => {
         dispatch(movieReviewsStart());
         movieURI.get(`/movie/reviews/${id}`, {
@@ -219,6 +219,36 @@ export const FetchMovieSimilar = (id, page) => {
             })
             .catch(err => {
                 dispatch(movieSimilarFail(err.response.data));
+            })
+    }
+}
+// -----------------------------------------------------------------------------
+function movieCreditsStart() {
+    return {
+        type: actionTypes.FETCH_MOVIE_CREDITS_START
+    }
+}
+function movieCreditsSuccess(credits) {
+    return {
+        type: actionTypes.FETCH_MOVIE_CREDITS_SUCCESS,
+        credits: credits
+    }
+}
+function movieCreditsFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_MOVIE_CREDITS_FAIL,
+        errorMessage: errorMessage
+    }
+}
+export const FetchMovieCredits = (id) => {
+    return dispatch => {
+        dispatch(movieCreditsStart());
+        movieURI.get(`/movie/credits/${id}`)
+            .then(res => {
+                dispatch(movieCreditsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(movieCreditsFail(err.response.data));
             })
     }
 }

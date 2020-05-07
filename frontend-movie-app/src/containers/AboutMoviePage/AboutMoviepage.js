@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FetchMovieVideos, FetchMovieDetails, FetchMovieRecommendations, FetchMovieSimilar, FetchMovieReviews, FetchMovieKeywords } from '../../store/actions/aboutMovie';
+import { FetchMovieVideos, FetchMovieDetails, FetchMovieRecommendations, FetchMovieSimilar, FetchMovieReviews, FetchMovieKeywords, FetchMovieCredits } from '../../store/actions/aboutMovie';
 import VideoContainer from './VideoContainer/VideoContainer';
 import RecommendationSection from './RecommendationSection/RecommendationSection';
 import SimilarSection from './SimilarSection/SimilarSection';
 import AboutMovie from './AboutMovie/AboutMovie';
+import CastSection from './CastSection/CastSection';
 
 class AboutMoviepage extends Component {
 
@@ -15,6 +16,7 @@ class AboutMoviepage extends Component {
         this.props.onFetchMovieSimilar(this.props.match.params.id)
         this.props.onFetchMovieKeywords(this.props.match.params.id)
         this.props.onFetchMovieReviews(this.props.match.params.id)
+        this.props.onFetchMovieCredits(this.props.match.params.id)
     }
 
     render() {
@@ -22,6 +24,7 @@ class AboutMoviepage extends Component {
             <div>
                 <VideoContainer />
                 <AboutMovie />
+                <CastSection />
                 <RecommendationSection />
                 <SimilarSection />
             </div>
@@ -36,6 +39,7 @@ const mapDispatchTopProps = dispatch => {
         onFetchMovieRecommendations: (id) => dispatch(FetchMovieRecommendations(id)),
         onFetchMovieSimilar: (id) => dispatch(FetchMovieSimilar(id)),
         onFetchMovieReviews: (id) => dispatch(FetchMovieReviews(id)),
+        onFetchMovieCredits: (id) => dispatch(FetchMovieCredits(id)),
         onFetchMovieKeywords: (id) => dispatch(FetchMovieKeywords(id))
     };
 };

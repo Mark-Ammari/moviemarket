@@ -158,4 +158,16 @@ router.get('/similar/:id', (req, res) => {
     .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
+//GET /tv/{tv_id}/credits
+router.get('/credits/:id', (req, res) => {
+    config.movie_uri.get(`/tv/${req.params.id}/credits`, {
+        params: {
+            "api_key": config.api_key,
+            "page": req.query.page
+        }
+    })
+    .then(response => res.json(response.data))
+    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+})
+
 module.exports = router

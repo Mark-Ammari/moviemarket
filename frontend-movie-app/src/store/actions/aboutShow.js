@@ -172,7 +172,7 @@ function tvRecommendationsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvReviews= (id, page) => {
+export const FetchtvReviews = (id, page) => {
     return dispatch => {
         dispatch(tvReviewsStart());
         tvURI.get(`/tv/reviews/${id}`, {
@@ -219,6 +219,36 @@ export const FetchtvSimilar = (id, page) => {
             })
             .catch(err => {
                 dispatch(tvSimilarFail(err.response.data));
+            })
+    }
+}
+// -----------------------------------------------------------------------------
+function tvCreditsStart() {
+    return {
+        type: actionTypes.FETCH_TV_CREDITS_START
+    }
+}
+function tvCreditsSuccess(credits) {
+    return {
+        type: actionTypes.FETCH_TV_CREDITS_SUCCESS,
+        credits: credits
+    }
+}
+function tvCreditsFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_TV_CREDITS_FAIL,
+        errorMessage: errorMessage
+    }
+}
+export const FetchTVCredits = (id) => {
+    return dispatch => {
+        dispatch(tvCreditsStart());
+        movieURI.get(`/tv/credits/${id}`)
+            .then(res => {
+                dispatch(tvCreditsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(tvCreditsFail(err.response.data));
             })
     }
 }

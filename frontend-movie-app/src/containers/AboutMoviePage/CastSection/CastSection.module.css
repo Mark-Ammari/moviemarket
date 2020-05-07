@@ -1,0 +1,21 @@
+.CastSection {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9pt;
+    max-width: 540px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.ShowMore {
+    cursor: pointer;
+}
+
+.ShowMore:hover {
+    text-decoration: underline;
+    color: #F5C518
+}
+
+.CastOverview {
+    margin: 0px 0px 10px 0px
+}
