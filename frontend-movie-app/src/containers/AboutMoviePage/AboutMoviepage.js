@@ -33,6 +33,7 @@ class AboutMoviepage extends Component {
             this.props.onFetchMovieImages(this.props.match.params.id)
         }
     }
+    
     render() {
         return (
             <div>
