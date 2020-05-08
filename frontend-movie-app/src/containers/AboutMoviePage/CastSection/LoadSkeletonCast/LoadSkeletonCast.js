@@ -3,9 +3,7 @@ import classes from './LoadSkeletonCast.module.css';
 
 export default function LoadSkeletonCast() {
     return (
-        <div className={classes.LoadCastSection} >
-           
-        </div>
+        <div className={classes.LoadCastSection}></div>
     );
 };
 

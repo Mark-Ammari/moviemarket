@@ -18,7 +18,7 @@ function tvDetailsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvDetails = (id) => {
+export const FetchTVDetails = (id) => {
     return dispatch => {
         dispatch(tvDetailsStart());
         tvURI.get(`/tv/details/${id}`)
@@ -48,7 +48,7 @@ function tvImagesFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvImages = (id) => {
+export const FetchTVImages = (id) => {
     return dispatch => {
         dispatch(tvImagesStart());
         tvURI.get(`/tv/images/${id}`)
@@ -78,7 +78,7 @@ function tvVideosFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvVideos = (id) => {
+export const FetchTVVideos = (id) => {
     return dispatch => {
         dispatch(tvVideosStart());
         tvURI.get(`/tv/videos/${id}`)
@@ -108,7 +108,7 @@ function tvKeywordsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvKeywords = (id) => {
+export const FetchTVKeywords = (id) => {
     return dispatch => {
         dispatch(tvKeywordsStart());
         tvURI.get(`/tv/keywords/${id}`)
@@ -138,7 +138,7 @@ function tvRecommendationsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvRecommendations = (id, page) => {
+export const FetchTVRecommendations = (id, page) => {
     return dispatch => {
         dispatch(tvRecommendationsStart());
         tvURI.get(`/tv/recommendations/${id}`, {
@@ -172,7 +172,7 @@ function tvRecommendationsFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvReviews = (id, page) => {
+export const FetchTVReviews = (id, page) => {
     return dispatch => {
         dispatch(tvReviewsStart());
         tvURI.get(`/tv/reviews/${id}`, {
@@ -206,7 +206,7 @@ function tvSimilarFail(errorMessage) {
         errorMessage: errorMessage
     }
 }
-export const FetchtvSimilar = (id, page) => {
+export const FetchTVSimilar = (id, page) => {
     return dispatch => {
         dispatch(tvSimilarStart());
         tvURI.get(`/tv/Similar/${id}`, {

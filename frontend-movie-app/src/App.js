@@ -15,6 +15,7 @@ import Errorpage from './containers/Errorpage/Errorpage';
 import Moviepage from './containers/Moviepage/Moviepage';
 import Showpage from './containers/Showpage/Showpage';
 import AboutMoviepage from './containers/AboutMoviePage/AboutMoviepage';
+import ScrollToTop from './ScrollToTop';
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter className="App">
+        <ScrollToTop />
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
