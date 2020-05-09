@@ -20,6 +20,7 @@ import movieKeywordsReducer from './store/reducers/aboutMovie/movieKeywords'
 import movieRecommendationsReducer from './store/reducers/aboutMovie/movieRecommendations'
 import movieReviewsReducer from './store/reducers/aboutMovie/movieReviews'
 import movieSimilarReducer from './store/reducers/aboutMovie/movieSimilar'
+import movieCreditsReducer from './store/reducers/aboutMovie/movieCredits';
 
 import tvAiringTodayReducer from './store/reducers/tvAiringToday';
 import tvOnTheAirReducer from './store/reducers/tvOnTheAir';
@@ -27,21 +28,27 @@ import tvPopularReducer from './store/reducers/tvPopular';
 import tvTopRatedReducer from './store/reducers/tvTopRated';
 import tvGenreListReducer from './store/reducers/tvGenreList'
 import tvDiscoverReducer from './store/reducers/tvDiscover';
-import movieCreditsReducer from './store/reducers/aboutMovie/movieCredits';
 import tvCreditsReducer from './store/reducers/aboutShow/tvCredits';
+import tvVideoReducer from './store/reducers/aboutShow/tvVideos';
+import tvDetailsReducer from './store/reducers/aboutShow/tvDetails';
+import tvImagesReducer from './store/reducers/aboutShow/tvImages';
+import tvKeywordsReducer from './store/reducers/aboutShow/tvKeywords';
+import tvSimilarReducer from './store/reducers/aboutShow/tvSimilar';
+import tvRecommendationsReducer from './store/reducers/aboutShow/tvRecommendations';
+import tvReviewsReducer from './store/reducers/aboutShow/tvReviews';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   trending: trendingReducer,
-  
+
   movieNowPlaying: movieNowPlayingReducer,
   moviePopular: moviePopularReducer,
   movieTopRated: movieTopRatedReducer,
   movieUpcoming: movieUpcomingReducer,
   movieGenreList: movieGenreListReducer,
   movieDiscover: movieDiscoverReducer,
-  
+
   tvAiringToday: tvAiringTodayReducer,
   tvOnTheAir: tvOnTheAirReducer,
   tvPopular: tvPopularReducer,
@@ -57,7 +64,15 @@ const rootReducer = combineReducers({
   movieReviews: movieReviewsReducer,
   movieSimilar: movieSimilarReducer,
   movieRecommendations: movieRecommendationsReducer,
-  movieCredits: movieCreditsReducer
+  movieCredits: movieCreditsReducer,
+
+  tvVideos: tvVideoReducer,
+  tvDetails: tvDetailsReducer,
+  tvImages: tvImagesReducer,
+  tvKeywords: tvKeywordsReducer,
+  tvReviews: tvReviewsReducer,
+  tvSimilar: tvSimilarReducer,
+  tvRecommendations: tvRecommendationsReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

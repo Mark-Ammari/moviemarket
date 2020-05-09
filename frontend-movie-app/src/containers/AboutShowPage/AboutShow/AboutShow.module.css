@@ -1,0 +1,110 @@
+.Details {
+    color: white;
+    padding: 10px;
+    width: calc(100% - 20px);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.DetailsContainer {
+    max-width: 560px;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+.Details h3 {
+    margin: 0
+}
+
+.Date {
+    margin: 0;
+    color: #5c5c5c;
+    font-size: 9pt;
+}
+
+.Overview {
+    margin: 10px 0px;
+    color: #5c5c5c;
+    font-size: 8pt;
+}
+
+.CatagoriesContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.Catagories {
+    font-size: 9pt;
+    margin: 0
+}
+
+.GenresContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.Genres {
+    color: #5c5c5c;
+    font-size: 8pt;
+    margin: 0
+}
+
+.KeywordsContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.Keywords {
+    font-size: 9pt;
+    margin: 0
+}
+
+.KeysContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.Keys {
+    color: #5c5c5c;
+    font-size: 8pt;
+    margin: 0
+}
+
+.PosterCard img {
+    width: 100px
+}
+
+.PosterCard {
+    display: flex;
+    align-items: center;
+    background: #121212;
+    margin-top: 10px;
+    border: 1px solid #5c5c5c;
+}
+
+.PosterDetails {
+    margin-left: 10px;
+}
+
+.PosterDetails a {
+    color: #5c5c5c;
+    text-decoration: none;
+    font-size: 10pt;
+}
+
+.PosterDetails a:hover {
+    color: #6c6c6c;
+}
+
+.PosterCard h5 {
+    margin: 0
+}
+
+
+

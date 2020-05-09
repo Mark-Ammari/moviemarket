@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FetchTVVideos, FetchTVDetails, FetchTVRecommendations, FetchTVSimilar, FetchTVReviews, FetchTVKeywords, FetchTVCredits, FetchTVImages } from '../../store/actions/aboutShow';
-// import VideoContainer from './VideoContainer/VideoContainer';
-// import RecommendationSection from './RecommendationSection/RecommendationSection';
-// import SimilarSection from './SimilarSection/SimilarSection';
-// import AboutMovie from './AboutMovie/AboutMovie';
-// import CastSection from './CastSection/CastSection';
-// import ReviewSection from './ReviewSection/ReviewSection';
+import VideoContainer from './VideoContainer/VideoContainer';
+import RecommendationSection from './RecommendationSection/RecommendationSection';
+import SimilarSection from './SimilarSection/SimilarSection';
+import AboutShow from './AboutShow/AboutShow';
+import CastSection from './CastSection/CastSection';
+import ReviewSection from './ReviewSection/ReviewSection';
 
 class AboutShowpage extends Component {
 
@@ -38,7 +38,7 @@ class AboutShowpage extends Component {
         return (
             <div>
                 <VideoContainer />
-                <AboutMovie />
+                <AboutShow />
                 <CastSection />
                 <ReviewSection />
                 <RecommendationSection />

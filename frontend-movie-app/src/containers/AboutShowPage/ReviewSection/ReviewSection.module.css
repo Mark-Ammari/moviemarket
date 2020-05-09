@@ -1,0 +1,14 @@
+.ReviewSection {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9pt;
+    max-width: 540px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.ShowMore:hover {
+    cursor: pointer;
+    color: #F5C518;
+    text-decoration: underline;
+}

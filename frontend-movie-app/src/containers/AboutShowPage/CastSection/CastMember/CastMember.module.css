@@ -1,0 +1,25 @@
+.CastMember img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #F5C518
+}
+
+.CastMember {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #121212;
+    max-width: 520px;
+    border-bottom: 1px solid #5c5c5c;
+    margin: auto
+}
+
+.CastMember p {
+    margin: 0;
+    margin-left: 5px;
+}
+
+.CastMember p:last-child {
+    color: #5c5c5c
+}

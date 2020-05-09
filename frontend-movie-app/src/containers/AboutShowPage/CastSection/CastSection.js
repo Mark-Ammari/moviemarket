@@ -5,16 +5,15 @@ import classes from './CastSection.module.css';
 // import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';
 // import EmptyListWrapper from '../../../components/EmptyListWrapper/EmptyListWrapper';
 import CastMember from './CastMember/CastMember';
-import InfoBox from '../../../components/InfoBox/InfoBox';
 import LoadSkeletonCast from './LoadSkeletonCast/LoadSkeletonCast';
 import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import usePrevious from '../../../hooks/usePrevious';
 
 export default function CastSection() {
-    const loadCredits = useSelector(state => state.movieCredits.loading)
-    const credits = useSelector(state => state.movieCredits.credits)
-    const error = useSelector(state => state.movieCredits.error)
+    const loadCredits = useSelector(state => state.tvCredits.loading)
+    const credits = useSelector(state => state.tvCredits.credits)
+    const error = useSelector(state => state.tvCredits.error)
 
     const [showMore, setShowMore] = useState(5)
 

@@ -16,6 +16,7 @@ import Moviepage from './containers/Moviepage/Moviepage';
 import Showpage from './containers/Showpage/Showpage';
 import AboutMoviepage from './containers/AboutMoviePage/AboutMoviepage';
 import ScrollToTop from './ScrollToTop';
+import AboutShowpage from './containers/AboutShowPage/AboutShowpage';
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
           <Route path="/movies/genre/:name/:id" component={Moviepage} />
           <Route path="/shows/genre/:name/:id" component={Showpage} />
           <Route path="/movie/:title/:id" component={AboutMoviepage} />
+          <Route path="/show/:title/:id" component={AboutShowpage} />
           <Route component={Errorpage}/>
         </Switch>
         <Footer />

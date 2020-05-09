@@ -1,0 +1,60 @@
+.VideoContainer {
+    max-width: 560px;
+    margin: auto;
+    overflow-x: hidden
+}
+.Video iframe {
+    width: 560px;
+    margin: auto;
+}
+
+.VideoGallery {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media only screen and (max-width: 400px) {
+    .Video iframe {
+        width: 100%;
+        height: 215px;
+    }    
+}
+
+@media only screen and (min-width: 401px) {
+    .Video iframe {
+        width: 100%;
+        height: 275px;
+    }    
+}
+
+@media only screen and (max-width: 400px) {
+    .Video iframe {
+        width: 100%;
+        height: 215px;
+    }    
+}
+
+@media only screen and (min-width: 500px) {
+    .Video iframe {
+        width: 100%;
+        height: 315px;
+    }    
+}
+
+@media only screen and (min-width: 767px) {
+    .Video iframe {
+        width: 560px;
+        height: 315px;
+    }
+    .Video {
+        width: 560px;
+        margin: auto;
+    }    
+}
+
+@media only screen and (min-width: 992px) {
+    
+}

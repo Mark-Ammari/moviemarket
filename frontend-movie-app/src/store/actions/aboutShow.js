@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { movieURI } from '../../URL/URL';
+import { movieURI as tvURI } from '../../URL/URL';
 
 function tvDetailsStart() {
     return {
@@ -53,7 +53,7 @@ export const FetchTVImages = (id) => {
         dispatch(tvImagesStart());
         tvURI.get(`/tv/images/${id}`)
             .then(res => {
-                dispatch(tvImagessSuccess(res.data));
+                dispatch(tvImagesSuccess(res.data));
             })
             .catch(err => {
                 dispatch(tvImagesFail(err.response.data));
@@ -68,13 +68,13 @@ function tvVideosStart() {
 }
 function tvVideosSuccess(videos) {
     return {
-        type: actionTypes.FETCH_TV_VIDEOS_START,
+        type: actionTypes.FETCH_TV_VIDEOS_SUCCESS,
         videos: videos
     }
 }
 function tvVideosFail(errorMessage) {
     return {
-        type: actionTypes.FETCH_TV_VIDEOS_START,
+        type: actionTypes.FETCH_TV_VIDEOS_FAIL,
         errorMessage: errorMessage
     }
 }
@@ -126,7 +126,7 @@ function tvRecommendationsStart() {
         type: actionTypes.FETCH_TV_RECOMMENDATIONS_START
     }
 }
-function tvRecommendationsSuccess(Recommendations) {
+function tvRecommendationsSuccess(recommendations) {
     return {
         type: actionTypes.FETCH_TV_RECOMMENDATIONS_SUCCESS,
         recommendations: recommendations
@@ -160,13 +160,13 @@ function tvReviewsStart() {
         type: actionTypes.FETCH_TV_REVIEWS_START
     }
 }
-function tvRecommendationsSuccess(reviews) {
+function tvReviewsSuccess(reviews) {
     return {
         type: actionTypes.FETCH_TV_REVIEWS_SUCCESS,
         reviews: reviews
     }
 }
-function tvRecommendationsFail(errorMessage) {
+function tvReviewsFail(errorMessage) {
     return {
         type: actionTypes.FETCH_TV_REVIEWS_FAIL,
         errorMessage: errorMessage
@@ -194,10 +194,10 @@ function tvSimilarStart() {
         type: actionTypes.FETCH_TV_SIMILAR_START
     }
 }
-function tvSimilarSuccess(Similar) {
+function tvSimilarSuccess(similar) {
     return {
         type: actionTypes.FETCH_TV_SIMILAR_SUCCESS,
-        Similar: Similar
+        similar: similar
     }
 }
 function tvSimilarFail(errorMessage) {
@@ -243,7 +243,7 @@ function tvCreditsFail(errorMessage) {
 export const FetchTVCredits = (id) => {
     return dispatch => {
         dispatch(tvCreditsStart());
-        movieURI.get(`/tv/credits/${id}`)
+        tvURI.get(`/tv/credits/${id}`)
             .then(res => {
                 dispatch(tvCreditsSuccess(res.data));
             })

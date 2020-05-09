@@ -33,7 +33,7 @@ class AboutMoviepage extends Component {
             this.props.onFetchMovieImages(this.props.match.params.id)
         }
     }
-    
+
     render() {
         return (
             <div>
@@ -61,4 +61,4 @@ const mapDispatchTopProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchTopProps)(AboutMoviepage);
+export default connect(null, mapDispatchTopProps)(AboutMoviepage)
