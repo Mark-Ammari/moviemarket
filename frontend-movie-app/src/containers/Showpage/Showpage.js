@@ -5,15 +5,38 @@ import {
     FetchTVDiscover
 } from '../../store/actions/tv';
 import ShowList from './ShowList/ShowList';
+import PaginateList from '../../components/PaginateList/PaginateList';
 
 class Showpage extends Component {
-    componentDidMount() {
-        this.props.onFetchTVDiscover("popularity.desc", true, true, 1, this.props.match.params.id);
+    state = {
+        page: parseInt(this.props.match.params.page)
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.match.params.id !== prevProps.match.params.id) {
-            this.props.onFetchTVDiscover("popularity.desc", true, true, 1, this.props.match.params.id)
+    pushHistory = () => {
+        this.props.history.push({
+            pathname: `/shows/genre/${this.props.match.params.name}/${this.props.match.params.id}/${this.state.page.toString()}`,
+        })
+    }
+
+    goBackHandler = () => {
+        this.setState(prevState => ({
+            page: prevState.page - 1
+        }))
+    }
+    goForwardHandler = () => {
+        this.setState(prevState => ({
+            page: prevState.page + 1
+        }))
+    }
+
+    componentDidMount() {
+        this.props.onFetchTVDiscover("popularity.desc", true, true, this.state.page, this.props.match.params.id);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.match.params.id !== prevProps.match.params.id || this.state.page !== prevState.page) {
+            this.props.onFetchTVDiscover("popularity.desc", true, true, this.state.page, this.props.match.params.id)
+            this.pushHistory()
         }
     }
 
@@ -21,7 +44,11 @@ class Showpage extends Component {
         return (
             <div>
                 <FilmBanner />
-                <ShowList />
+                <ShowList
+                    goBack={this.goBackHandler}
+                    goForward={this.goForwardHandler}
+                    current={this.state.page}
+                />
             </div>
         );
     };
@@ -29,7 +56,7 @@ class Showpage extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchTVDiscover: (sortBy, includeAdult, includeVideo, page, withGenres) => dispatch(FetchTVDiscover(sortBy, includeAdult, includeVideo, page, withGenres)),   
+        onFetchTVDiscover: (sortBy, includeAdult, includeVideo, page, withGenres) => dispatch(FetchTVDiscover(sortBy, includeAdult, includeVideo, page, withGenres)),
     }
 }
 

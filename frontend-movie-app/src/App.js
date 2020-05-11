@@ -30,8 +30,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/movies/genre/:name/:id" component={Moviepage} />
-          <Route path="/shows/genre/:name/:id" component={Showpage} />
+          <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
+          <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
           <Route path="/movie/:title/:id" component={AboutMoviepage} />
           <Route path="/show/:title/:id" component={AboutShowpage} />
           <Route component={Errorpage}/>

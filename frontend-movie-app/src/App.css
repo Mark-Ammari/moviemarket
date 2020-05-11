@@ -3,6 +3,17 @@
   background: #000;
 }
 
+.App::-webkit-scrollbar {
+  border-radius: 5px;
+  width: 10px;
+  background: #4c4c4c
+}
+
+.App::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #3c3c3c
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

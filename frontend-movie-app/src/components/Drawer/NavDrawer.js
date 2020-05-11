@@ -66,7 +66,7 @@ export default function NavDrawer() {
 
   const goToGenrePage = (type, name, id) => {
     history.push({
-      pathname: `/${type}/genre/${name}/${id}`,
+      pathname: `/${type}/genre/${name}/${id}/1`,
     })
   }
 
