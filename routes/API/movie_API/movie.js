@@ -70,8 +70,8 @@ router.get('/genre/list', (req, res) => {
             "api_key": config.api_key
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/discover
@@ -86,8 +86,8 @@ router.get('/discover', (req, res) => {
             "with_genres": req.query["with_genres"]
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/images
@@ -97,8 +97,8 @@ router.get('/images/:id', (req, res) => {
             "api_key": config.api_key,
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/keywords
@@ -108,8 +108,8 @@ router.get('/keywords/:id', (req, res) => {
             "api_key": config.api_key,
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/reviews
@@ -120,8 +120,8 @@ router.get('/reviews/:id', (req, res) => {
             "page": req.query.page
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/videos
@@ -131,8 +131,8 @@ router.get('/videos/:id', (req, res) => {
             "api_key": config.api_key,
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}
@@ -142,8 +142,8 @@ router.get('/details/:id', (req, res) => {
             "api_key": config.api_key,
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/recommendations
@@ -154,8 +154,8 @@ router.get('/recommendations/:id', (req, res) => {
             "page": req.query.page
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/similar
@@ -166,8 +166,8 @@ router.get('/similar/:id', (req, res) => {
             "page": req.query.page
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
 })
 
 //GET /movie/{movie_id}/credits
@@ -178,8 +178,20 @@ router.get('/credits/:id', (req, res) => {
             "page": req.query.page
         }
     })
-    .then(response => res.json(response.data))
-    .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+        .then(response => res.json(response.data))
+        .catch(err => res.status(404).send({ message: "cannot load page.", error: true }))
+})
+
+// Get /movie/search
+router.get('/search', (req, res) => {
+    config.movie_uri.get('/search/movie', {
+        params: {
+            "api_key": config.api_key,
+            "include_adult": true,
+            "query": req.query.query
+        }
+    }).then(response => res.json(response.data))
+    .catch(err => console.log(err.response.data))
 })
 
 module.exports = router

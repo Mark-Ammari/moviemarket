@@ -36,6 +36,9 @@ import tvKeywordsReducer from './store/reducers/aboutShow/tvKeywords';
 import tvSimilarReducer from './store/reducers/aboutShow/tvSimilar';
 import tvRecommendationsReducer from './store/reducers/aboutShow/tvRecommendations';
 import tvReviewsReducer from './store/reducers/aboutShow/tvReviews';
+import movieSearchReducer from './store/reducers/movieSearch';
+import tvSearchReducer from './store/reducers/tvSearch';
+import typeOfFilmReducer from './store/reducers/typeOfFilm';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -48,6 +51,7 @@ const rootReducer = combineReducers({
   movieUpcoming: movieUpcomingReducer,
   movieGenreList: movieGenreListReducer,
   movieDiscover: movieDiscoverReducer,
+  movieSearch: movieSearchReducer,
 
   tvAiringToday: tvAiringTodayReducer,
   tvOnTheAir: tvOnTheAirReducer,
@@ -56,6 +60,7 @@ const rootReducer = combineReducers({
   tvGenreList: tvGenreListReducer,
   tvDiscover: tvDiscoverReducer,
   tvCredits: tvCreditsReducer,
+  tvSearch: tvSearchReducer,
 
   movieVideos: movieVideoReducer,
   movieDetails: movieDetailsReducer,
@@ -73,6 +78,8 @@ const rootReducer = combineReducers({
   tvReviews: tvReviewsReducer,
   tvSimilar: tvSimilarReducer,
   tvRecommendations: tvRecommendationsReducer,
+
+  typeOfFilm: typeOfFilmReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

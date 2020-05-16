@@ -11,18 +11,6 @@ export default function FilterBar({ value, onChange, includeAdult, includeVideos
                 value={value}
                 onChange={onChange}
             />
-            <div>
-                <CheckboxField
-                    label="Include Adult"
-                    value={includeAdult} 
-                    onChange={onChangeAdult}
-                    />
-                <CheckboxField
-                    label="Include Videos"
-                    value={includeVideos} 
-                    onChange={onChangeVideos}
-                    />
-            </div>
         </div>
     )
 }

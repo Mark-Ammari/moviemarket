@@ -34,3 +34,19 @@ export default function FetchTrending() {
         })
     }
 }
+
+export const setTypeMovie = () => {
+    return dispatch => {
+        dispatch({
+            type: actionTypes.TYPE_IS_MOVIE
+        })
+    }
+}
+
+export const setTypeShow = () => {
+    return dispatch => {
+        dispatch({
+            type: actionTypes.TYPE_IS_SHOW
+        })
+    }
+}

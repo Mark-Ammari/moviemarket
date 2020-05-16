@@ -3,6 +3,7 @@ import classes from './Header.module.css';
 import Logo from '../Logo/Logo';
 import NavButtons from '../NavButtons/NavButtons';
 import NavDrawer from '../Drawer/NavDrawer';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Header() {
     return (
@@ -12,6 +13,7 @@ export default function Header() {
                     <NavDrawer />
                     <Logo />
                 </nav>
+                <SearchBar />
                 <NavButtons />
             </div>
         </header>

@@ -1,0 +1,14 @@
+.QuickResults {
+    position: absolute;
+    z-index: 3;
+    width: 500px;
+    display: none;
+}
+
+.QuickResults img {
+    height: 50px
+}
+
+.QuickResultsNone {
+    display: block;
+}

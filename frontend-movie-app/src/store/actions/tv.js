@@ -192,3 +192,38 @@ export const FetchTVDiscover = (sortBy, includeAdult, includeVideo, page, withGe
             })
     }
 }
+// ---------------------------------------------------------------
+
+function tvSearchStart() {
+    return {
+        type: actionTypes.FETCH_TV_SEARCH_START
+    }
+}
+
+function tvSearchSuccess(search) {
+    return {
+        type: actionTypes.FETCH_TV_SEARCH_SUCCESS,
+        search: search
+    }
+}
+
+function tvSearchFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_TV_SEARCH_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export const fetchTVSearch = (query) => {
+    return dispatch => {
+        dispatch(tvSearchStart())
+        movieURI.get('/tv/search', {
+            params: {
+                query: query
+            }
+        })
+        .then(res => dispatch(tvSearchSuccess(res.data)))
+        .catch(err => dispatch(tvSearchFail(err.response.data)))
+    }    
+    
+}

@@ -188,3 +188,38 @@ export const FetchMovieDiscover = (sortBy, includeAdult, includeVideo, page, wit
             })
     }
 }
+// ---------------------------------------------------------------
+
+function movieSearchStart() {
+    return {
+        type: actionTypes.FETCH_MOVIE_SEARCH_START
+    }
+}
+
+function movieSearchSuccess(search) {
+    return {
+        type: actionTypes.FETCH_MOVIE_SEARCH_SUCCESS,
+        search: search
+    }
+}
+
+function movieSearchFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_MOVIE_SEARCH_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export const fetchMovieSearch = (query) => {
+    return dispatch => {
+        dispatch(movieSearchStart())
+        movieURI.get('/movie/search', {
+            params: {
+                query: query
+            }
+        })
+        .then(res => dispatch(movieSearchSuccess(res.data)))
+        .catch(err => dispatch(movieSearchFail(err.response.data)))
+    }    
+    
+}

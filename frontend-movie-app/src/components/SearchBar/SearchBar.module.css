@@ -1,0 +1,33 @@
+.root {
+    display: flex;
+    align-items: 'center';
+    justify-content: space-between;
+    height: 40px;
+    width: 500px;
+    background-color: white;
+}
+.SearchBarContainer {
+    width: 300px;
+}
+
+.indicator {
+    display: flex;
+    align-items: center;
+    font-size: 0pt;
+}
+.input {
+    flex: 1;
+    width: 100px;
+    border: 0;
+    outline: none;
+    margin-left: 5px
+};
+.iconButton {
+    height: 40px;
+    flex: 1;
+    width: 10px;
+};
+.icon {
+    margin-left: 5px;
+    color: black;
+}
