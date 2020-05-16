@@ -4,12 +4,9 @@
     justify-content: space-between;
     height: 40px;
     width: 500px;
+    flex: 1;
     background-color: white;
 }
-.SearchBarContainer {
-    width: 300px;
-}
-
 .indicator {
     display: flex;
     align-items: center;
@@ -30,4 +27,40 @@
 .icon {
     margin-left: 5px;
     color: black;
+}
+
+/* @media only screen and (max-width: 500px) {
+    .root {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 501px) {
+    .root {
+        display: none;
+    }
+} */
+
+@media only screen and (min-width: 767px) {
+    .root {
+        display: flex;
+        align-items: 'center';
+        justify-content: space-between;
+        height: 40px;
+        width: 300px;
+        flex: 1;
+        background-color: white;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .root {
+        display: flex;
+        align-items: 'center';
+        justify-content: space-between;
+        height: 40px;
+        width: 500px;
+        flex: 1;
+        background-color: white;
+    }
 }

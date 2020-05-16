@@ -1,7 +1,6 @@
 import React from 'react';
-import classes from './NavButtons.module.css';
+import classes from './NavButton.module.css';
 import { makeStyles, useMediaQuery, IconButton, Button } from '@material-ui/core';
-import { AddBoxRounded, OpenInNewRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -15,20 +14,18 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default function NavButtons(props) {
+export default function NavButton({children, startIcon, ...props}) {
     const styles = useStyles();
-    const matches = useMediaQuery('(min-width:501px)');
+    const matches = useMediaQuery('(min-width:767px)');
     return (
         <nav className={classes.NavButtons}>
             {matches ?
                 <>
-                    <Button className={styles.root} startIcon={<AddBoxRounded />}>Wishlist</Button>
-                    <Button className={styles.root} startIcon={<OpenInNewRounded />}>Sign in</Button>
+                    <Button className={styles.root} startIcon={startIcon} {...props}>{children}</Button>
                 </>
                 :
                 <>
-                    <IconButton className={styles.root} ><AddBoxRounded /></IconButton>
-                    <IconButton className={styles.root} ><OpenInNewRounded /></IconButton>
+                    <IconButton className={styles.root} {...props}>{startIcon}</IconButton>
                 </>
             }
         </nav>
