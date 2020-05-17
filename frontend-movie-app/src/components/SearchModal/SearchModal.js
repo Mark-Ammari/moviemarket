@@ -141,6 +141,11 @@ export default function SearchModal() {
                 <List className={[classes.ModalListItem, !show ? classes.ModalListItemNone : ""].join(" ")}>
                     {type === "movie" ?
                         loadMovieSearch ? <MobileLoader /> :
+                        searchMovie.results.length === 0 ? 
+                            <div className={classes.NoSearchFound}>
+                                <p>No Results Found.</p>
+                            </div>
+                            :
                             searchMovie.results.map(movie => {
                                 return <div>
                                     <ListItem onClick={() => linkToFilm("movie", movie.name || movie["original_name"] || movie["original_title"], movie.id)} className={styles.listItem} button >
@@ -152,6 +157,11 @@ export default function SearchModal() {
                             })
                         :
                         loadShowSearch ? <MobileLoader /> :
+                            searchShow.results.length === 0 ? 
+                            <div className={classes.NoSearchFound}>
+                                <p>No Results Found.</p>
+                            </div>
+                            :
                             searchShow.results.map(show => {
                                 return <div>
                                     <ListItem onClick={() => linkToFilm("show", show.name || show["original_name"] || show["original_title"], show.id)} className={styles.listItem} button >

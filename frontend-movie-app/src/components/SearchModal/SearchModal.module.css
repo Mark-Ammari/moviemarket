@@ -18,3 +18,8 @@
 .ModalListItemNone {
     display: none
 }
+
+.NoSearchFound {
+    color: #5c5c5c;
+    text-align: center;
+}
