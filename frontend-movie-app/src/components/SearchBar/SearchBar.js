@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
 import { KeyboardArrowDownRounded, MovieRounded, TvRounded } from '@material-ui/icons';
 import { Button, ListItem, ListItemText, List, ListItemIcon, TextField, ListItemSecondaryAction, ClickAwayListener } from '@material-ui/core';
-import ForwardSearchPopover from '../SearchPopover/SearchPopover';
+import ForwardSearchPopover from './SearchPopover/SearchPopover';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieSearch } from '../../store/actions/movie';
 import { fetchTVSearch } from '../../store/actions/tv';
@@ -24,7 +24,7 @@ export default function SearchBar() {
             if (value) {
                 if (value === ref.current.value) {
                     setShow(true)
-                    if (type === "movies") {
+                    if (type === "movie") {
                         dispatch(fetchMovieSearch(value))
                     } else {
                         dispatch(fetchTVSearch(value))

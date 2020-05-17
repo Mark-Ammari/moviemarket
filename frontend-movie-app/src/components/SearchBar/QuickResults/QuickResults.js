@@ -22,7 +22,7 @@ export default function QuickResults({ type, show, onClickAway }) {
     return (
         <ClickAwayListener onClickAway={onClickAway}>
             <Paper className={[classes.QuickResults, show ? classes.QuickResultsNone : ""].join(' ')}>
-                {type === "movies" ?
+                {type === "movie" ?
                     loadMovieSearch ? <Loader /> :
                         <List>
                             {searchMovie.results.slice(0, 3).map(movie => {

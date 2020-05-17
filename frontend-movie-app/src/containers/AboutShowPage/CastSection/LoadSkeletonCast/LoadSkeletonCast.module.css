@@ -1,9 +1,10 @@
 .LoadCastSection {
-    width: 100%;
     animation: load 1s ease-in-out infinite;
     -webkit-animation: load 1s ease-in-out infinite;
-    margin: auto;
-    height: 416.6px
+    margin-top: 10px;
+    margin-left: -10px;
+    height: 416.6px;
+    max-width: 560px;
 }
 
 @keyframes load {

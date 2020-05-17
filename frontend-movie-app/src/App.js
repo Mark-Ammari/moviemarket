@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Homepage from './containers/Homepage/Homepage';
 import { connect } from 'react-redux'
 import {
   FetchMovieGenreList
@@ -11,12 +10,9 @@ import {
   FetchTVGenreList
 } from './store/actions/tv';
 import Footer from './components/Footer/Footer';
-import Errorpage from './containers/Errorpage/Errorpage';
-import Moviepage from './containers/Moviepage/Moviepage';
-import Showpage from './containers/Showpage/Showpage';
-import AboutMoviepage from './containers/AboutMoviePage/AboutMoviepage';
 import ScrollToTop from './ScrollToTop';
-import AboutShowpage from './containers/AboutShowPage/AboutShowpage';
+import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage } from './routes/routes';
+import MobileLoader from './components/Loader/MobileLoader';
 
 class App extends Component {
   componentDidMount() {
@@ -28,24 +24,27 @@ class App extends Component {
       <BrowserRouter className="App">
         <ScrollToTop />
         <Header />
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
-          <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
-          <Route path="/movie/:title/:id" component={AboutMoviepage} />
-          <Route path="/show/:title/:id" component={AboutShowpage} />
-          <Route component={Errorpage}/>
-        </Switch>
+        <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
+            <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
+            <Route path="/movie/:title/:id" component={AboutMoviepage} />
+            <Route path="/show/:title/:id" component={AboutShowpage} />
+            <Route component={Errorpage} />
+          </Switch>
+        </Suspense>
         <Footer />
       </BrowserRouter>
+
     );
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTVGenreList: () => dispatch(FetchTVGenreList()),
-      onFetchMovieGenreList: () => dispatch(FetchMovieGenreList()),
+    onFetchTVGenreList: () => dispatch(FetchTVGenreList()),
+    onFetchMovieGenreList: () => dispatch(FetchMovieGenreList()),
   };
 };
 

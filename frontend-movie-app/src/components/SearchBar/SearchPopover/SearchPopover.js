@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { List, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 import { MovieRounded, TvRounded, KeyboardArrowDownOutlined } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
-import { setTypeShow, setTypeMovie } from '../../store/actions/trending';
+import { setTypeShow, setTypeMovie } from '../../../store/actions/trending';
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -3,6 +3,10 @@
   background: #000;
 }
 
+.fallback {
+  height: calc(100vh - 230px)
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
