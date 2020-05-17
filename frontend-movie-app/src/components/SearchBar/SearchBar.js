@@ -57,7 +57,6 @@ export default function SearchBar() {
                     value={value}
                     onChange={(e) => {
                         setValue(e.target.value)
-                        console.log(ref.current.value)
                     }}
                 />
                 <Button type="submit"

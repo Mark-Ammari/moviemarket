@@ -1,0 +1,78 @@
+.SelectTypeButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 10px
+}
+
+.InputWrapper  {
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    outline: #F5C518;
+    border: 1px solid #F5C518;
+    border-radius: 15px;
+    padding-left: 15px;
+    background-color: transparent;
+    color: white;
+    height: 40px;
+    width: 285px;
+    font-family: 'Monstserrat', sans-serif;
+}
+
+.InputWrapper input {
+    outline: none;
+    border: 0
+}
+
+.SelectTypeMovie {
+    color: #F5C518;
+    background-color: #151515;
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 15px;
+    transition: 350ms ease-in-out;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.SelectTypeShow {
+    color: #F5C518;
+    margin-right: 10px;
+    background-color: #151515;
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 15px;
+    transition: 350ms ease-in-out;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.SelectTypeMovie:hover {
+    background-color: #191919;
+}
+
+.SelectTypeShow:hover {
+    background-color: #191919;
+}
+
+.Active {
+    color:#151515;
+    background-color:#F5C518;
+}
+
+.Active:hover {
+    background-color:#f7d046;
+}
