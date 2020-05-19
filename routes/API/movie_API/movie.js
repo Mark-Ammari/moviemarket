@@ -1,15 +1,15 @@
 const express = require('express');
-const config = require('../../../varConfig/configurations');
-
+const movieURI = require('../../../config/configurations');
+const config = require('config')
 const router = express.Router();
 
 // GET /movie/now_playing
 router.get('/now_playing', (req, res) => {
-    config.movie_uri.get('/movie/now_playing',
+    movieURI.get('/movie/now_playing',
         {
             params:
             {
-                "api_key": config.api_key,
+                "api_key": config.get("api_key"),
                 page: req.query.page,
                 region: req.query.region
             }
@@ -20,11 +20,11 @@ router.get('/now_playing', (req, res) => {
 
 // GET /movie/popular
 router.get('/popular', (req, res) => {
-    config.movie_uri.get('/movie/popular',
+    movieURI.get('/movie/popular',
         {
             params:
             {
-                "api_key": config.api_key,
+                "api_key": config.get("api_key"),
                 page: req.query.page,
                 region: req.query.region
             }
@@ -35,11 +35,11 @@ router.get('/popular', (req, res) => {
 
 // GET /movie/top_rated
 router.get('/top_rated', (req, res) => {
-    config.movie_uri.get('/movie/top_rated',
+    movieURI.get('/movie/top_rated',
         {
             params:
             {
-                "api_key": config.api_key,
+                "api_key": config.get("api_key"),
                 page: req.query.page,
                 region: req.query.region
             }
@@ -50,11 +50,11 @@ router.get('/top_rated', (req, res) => {
 
 // GET /movie/upcoming
 router.get('/upcoming', (req, res) => {
-    config.movie_uri.get('/movie/upcoming',
+    movieURI.get('/movie/upcoming',
         {
             params:
             {
-                "api_key": config.api_key,
+                "api_key": config.get("api_key"),
                 page: req.query.page,
                 region: req.query.region
             }
@@ -65,9 +65,9 @@ router.get('/upcoming', (req, res) => {
 
 //GET /movie/genre/list
 router.get('/genre/list', (req, res) => {
-    config.movie_uri.get('/genre/movie/list', {
+    movieURI.get('/genre/movie/list', {
         params: {
-            "api_key": config.api_key
+            "api_key": config.get("api_key")
         }
     })
         .then(response => res.json(response.data))
@@ -76,9 +76,9 @@ router.get('/genre/list', (req, res) => {
 
 //GET /movie/discover
 router.get('/discover', (req, res) => {
-    config.movie_uri.get('/discover/movie', {
+    movieURI.get('/discover/movie', {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "sort_by": req.query["sort_by"],
             "include_adult": req.query["include_adult"],
             "include_video": req.query["include_video"],
@@ -92,9 +92,9 @@ router.get('/discover', (req, res) => {
 
 //GET /movie/{movie_id}/images
 router.get('/images/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/images`, {
+    movieURI.get(`/movie/${req.params.id}/images`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
         }
     })
         .then(response => res.json(response.data))
@@ -103,9 +103,9 @@ router.get('/images/:id', (req, res) => {
 
 //GET /movie/{movie_id}/keywords
 router.get('/keywords/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/keywords`, {
+    movieURI.get(`/movie/${req.params.id}/keywords`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
         }
     })
         .then(response => res.json(response.data))
@@ -114,9 +114,9 @@ router.get('/keywords/:id', (req, res) => {
 
 //GET /movie/{movie_id}/reviews
 router.get('/reviews/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/reviews`, {
+    movieURI.get(`/movie/${req.params.id}/reviews`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "page": req.query.page
         }
     })
@@ -126,9 +126,9 @@ router.get('/reviews/:id', (req, res) => {
 
 //GET /movie/{movie_id}/videos
 router.get('/videos/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/videos`, {
+    movieURI.get(`/movie/${req.params.id}/videos`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
         }
     })
         .then(response => res.json(response.data))
@@ -137,9 +137,9 @@ router.get('/videos/:id', (req, res) => {
 
 //GET /movie/{movie_id}
 router.get('/details/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}`, {
+    movieURI.get(`/movie/${req.params.id}`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
         }
     })
         .then(response => res.json(response.data))
@@ -148,9 +148,9 @@ router.get('/details/:id', (req, res) => {
 
 //GET /movie/{movie_id}/recommendations
 router.get('/recommendations/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/recommendations`, {
+    movieURI.get(`/movie/${req.params.id}/recommendations`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "page": req.query.page
         }
     })
@@ -160,9 +160,9 @@ router.get('/recommendations/:id', (req, res) => {
 
 //GET /movie/{movie_id}/similar
 router.get('/similar/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/similar`, {
+    movieURI.get(`/movie/${req.params.id}/similar`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "page": req.query.page
         }
     })
@@ -172,9 +172,9 @@ router.get('/similar/:id', (req, res) => {
 
 //GET /movie/{movie_id}/credits
 router.get('/credits/:id', (req, res) => {
-    config.movie_uri.get(`/movie/${req.params.id}/credits`, {
+    movieURI.get(`/movie/${req.params.id}/credits`, {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "page": req.query.page
         }
     })
@@ -184,11 +184,12 @@ router.get('/credits/:id', (req, res) => {
 
 // Get /movie/search
 router.get('/search', (req, res) => {
-    config.movie_uri.get('/search/movie', {
+    movieURI.get('/search/movie', {
         params: {
-            "api_key": config.api_key,
+            "api_key": config.get("api_key"),
             "include_adult": true,
-            "query": req.query.query
+            "query": req.query.query,
+            "page": req.query.page
         }
     }).then(response => res.json(response.data))
     .catch(err => console.log(err.response.data))

@@ -11,7 +11,7 @@ import {
 } from './store/actions/tv';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './ScrollToTop';
-import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage } from './routes/routes';
+import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Searchpage, Authenticate } from './routes/routes';
 import MobileLoader from './components/Loader/MobileLoader';
 
 class App extends Component {
@@ -27,10 +27,12 @@ class App extends Component {
         <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
           <Switch>
             <Route exact path="/" component={Homepage} />
+            <Route exact path="/account/authenticate" component={Authenticate} />
             <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
             <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
             <Route path="/movie/:title/:id" component={AboutMoviepage} />
             <Route path="/show/:title/:id" component={AboutShowpage} />
+            {/* <Route path="/entertainment/search/:page" component={Searchpage} /> */}
             <Route component={Errorpage} />
           </Switch>
         </Suspense>

@@ -1,0 +1,5 @@
+{
+    "api_key": "4d0009bfeb29732ad699427e7ecc2fce",
+    "mongo_db_key": "mongodb+srv://mark:RCs2hQNwrOl2KbcB@cluster0-vnw5h.mongodb.net/moviemarket?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret"
+}

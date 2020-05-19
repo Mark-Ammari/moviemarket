@@ -214,12 +214,13 @@ function tvSearchFail(errorMessage) {
     }
 }
 
-export const fetchTVSearch = (query) => {
+export const fetchTVSearch = (query, page=1) => {
     return dispatch => {
         dispatch(tvSearchStart())
         movieURI.get('/tv/search', {
             params: {
-                query: query
+                query: query,
+                page: page
             }
         })
         .then(res => dispatch(tvSearchSuccess(res.data)))

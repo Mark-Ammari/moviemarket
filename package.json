@@ -15,10 +15,14 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^5.1.0",
+    "config": "^3.3.1",
     "express": "^4.17.1",
     "flatted": "^2.0.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "uuid": "^8.0.0"
   }
 }

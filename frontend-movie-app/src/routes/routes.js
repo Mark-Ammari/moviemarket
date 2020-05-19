@@ -29,3 +29,13 @@ export const Errorpage = React.lazy(() =>
 import (
     '../containers/Errorpage/Errorpage'
 ))
+
+export const Searchpage = React.lazy(() => 
+    import (
+    '../containers/Searchpage/Searchpage'
+))
+
+export const Authenticate = React.lazy(() => 
+    import (
+    '../containers/Authenticate/Authenticate'
+));

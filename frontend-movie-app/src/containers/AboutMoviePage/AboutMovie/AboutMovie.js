@@ -18,28 +18,32 @@ export default function AboutMovie() {
 
                     <div className={classes.CatagoriesContainer}>
                         <p className={classes.Catagories}>Catagories:</p>
-                        <div className={classes.GenresContainer}>
-                            {details.genres.length === 0 ? null :
-                                <p className={classes.Genres}>
-                                    {details.genres.map(genres => {
-                                        return genres.name + ", "
-                                    })}
-                                </p>
-                            }
-                        </div>
+                        {!details.genres ? <p className={classes.NoList}>No genres listed.</p> :
+                            <div className={classes.GenresContainer}>
+                                {details.genres.length === 0 ? null :
+                                    <p className={classes.Genres}>
+                                        {details.genres.map(genres => {
+                                            return genres.name + ", "
+                                        })}
+                                    </p>
+                                }
+                            </div>
+                        }
                     </div>
 
                     <div className={classes.KeywordsContainer}>
                         <p className={classes.Keywords}>Keywords:</p>
-                        <div className={classes.KeysContainer}>
-                            {details.genres.length === 0 ? null :
-                                <p className={classes.Keys}>
-                                    {details.genres.map(keywords => {
-                                        return keywords.name + ", "
-                                    })}
-                                </p>
-                            }
-                        </div>
+                        {!details.genres ? <p className={classes.NoList}>No Keywords listed.</p> :
+                            <div className={classes.KeysContainer}>
+                                {details.genres.length === 0 ? null :
+                                    <p className={classes.Keys}>
+                                        {details.genres.map(keywords => {
+                                            return keywords.name + ", "
+                                        })}
+                                    </p>
+                                }
+                            </div>
+                        }
                     </div>
 
                     <div className={classes.PosterCard}>

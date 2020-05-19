@@ -1,0 +1,80 @@
+.AuthContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 180px)
+}
+
+Button {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #F5C518;
+    border: 1px solid #F5C518;
+    outline: none;
+    cursor: pointer;
+    margin: auto;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+Input {
+    height: 35px;
+    width: calc(100% - 1em);
+    margin-bottom: 1em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding-left: 1em;
+    outline: none;
+    transition: 150ms ease-in-out;
+}
+
+Input:focus {
+    border: 1px solid #F5C518;
+}
+
+.AuthLabel {
+    display: flex;
+}
+
+.AuthLabel h2 {
+    margin: 0 1em 1em 0;
+    position: relative;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.AuthLabel h2::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #F5C518;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.AuthLabel > h2:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.ActiveLogin h2:first-child::before {
+    text-decoration: underline;
+    background-color: #F5C518;
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.ActiveSignup h2:last-child::before {
+    text-decoration: underline;
+    background-color: #F5C518;
+    visibility: visible;
+    transform: scaleX(1)
+}

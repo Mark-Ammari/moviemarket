@@ -210,12 +210,13 @@ function movieSearchFail(errorMessage) {
     }
 }
 
-export const fetchMovieSearch = (query) => {
+export const fetchMovieSearch = (query, page=1) => {
     return dispatch => {
         dispatch(movieSearchStart())
         movieURI.get('/movie/search', {
             params: {
-                query: query
+                query: query,
+                page: page
             }
         })
         .then(res => dispatch(movieSearchSuccess(res.data)))
