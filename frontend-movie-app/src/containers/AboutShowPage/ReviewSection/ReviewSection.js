@@ -8,7 +8,7 @@ import usePrevious from '../../../hooks/usePrevious';
 export default function ReviewSection() {
     const loadReviews = useSelector(state => state.tvReviews.loading);
     const reviews = useSelector(state => state.tvReviews.reviews);
-    const error = useSelector(state => state.tvReviews.error);
+    // const error = useSelector(state => state.tvReviews.error);
     
     const [showMore, setShowMore] = useState(2)
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './QuickResults.module.css';
-import { Paper, List, ListItem, ListItemText, ListItemIcon, ClickAwayListener } from '@material-ui/core';
+import { Paper, List, ListItem, ListItemText, ClickAwayListener } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Loader from '../../Loader/Loader';
 import { useHistory } from 'react-router-dom';

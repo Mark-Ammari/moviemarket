@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import classes from './SelectTypeButton.module.css';
 import { MovieRounded, TvRounded, SearchRounded } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';

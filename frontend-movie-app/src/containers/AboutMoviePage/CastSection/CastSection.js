@@ -5,10 +5,9 @@ import classes from './CastSection.module.css';
 // import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';
 // import EmptyListWrapper from '../../../components/EmptyListWrapper/EmptyListWrapper';
 import CastMember from './CastMember/CastMember';
-import InfoBox from '../../../components/InfoBox/InfoBox';
 import LoadSkeletonCast from './LoadSkeletonCast/LoadSkeletonCast';
 import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import usePrevious from '../../../hooks/usePrevious';
 
 export default function CastSection() {

@@ -42,7 +42,8 @@ mongoose.connect(process.env.MONGODB_URI || config.get("mongo_db_key"),
 server.use('/', trending);
 server.use('/movie', movie);
 server.use('/tv', tv);
-server.use('/user', models, auth)
+server.use('/user', models);
+server.use('/account', auth);
 
 // production
 if (process.env.NODE_ENV === 'production') {

@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { List, IconButton, makeStyles, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { SearchRounded, SubdirectoryArrowRight } from '@material-ui/icons';
-import SearchBar from '../SearchBar/SearchBar';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -67,7 +61,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function SearchModal() {
     const styles = useStyles();
     const [open, setOpen] = React.useState(false);
-    const typeOfFilm = useSelector(state => state.typeOfFilm.typeOfFilm)
+    // const typeOfFilm = useSelector(state => state.typeOfFilm.typeOfFilm)
     const dispatch = useDispatch()
     const searchMovie = useSelector(state => state.movieSearch.search)
     const loadMovieSearch = useSelector(state => state.movieSearch.loading)
@@ -113,7 +107,7 @@ export default function SearchModal() {
         return () => {
             clearTimeout(timer)
         }
-    }, [value, type])
+    }, [value, type, dispatch])
 
     return (
         <div>

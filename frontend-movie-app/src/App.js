@@ -11,7 +11,7 @@ import {
 } from './store/actions/tv';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './ScrollToTop';
-import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Searchpage, Authenticate } from './routes/routes';
+import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Authenticate } from './routes/routes';
 import MobileLoader from './components/Loader/MobileLoader';
 
 class App extends Component {

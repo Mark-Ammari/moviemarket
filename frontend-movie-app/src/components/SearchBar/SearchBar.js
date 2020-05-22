@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState, forwardRef } from 'react';
 import classes from './SearchBar.module.css'
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
-import { KeyboardArrowDownRounded, MovieRounded, TvRounded } from '@material-ui/icons';
-import { Button, ListItem, ListItemText, List, ListItemIcon, TextField, ListItemSecondaryAction, ClickAwayListener } from '@material-ui/core';
+import { MovieRounded, TvRounded } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
 import ForwardSearchPopover from './SearchPopover/SearchPopover';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieSearch } from '../../store/actions/movie';
@@ -37,7 +36,7 @@ export default function SearchBar() {
         return () => {
             clearTimeout(timer)
         }
-    }, [value, type])
+    }, [value, type, dispatch])
 
     function clickAwayQuickResults() {
         setShow(false)

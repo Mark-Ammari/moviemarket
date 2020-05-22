@@ -20,7 +20,7 @@ export default function VideoContainer() {
                     <EmptyListWrapper width="560px" height={315} />
                     :
                     <div className={classes.Video}>
-                        <iframe src={`https://www.youtube.com/embed/${videos.results[0].key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        <iframe title="VideoPlayer" src={`https://www.youtube.com/embed/${videos.results[0].key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </div>
             }
         </div >

@@ -39,6 +39,7 @@ import tvReviewsReducer from './store/reducers/aboutShow/tvReviews';
 import movieSearchReducer from './store/reducers/movieSearch';
 import tvSearchReducer from './store/reducers/tvSearch';
 import typeOfFilmReducer from './store/reducers/typeOfFilm';
+import userSignupReducer from './store/reducers/userInfo/userSignup';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -80,6 +81,7 @@ const rootReducer = combineReducers({
   tvRecommendations: tvRecommendationsReducer,
 
   typeOfFilm: typeOfFilmReducer,
+  signup: userSignupReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

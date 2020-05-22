@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import classes from './AuthContainer.module.css';
-import { TextField, CardHeader } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
@@ -36,7 +32,7 @@ const Login = () => {
     return (
         <div>
             <input
-                className={classes.Input}
+                className={classes.AuthInput}
                 autoFocus
                 id="name"
                 label="Email Address"
@@ -45,7 +41,7 @@ const Login = () => {
                 required
             />
             <input
-                className={classes.Input}
+                className={classes.AuthInput}
                 id="password"
                 placeholder="Password *"
                 required
@@ -61,7 +57,7 @@ const Signup = () => {
     return (
         <div>
             <input
-                className={classes.Input}
+                className={classes.AuthInput}
                 autoFocus
                 id="name"
                 label="Email Address"
@@ -70,7 +66,7 @@ const Signup = () => {
                 required
             />
             <input
-                className={classes.Input}
+                className={classes.AuthInput}
                 id="password"
                 placeholder="Password *"
                 required
@@ -78,6 +74,7 @@ const Signup = () => {
                 type="password"
             />
             <button className={classes.Button}>Signup</button>
+            <p className={classes.SignupMessage}>By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></p>
         </div>
     )
 }

@@ -124,3 +124,7 @@ export const FETCH_TV_SEARCH_FAIL = "FETCH_TV_SEARCH_FAIL";
 
 export const TYPE_IS_SHOW = "TYPE_IS_SHOW"
 export const TYPE_IS_MOVIE = "TYPE_IS_MOVIE"
+//------------------------------------------------------------------------------------------
+export const AUTH_SIGNUP_START = "AUTH_SIGNUP_START"
+export const AUTH_SIGNUP_SUCCESS = "AUTH_SIGNUP_SUCCESS"
+export const AUTH_SIGNUP_FAIL = "AUTH_SIGNUP_FAIL"
