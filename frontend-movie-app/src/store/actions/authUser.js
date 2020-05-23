@@ -21,12 +21,12 @@ function signupFail(errorMessage) {
     }
 }
 
-export default function signupUser(email, password) {
+export function signupUser(email, password) {
     return dispatch => {
         dispatch(signupStart());
         movieURI.post('/account/signup', {
-            email,
-            password
+            email: email,
+            password: password
         })
         .then(res => {
             dispatch(signupSuccess(res.data.user));

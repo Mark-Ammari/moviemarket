@@ -27,7 +27,7 @@ class App extends Component {
         <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
           <Switch>
             <Route exact path="/" component={Homepage} />
-            <Route exact path="/account/authenticate" component={Authenticate} />
+            <Route exact path="/account/signup" component={Authenticate} />
             <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
             <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
             <Route path="/movie/:title/:id" component={AboutMoviepage} />
@@ -38,7 +38,6 @@ class App extends Component {
         </Suspense>
         <Footer />
       </BrowserRouter>
-
     );
   };
 };

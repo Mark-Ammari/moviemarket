@@ -1,5 +1,5 @@
 {
     "api_key": "4d0009bfeb29732ad699427e7ecc2fce",
-    "mongo_db_key": "mongodb+srv://mark:RCs2hQNwrOl2KbcB@cluster0-vnw5h.mongodb.net/moviemarket?retryWrites=true&w=majority",
+    "mongo_db_key": "mongodb://mark:sT0yAOzTD8NJKPbw@moviemarket-shard-00-00-vnw5h.mongodb.net:27017,moviemarket-shard-00-01-vnw5h.mongodb.net:27017,moviemarket-shard-00-02-vnw5h.mongodb.net:27017/moviemarket?ssl=true&replicaSet=moviemarket-shard-0&authSource=admin&retryWrites=true&w=majority",
     "jwtSecret": "sl_myJwtSecret"
 }

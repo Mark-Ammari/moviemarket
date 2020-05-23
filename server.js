@@ -20,7 +20,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
   res.header("Access-Control-Allow-Methods", "POST, GET, HEAD, DELETE, PUT, OPTIONS")
   if ('OPTIONS' == req.method) {
-    res.send(200);
+    res.sendStatus(200);
   }
   else {
     next();

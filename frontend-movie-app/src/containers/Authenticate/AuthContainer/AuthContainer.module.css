@@ -16,6 +16,7 @@
     outline: none;
     cursor: pointer;
     margin: auto;
+    margin-top: 1em;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
@@ -85,4 +86,12 @@
     font-size: 8pt;
     text-align: center;
     margin-bottom: 0;
+}
+
+.ErrorMessage {
+    text-align: left;
+    margin: 0 0 0 5px;
+    font-size: 8pt;
+    font-weight: bolder;
+    color: #F44335;
 }

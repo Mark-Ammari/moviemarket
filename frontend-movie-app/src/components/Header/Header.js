@@ -14,7 +14,7 @@ export default function Header() {
     const history = useHistory()
     const authenticatePath = () => {
         history.push({
-            pathname: "/account/authenticate"
+            pathname: "/account/signup"
         })
     }
     return (

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import classes from './CastSection.module.css';
-// import FilmSection from '../../../components/FilmSection/FilmSection';
-// import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';
-// import EmptyListWrapper from '../../../components/EmptyListWrapper/EmptyListWrapper';
 import CastMember from './CastMember/CastMember';
 import LoadSkeletonCast from './LoadSkeletonCast/LoadSkeletonCast';
 import ErrorWrapper from '../../../components/ErrorWrapper/ErrorWrapper';

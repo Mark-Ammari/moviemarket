@@ -3,20 +3,31 @@ const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const uuid = require("uuid");
-
+const { check, validationResult } = require("express-validator")
 const User = require('../../models/User');
 const Favorites = require('../../models/Favorites');
 
 const router = express.Router();
 
 // POST /account/signup
-router.post('/signup', (req, res) => {
+router.post('/signup', [
+    check('email').isEmail().withMessage("Please enter a valid email."),
+    check('password').isLength({ min: 8 }).withMessage('Password must be atleast 8 characters long.')
+], (req, res) => {
     const uniqueID = uuid.v1()
 
     const { email, password } = req.body
 
+   
+    const errors = validationResult(req);
+    let arr = []
+    errors.array().map(item => {
+        arr.push(item.msg)
+    })
     if (!email || !password) {
-        res.status(400).json({ message: "Please fill all required fields.", error: true })
+        res.status(400).json({ message: ["Please fill all required fields."] })
+    } else if (!errors.isEmpty()) {
+        return res.status(422).json({ message: arr });
     }
 
     User.findOne({ email })
