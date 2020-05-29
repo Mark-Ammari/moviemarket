@@ -109,7 +109,6 @@ const Signup = () => {
                 type="email"
                 placeholder="Email Address *"
                 required
-                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
@@ -123,9 +122,7 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            {error ? !errorMessage.message ? null : errorMessage.message.map((err, id) => {
-                return <p key={id} className={classes.ErrorMessage}>{err}</p>
-            }) : null}
+            {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p> : null}
             <button onClick={handleUserSignup} className={classes.Button}>Signup</button>
             <p className={classes.SignupMessage}>By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></p>
         </div>

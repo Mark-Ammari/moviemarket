@@ -10,24 +10,18 @@ const Favorites = require('../../models/Favorites');
 const router = express.Router();
 
 // POST /account/signup
-router.post('/signup', [
-    check('email').isEmail().withMessage("Please enter a valid email."),
-    check('password').isLength({ min: 8 }).withMessage('Password must be atleast 8 characters long.')
-], (req, res) => {
+router.post('/signup', (req, res) => {
     const uniqueID = uuid.v1()
 
     const { email, password } = req.body
    
-    const errors = validationResult(req);
-    let arr = []
-    errors.array().map(item => {
-        arr.push(item.msg)
-    })
     if (!email || !password) {
-        res.status(400).json({ message: ["Please fill all required fields."] })
-    } else if (!errors.isEmpty()) {
-        return res.status(422).json({ message: arr });
-    }
+        res.status(400).json({ message: "Please fill all required fields.", error: true })
+    } else if (!/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)) {
+        res.status(400).json({ message: "Please enter a valid email address.", error: true })
+    } else if (password.length < 8) {
+        res.status(400).json({ message: "Password must be atleast 8 characters or longer.", error: true })
+    } 
 
     User.findOne({ email })
         .then(user => {
@@ -43,7 +37,7 @@ router.post('/signup', [
             })
             bcrypt.genSalt(10, (_, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err
+                    if (err) return res.status(400).json({ message: "Something went wrong", error: true })
                     newUser.password = hash;
                     Promise.all([newUser.save(), favorites.save()])
                         .then(response => {
