@@ -36,6 +36,10 @@
     border: 1px solid #F5C518;
 }
 
+.AuthInputError:focus {
+    border: 1px solid #F44335;
+}
+
 .AuthLabel {
     display: flex;
 }

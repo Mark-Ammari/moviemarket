@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './AuthContainer.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -61,6 +61,22 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const errorMessage = useSelector(state => state.signup.errorMessage)
     const error = useSelector(state => state.signup.error)
+    const [emailValid, setEmailValid] = useState(false)
+    const [passwordValid, setPasswordValid] = useState(false)
+
+    useEffect(() => {
+        if (email.length < 1 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)) {
+            setEmailValid(false)
+        } else {
+            setEmailValid(true)
+        } 
+        if (password.length < 1 || /^([a-zA-Z0-9]{8,})$/.test(password)) {
+            setPasswordValid(false)
+        } else {
+            setPasswordValid(true)
+        }
+    }, [email, password])
+    
     function handleUserSignup() {
         dispatch(signupUser(email, password))
     }
@@ -68,7 +84,7 @@ const Signup = () => {
     return (
         <div>
             <input
-                className={classes.AuthInput}
+                className={[classes.AuthInput, emailValid ? classes.AuthInputError : null].join(' ')}
                 autoFocus
                 id="name"
                 label="Email Address"
@@ -80,7 +96,7 @@ const Signup = () => {
                 onChange={(e) => setEmail(e.target.value)}
             />
             <input
-                className={classes.AuthInput}
+                className={[classes.AuthInput, passwordValid ? classes.AuthInputError : null].join(' ')}
                 id="password"
                 placeholder="Password *"
                 required

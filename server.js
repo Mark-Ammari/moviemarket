@@ -14,7 +14,6 @@ const tv = require('./routes/API/movie_API/tv');
 const models = require('./routes/API/user_API/models');
 const auth = require('./routes/API/auth');
 
-
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
