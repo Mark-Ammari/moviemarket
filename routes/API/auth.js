@@ -84,6 +84,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (!isMatch) return res.status(400).json({ message: "Invalid credentials. Please try again.", error: true })
+                    req.session.user = user._id
                     jwt.sign(
                         { _id: user["_id"] },
                         config.get("jwtSecret"),

@@ -36,3 +36,39 @@ export function signupUser(email, password) {
         })
     }
 }
+
+function loginStart() {
+    return {
+        type: actionTypes.AUTH_LOGIN_START
+    }
+}
+
+function loginSuccess(user) {
+    return {
+        type: actionTypes.AUTH_LOGIN_SUCCESS,
+        user: user
+    }
+}
+
+function loginFail(errorMessage) {
+    return {
+        type: actionTypes.AUTH_LOGIN_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export function loginUser(email, password) {
+    return dispatch => {
+        dispatch(loginStart());
+        movieURI.post('/account/login', {
+            email: email,
+            password: password
+        })
+        .then(res => {
+            dispatch(loginSuccess(res.data.user));
+        })
+        .catch(err => {
+            dispatch(loginFail(err.response.data));
+        })
+    }
+}

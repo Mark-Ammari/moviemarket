@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useDispatch, useSelector } from 'react-redux';
-import { signupUser } from '../../../store/actions/authUser'
+import { signupUser, loginUser } from '../../../store/actions/authUser'
 
 const useStyles = makeStyles({
     root: {
@@ -31,6 +31,16 @@ export default function AuthContainer() {
 }
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const errorMessage = useSelector(state => state.login.errorMessage)
+    const error = useSelector(state => state.login.error)
+
+    function handleUserLogin() {
+        dispatch(loginUser(email, password))
+    }
+
     return (
         <div>
             <input
@@ -39,6 +49,8 @@ const Login = () => {
                 id="name"
                 label="Email Address"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email Address *"
                 required
             />
@@ -47,10 +59,16 @@ const Login = () => {
                 id="password"
                 placeholder="Password *"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 label="Password"
                 type="password"
             />
-            <button className={classes.Button}>Login</button>
+            {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p>
+                :
+                null
+            }
+            <button onClick={handleUserLogin} className={classes.Button}>Login</button>
         </div>
     )
 }
@@ -69,14 +87,14 @@ const Signup = () => {
             setEmailValid(false)
         } else {
             setEmailValid(true)
-        } 
+        }
         if (password.length < 1 || /^([a-zA-Z0-9]{8,})$/.test(password)) {
             setPasswordValid(false)
         } else {
             setPasswordValid(true)
         }
     }, [email, password])
-    
+
     function handleUserSignup() {
         dispatch(signupUser(email, password))
     }

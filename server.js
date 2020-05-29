@@ -1,12 +1,27 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
 const PORT = process.env.PORT || 8080;
 
 const server = express();
 
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }))
+server.set('trust proxy', 1) // trust first proxy
+server.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({mongooseConnection: mongoose.connection }),
+  cookie: {
+    secure: false,
+    sameSite: "none",
+    maxAge: 1000 * 24 * 24 * 60,
+  }
+}))
 
 const trending = require('./routes/API/movie_API/trending');
 const movie = require('./routes/API/movie_API/movie');
@@ -30,8 +45,8 @@ const config = require('config')
 
 mongoose.connect(process.env.MONGODB_URI || config.get("mongo_db_key"),
   {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
   })
