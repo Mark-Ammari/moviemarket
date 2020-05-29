@@ -17,7 +17,6 @@ router.post('/signup', [
     const uniqueID = uuid.v1()
 
     const { email, password } = req.body
-
    
     const errors = validationResult(req);
     let arr = []
@@ -48,26 +47,18 @@ router.post('/signup', [
                     newUser.password = hash;
                     Promise.all([newUser.save(), favorites.save()])
                         .then(response => {
-                            jwt.sign(
-                                { _id: response[0]["_id"] },
-                                config.get("jwtSecret"),
-                                (err, token) => {
-                                    if (err) throw err
-                                    res.json({
-                                        token,
-                                        user: {
-                                            email: response[0].email,
-                                            _id: response[0]._id
-                                        },
-                                        favorites: response[1]
-                                    })
-                                }
-                            )
-                        })
-                        .catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
+                            req.session.user = response[0]._id
+                            res.json({
+                                user: {
+                                    email: response[0].email,
+                                    _id: response[0]._id
+                                },
+                                favorites: response[1]
+                            }) 
+                        }).catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
                 })
             })
-        })
+        })(err => res.status(400).json({ message: "Something went wrong", error: true }))
 })
 
 // POST /account/login
@@ -84,23 +75,12 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (!isMatch) return res.status(400).json({ message: "Invalid credentials. Please try again.", error: true })
-                    req.session.user = user._id
-                    jwt.sign(
-                        { _id: user["_id"] },
-                        config.get("jwtSecret"),
-                        (err, token) => {
-                            if (err) throw err
-                            res.json({
-                                token,
-                                user: {
-                                    email: user.email,
-                                    _id: user._id
-                                },
-                            })
-                        }
-                    )
-                })
-        })
+                    req.session.regenerate((error) => {
+                        if (err) return res.status(400).json({ message: "Something went wrong, server could not regenerate new session.", error: true })
+                        req.session.user = user._id
+                    })
+                }).catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
+        }).catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
 })
 
 module.exports = router
