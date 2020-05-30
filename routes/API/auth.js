@@ -16,11 +16,11 @@ router.post('/signup', (req, res) => {
     const { email, password } = req.body
    
     if (!email || !password) {
-        res.status(400).json({ message: "Please fill all required fields.", error: true })
+        return res.status(400).json({ message: "Please fill all required fields.", error: true })
     } else if (!/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)) {
-        res.status(400).json({ message: "Please enter a valid email address.", error: true })
+        return res.status(400).json({ message: "Please enter a valid email address.", error: true })
     } else if (password.length < 8) {
-        res.status(400).json({ message: "Password must be atleast 8 characters or longer.", error: true })
+        return res.status(400).json({ message: "Password must be atleast 8 characters or longer.", error: true })
     } 
 
     User.findOne({ email })
@@ -52,7 +52,7 @@ router.post('/signup', (req, res) => {
                         }).catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
                 })
             })
-        })(err => res.status(400).json({ message: "Something went wrong", error: true }))
+        }).catch(err => res.status(400).json({ message: "Something went wrong", error: true }))
 })
 
 // POST /account/login
@@ -60,7 +60,7 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body
 
     if (!email || !password) {
-        res.status(400).json({ message: "Please fill all required fields.", error: true })
+        return res.status(400).json({ message: "Please fill all required fields.", error: true })
     }
 
     User.findOne({ email })
