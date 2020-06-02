@@ -21,14 +21,8 @@ class App extends Component {
     this.props.onFetchTVGenreList()
     this.props.onFetchMovieGenreList()
     this.props.onFetchIsAuthUser()
-    console.log(this.props.isAuth)
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.isAuth !== prevProps.isAuth) {
-  //     this.props.onFetchIsAuthUser()
-  //   }
-  // }
   render() {
     return (
       <Auth.Provider value={{
