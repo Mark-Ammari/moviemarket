@@ -36,6 +36,8 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const errorMessage = useSelector(state => state.login.errorMessage)
     const error = useSelector(state => state.login.error)
+    const success = useSelector(state => state.login.success)
+    const user = useSelector(state => state.login.user)
 
     function handleUserLogin() {
         dispatch(loginUser(email, password))
@@ -64,6 +66,7 @@ const Login = () => {
                 label="Password"
                 type="password"
             />
+            {success ? <div className={classes.Success}><p>{user.message}</p></div> : null}
             {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p>
                 :
                 null
@@ -79,6 +82,8 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const errorMessage = useSelector(state => state.signup.errorMessage)
     const error = useSelector(state => state.signup.error)
+    const success = useSelector(state => state.signup.success)
+    const user = useSelector(state => state.signup.user)
     const [emailValid, setEmailValid] = useState(false)
     const [passwordValid, setPasswordValid] = useState(false)
 
@@ -122,6 +127,7 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            {success ? <div className={classes.Success}><p>{user.message}</p></div> : null}
             {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p> : null}
             <button onClick={handleUserSignup} className={classes.Button}>Signup</button>
             <p className={classes.SignupMessage}>By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></p>

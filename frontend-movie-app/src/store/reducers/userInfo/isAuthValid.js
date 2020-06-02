@@ -1,37 +1,33 @@
 import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-    user: {},
+    isAuth: {},
     errorMessage: {},
     error: false,
     loading: true,
-    success: false
 }
 
-export default function userSignupReducer(state = initialState, action) {
+export default function authValidReducer(state = initialState, action) {
     switch (action.type) {
-        case actionTypes.AUTH_SIGNUP_START:
+        case actionTypes.AUTH_VALID_START:
             return {
                 ...state,
                 error: false,
                 loading: true,
-                success: false
             }
-        case actionTypes.AUTH_SIGNUP_SUCCESS:
+        case actionTypes.AUTH_VALID_SUCCESS:
             return {
                 ...state,
-                user: action.user,
+                isAuth: action.isAuth,
                 error: false,
                 loading: false,
-                success: true
             }
-        case actionTypes.AUTH_SIGNUP_FAIL:
+        case actionTypes.AUTH_VALID_FAIL:
             return {
                 ...state,
                 errorMessage: action.errorMessage,
                 error: true,
                 loading: false,
-                success: false
             }
         default: return state
     }

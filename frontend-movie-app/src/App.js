@@ -13,40 +13,62 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './ScrollToTop';
 import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Authenticate } from './routes/routes';
 import MobileLoader from './components/Loader/MobileLoader';
+import { isAuthUser } from './store/actions/authUser';
+import Auth from './context/context';
 
 class App extends Component {
   componentDidMount() {
     this.props.onFetchTVGenreList()
     this.props.onFetchMovieGenreList()
+    this.props.onFetchIsAuthUser()
+    console.log(this.props.isAuth)
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.isAuth !== prevProps.isAuth) {
+  //     this.props.onFetchIsAuthUser()
+  //   }
+  // }
   render() {
     return (
-      <BrowserRouter className="App">
-        <ScrollToTop />
-        <Header />
-        <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
-          <Switch>
-            <Route exact path="/" component={Homepage} />
-            <Route exact path="/account/auth" component={Authenticate} />
-            <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
-            <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
-            <Route path="/movie/:title/:id" component={AboutMoviepage} />
-            <Route path="/show/:title/:id" component={AboutShowpage} />
-            {/* <Route path="/entertainment/search/:page" component={Searchpage} /> */}
-            <Route component={Errorpage} />
-          </Switch>
-        </Suspense>
-        <Footer />
-      </BrowserRouter>
+      <Auth.Provider value={{
+        isAuth: this.props.isAuth.isAuth
+      }}>
+        <BrowserRouter className="App">
+          <ScrollToTop />
+          <Header />
+          <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route exact path="/account/auth" component={Authenticate} />
+              <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
+              <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
+              <Route path="/movie/:title/:id" component={AboutMoviepage} />
+              <Route path="/show/:title/:id" component={AboutShowpage} />
+              {/* <Route path="/entertainment/search/:page" component={Searchpage} /> */}
+              <Route component={Errorpage} />
+            </Switch>
+          </Suspense>
+          <Footer />
+        </BrowserRouter>
+      </Auth.Provider>
     );
   };
 };
 
+const mapStateToProps = state => {
+  return {
+    isAuth: state.isAuth.isAuth,
+    isAuthLoad: state.isAuth.loading
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
+    onFetchIsAuthUser: () => dispatch(isAuthUser()),
     onFetchTVGenreList: () => dispatch(FetchTVGenreList()),
     onFetchMovieGenreList: () => dispatch(FetchMovieGenreList()),
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -17,7 +17,7 @@ server.use(session({
   saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection }),
   cookie: {
-    secure: false,
+    secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "none",
     maxAge: 1000 * 24 * 24 * 60,
   }
