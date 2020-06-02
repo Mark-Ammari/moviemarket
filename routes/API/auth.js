@@ -94,6 +94,12 @@ router.post('/logout', auth, (req, res) => {
     })
 })
 
-router.get('/login', auth)
+router.get('/login', (req, res) => {
+    if (!req.session.user) {
+        res.json({ isAuth: false })
+    } else {
+        res.json({ isAuth: true })
+    }
+})
 
 module.exports = router
