@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 const PORT = process.env.PORT || 8080;
@@ -68,8 +67,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.listen(PORT, () => console.log(`listening on port: ${PORT}`));
-// RCs2hQNwrOl2KbcB
-// mongodb+srv://mark:RCs2hQNwrOl2KbcB@cluster0-vnw5h.mongodb.net/test?retryWrites=true&w=majority
-
-// mongodb+srv://mark:RCs2hQNwrOl2KbcB@cluster0-vnw5h.mongodb.net/test
-

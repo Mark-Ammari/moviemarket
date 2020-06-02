@@ -68,15 +68,15 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (!isMatch) return res.status(400).json({ message: "Invalid credentials. Please try again.", error: true })
-                    if (!req.session.user) {
-                        req.session.user = user._id
-                    } else {
-                        req.session.regenerate((error) => {
-                            if (error) return res.status(400).json({ message: "Something went wrong, server could not regenerate new session.", error: true })
-                            req.session.user = user._id
-                        })
-                    }
                 })
+                if (!req.session.user) {
+                    req.session.user = user._id
+                } else {
+                    req.session.regenerate((error) => {
+                        if (error) return res.status(400).json({ message: "Something went wrong, server could not regenerate new session.", error: true })
+                        req.session.user = user._id
+                    })
+                }
                 res.json({
                     user: {
                         _id: user._id,
