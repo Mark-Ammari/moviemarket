@@ -23,6 +23,12 @@ class App extends Component {
     this.props.onFetchIsAuthUser()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.isAuth.isAuth !== prevProps.isAuth.isAuth) {
+      this.props.onFetchIsAuthUser()
+    }
+  }
+
   render() {
     if (this.props.isAuthLoad) {
       return null
