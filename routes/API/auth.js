@@ -89,8 +89,8 @@ router.post('/login', (req, res) => {
 
 router.post('/logout', auth, (req, res) => {
     req.session.destroy((err) => {
-        if (error) return res.status(400).json({ message: "Something went wrong, server could not destroy session.", error: true })
-        req.session.user = null
+        if (err) return res.status(400).json({ message: "Something went wrong, server could not destroy session.", error: true })
+        req.session = null
     })
 })
 

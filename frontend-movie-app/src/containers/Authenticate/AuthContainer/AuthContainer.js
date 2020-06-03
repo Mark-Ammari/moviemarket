@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser, loginUser } from '../../../store/actions/authUser'
+import { useHistory, Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +42,7 @@ const Login = () => {
 
     function handleUserLogin() {
         dispatch(loginUser(email, password))
+        window.location.reload()
     }
 
     return (
@@ -102,6 +104,7 @@ const Signup = () => {
 
     function handleUserSignup() {
         dispatch(signupUser(email, password))
+        window.location.reload()
     }
 
     return (
