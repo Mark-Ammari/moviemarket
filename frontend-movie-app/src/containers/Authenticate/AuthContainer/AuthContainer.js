@@ -42,7 +42,9 @@ const Login = () => {
 
     function handleUserLogin() {
         dispatch(loginUser(email, password))
-        window.location.reload()
+        if (success) {
+            window.location.reload()
+        }
     }
 
     return (
@@ -104,7 +106,9 @@ const Signup = () => {
 
     function handleUserSignup() {
         dispatch(signupUser(email, password))
-        window.location.reload()
+        if (success) {
+            window.location.reload()
+        }
     }
 
     return (
