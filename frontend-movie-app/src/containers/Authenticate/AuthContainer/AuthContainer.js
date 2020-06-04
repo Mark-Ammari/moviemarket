@@ -39,12 +39,9 @@ const Login = () => {
     const error = useSelector(state => state.login.error)
     const success = useSelector(state => state.login.success)
     const user = useSelector(state => state.login.user)
-    const authContext = useContext(auth).isAuth
+    
     function handleUserLogin() {
         dispatch(loginUser(email, password))
-        if (authContext) {
-            window.location.reload()
-        }
     }
 
     return (
@@ -70,7 +67,7 @@ const Login = () => {
                 label="Password"
                 type="password"
             />
-            {success ? <div className={classes.Success}><p>{user.message}</p></div> : null}
+            {success ? <div className={classes.Success}><p>{user.message}</p></div> && window.location.reload() : null}
             {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p>
                 :
                 null
@@ -90,7 +87,6 @@ const Signup = () => {
     const user = useSelector(state => state.signup.user)
     const [emailValid, setEmailValid] = useState(false)
     const [passwordValid, setPasswordValid] = useState(false)
-    const authContext = useContext(auth).isAuth
 
     useEffect(() => {
         if (email.length < 1 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)) {
@@ -107,9 +103,6 @@ const Signup = () => {
 
     function handleUserSignup() {
         dispatch(signupUser(email, password))
-        if (authContext) {
-            window.location.reload()
-        }
     }
 
     return (
@@ -135,7 +128,7 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            {success ? <div className={classes.Success}><p>{user.message}</p></div> : null}
+            {success ? <div className={classes.Success}><p>{user.message}</p></div> && window.location.reload() : null}
             {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p> : null}
             <button onClick={handleUserSignup} className={classes.Button}>Signup</button>
             <p className={classes.SignupMessage}>By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></p>
