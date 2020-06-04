@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import classes from './AuthContainer.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser, loginUser } from '../../../store/actions/authUser'
-import { useHistory, Redirect } from 'react-router-dom';
+import auth from '../../../context/context';
 
 const useStyles = makeStyles({
     root: {
@@ -39,10 +39,10 @@ const Login = () => {
     const error = useSelector(state => state.login.error)
     const success = useSelector(state => state.login.success)
     const user = useSelector(state => state.login.user)
-
+    const authContext = useContext(auth).isAuth
     function handleUserLogin() {
         dispatch(loginUser(email, password))
-        if (success) {
+        if (authContext) {
             window.location.reload()
         }
     }
@@ -90,6 +90,7 @@ const Signup = () => {
     const user = useSelector(state => state.signup.user)
     const [emailValid, setEmailValid] = useState(false)
     const [passwordValid, setPasswordValid] = useState(false)
+    const authContext = useContext(auth).isAuth
 
     useEffect(() => {
         if (email.length < 1 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)) {
@@ -106,7 +107,7 @@ const Signup = () => {
 
     function handleUserSignup() {
         dispatch(signupUser(email, password))
-        if (success) {
+        if (authContext) {
             window.location.reload()
         }
     }
