@@ -43,6 +43,9 @@ import userSignupReducer from './store/reducers/userInfo/userSignup';
 import userLoginReducer from './store/reducers/userInfo/userLogin';
 import userLogoutReducer from './store/reducers/userInfo/userLogout';
 import authValidReducer from './store/reducers/userInfo/isAuthValid';
+import getUserDetailsReducer from './store/reducers/userInfo/getUserDetails';
+import favoritesReducer from './store/reducers/userInfo/getFavorites';
+import addToFavoritesReducer from './store/reducers/userInfo/addToFavorites';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -88,7 +91,11 @@ const rootReducer = combineReducers({
   signup: userSignupReducer,
   login: userLoginReducer,
   logout: userLogoutReducer,
-  isAuth: authValidReducer
+  isAuth: authValidReducer,
+
+  userDetails: getUserDetailsReducer,
+  favorites: favoritesReducer,
+  addToFavorites: addToFavoritesReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

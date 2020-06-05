@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { movieURI } from '../../URL/URL';
+import addToFavoritesReducer from '../reducers/userInfo/addToFavorites';
 
 function signupStart() {
     return {
@@ -135,6 +136,105 @@ export function isAuthUser() {
         })
         .catch(err => {
             dispatch(isAuthFail(err.response.data));
+        })
+    }
+}
+// ------------------------------------------------------------------
+function userDetailsStart() {
+    return {
+        type: actionTypes.USER_DETAILS_START
+    }
+}
+
+function userDetailsSuccess(user) {
+    return {
+        type: actionTypes.USER_DETAILS_SUCCESS,
+        user: user
+    }
+}
+
+function userDetailsFail(errorMessage) {
+    return {
+        type: actionTypes.USER_DETAILS_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export function fetchUserDetails() {
+    return dispatch => {
+        dispatch(userDetailsStart());
+        movieURI.get('/user/details')
+        .then(res => {
+            dispatch(userDetailsSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(userDetailsFail(err.response.data));
+        })
+    }
+}
+// ------------------------------------------------------------------
+function favoritesStart() {
+    return {
+        type: actionTypes.FETCH_FAVORITES_START
+    }
+}
+
+function favoritesSuccess(favorites) {
+    return {
+        type: actionTypes.FETCH_FAVORITES_SUCCESS,
+        favorites: favorites
+    }
+}
+
+function favoritesFail(errorMessage) {
+    return {
+        type: actionTypes.FETCH_FAVORITES_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export function fetchFavorites() {
+    return dispatch => {
+        dispatch(favoritesStart());
+        movieURI.get('/user/favorites')
+        .then(res => {
+            dispatch(favoritesSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(favoritesFail(err.response.data));
+        })
+    }
+}
+// ------------------------------------------------------------------
+function addToFavoritesStart() {
+    return {
+        type: actionTypes.ADD_FAVORITES_START
+    }
+}
+
+function addToFavoritesSuccess(favorites) {
+    return {
+        type: actionTypes.ADD_FAVORITES_SUCCESS,
+        favorites: favorites
+    }
+}
+
+function addToFavoritesFail(errorMessage) {
+    return {
+        type: actionTypes.ADD_FAVORITES_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export function addToFavorites() {
+    return dispatch => {
+        dispatch(addToFavoritesStart());
+        movieURI.post('/user/favorites')
+        .then(res => {
+            dispatch(addToFavoritesSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(addToFavoritesFail(err.response.data));
         })
     }
 }

@@ -11,7 +11,7 @@ import {
 } from './store/actions/tv';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './ScrollToTop';
-import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Authenticate } from './routes/routes';
+import { Homepage, Moviepage, Showpage, AboutMoviepage, AboutShowpage, Errorpage, Authenticate, Favoritespage } from './routes/routes';
 import MobileLoader from './components/Loader/MobileLoader';
 import { isAuthUser } from './store/actions/authUser';
 import Auth from './context/context';
@@ -52,7 +52,7 @@ class App extends Component {
                 <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
                 <Route path="/movie/:title/:id" component={AboutMoviepage} />
                 <Route path="/show/:title/:id" component={AboutShowpage} />
-                {/* <Route path="/entertainment/search/:page" component={Searchpage} /> */}
+                <Route path="/account/favorites" component={Favoritespage} />
                 <Route component={Errorpage} />
               </Switch>
             </Suspense>

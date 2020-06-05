@@ -1,0 +1,32 @@
+.FavoriteItemList {
+    min-height: calc(100vh - 180px);
+    display: flex;
+}
+
+.FavoritesListMessage {
+    font-family: 'Montserrat', sans-serif;
+    color: #F5C519;
+    padding: 1em;
+    margin: 10px auto;
+    align-self: center;
+    max-width: 767px;
+}
+
+.FavoritesListMessage h1 {
+    font-size: 16pt;
+    margin-bottom: 10px;
+}
+
+.FavoritesListMessage p {
+    font-size: 10pt;
+    color: #5c5c5c
+}
+
+.NavLink {
+    /* color: #F5C519;
+    text-decoration: none; */
+}
+
+.NavLink {
+    
+}

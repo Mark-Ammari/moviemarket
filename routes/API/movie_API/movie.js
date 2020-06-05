@@ -191,8 +191,9 @@ router.get('/search', (req, res) => {
             "query": req.query.query,
             "page": req.query.page
         }
-    }).then(response => res.json(response.data))
-    .catch(err => console.log(err.response.data))
+    })
+    .then(response => res.json(response.data))
+    .catch(err => res.status(404).send({ message: "Something went wrong.", error: true }))
 })
 
 module.exports = router

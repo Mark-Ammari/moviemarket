@@ -22,6 +22,12 @@ export default function Header() {
             pathname: "/account/auth"
         })
     }
+    const myFavoritesHandler = () => {
+        history.push({
+            pathname: "/account/favorites"
+        })
+    }
+
     const logoutUserHandler = () => {
         dispatch(logoutUser())
         window.location.reload()
@@ -36,7 +42,7 @@ export default function Header() {
                 {matches ? <SearchBar /> : null}
                 <nav className={classes.HeaderNavButtons}>
                     {!matches ? <SearchModal /> : null}
-                    <NavButton startIcon={<FavoriteRounded />}>
+                    <NavButton onClick={myFavoritesHandler} startIcon={<FavoriteRounded />}>
                         Favorites
                     </NavButton>
                     {authContext.isAuth ?

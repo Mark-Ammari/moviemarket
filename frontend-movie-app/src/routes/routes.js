@@ -39,3 +39,8 @@ export const Authenticate = React.lazy(() =>
     import (
     '../containers/Authenticate/Authenticate'
 ));
+
+export const Favoritespage = React.lazy(() => 
+import (
+    '../containers/Favoritespage/Favoritespage'
+))

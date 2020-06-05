@@ -6,9 +6,9 @@ const Favorites = require('../../../models/Favorites');
 
 const router = express.Router();
 
-// GET /user/{id}
-router.get('/:id', auth, (req, res) => {
-    User.findById(req.params.id)
+// GET /user/details
+router.get('/details', auth, (req, res) => {
+    User.findById(req.session.user)
         .select('-password')
         .then(response => {
             res.json(response)
@@ -16,18 +16,19 @@ router.get('/:id', auth, (req, res) => {
         .catch(() => res.status(400).json({ message: "Need authorization token in order to get user data", error: true }))
 })
 
-// GET /user/{id}/favorites
-router.get('/:id/favorites', auth, (req, res) => {
-    Favorites.findById(req.params.id)
+// GET /user/favorites
+router.get('/favorites', auth, (req, res) => {
+    Favorites.findById(req.session.user)
         .then(response => {
             res.json(response)
         })
         .catch(() => res.status(400).json({ message: "User does not exist", error: true }))
 })
+
 // PUT /user/{id}/favorites
-router.post('/:id/favorites', auth, (req, res) => {
-    Favorites.findByIdAndUpdate(req.params.id, {
-        $push: { favorites: { test: "test" } }
+router.post('/favorites', auth, (req, res) => {
+    Favorites.findByIdAndUpdate(req.session.user, {
+        $push: { favorites: req.body.favorites }
     }).then(response => res.json(response))
         .catch(() => res.status(400).json({ message: "Something went wrong", error: true }))
 })
