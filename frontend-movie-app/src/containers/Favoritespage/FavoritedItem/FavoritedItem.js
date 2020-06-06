@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function FavoritedItem(props) {
+export default function FavoritedItem({title, subheader, src}) {
   const classes = useStyles();
 //   const [expanded, setExpanded] = React.useState(false);
 
@@ -66,13 +66,13 @@ export default function FavoritedItem(props) {
             title: classes.header,
             subheader: classes.subHeader
         }}
-        title={props.title}
-        subheader={props.subHeader}
+        title={title}
+        subheader={subheader}
       />
       <CardMedia
         className={classes.media}
-        image={props.src}
-        title={props.title}
+        image={src}
+        title={title}
       />
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
