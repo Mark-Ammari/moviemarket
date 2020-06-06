@@ -11,9 +11,7 @@ export default function FavoriteItemList() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (authContext) {
-            dispatch(fetchFavorites())
-        }
+        dispatch(fetchFavorites())
     }, [authContext, dispatch])
 
     return (
@@ -25,12 +23,12 @@ export default function FavoriteItemList() {
                 </div>
                 :
                 getFavorites.favorites.length === 0 ?
-                <div className={classes.FavoritesListMessage}>
-                    <h1>Your Favorites is Empty.</h1>
-                    <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
-                </div>
-                :
-                <p>got items</p>
+                    <div className={classes.FavoritesListMessage}>
+                        <h1>Your Favorites is Empty.</h1>
+                        <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
+                    </div>
+                    :
+                    <p>got iems</p>
             }
         </section>
     )
