@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Movie App",
   "main": "server.js",
+  "engines": {
+    "node": "12.14.1"
+  },
   "scripts": {
     "client": "npm start --prefix frontend-movie-app",
     "server": "nodemon server.js",
