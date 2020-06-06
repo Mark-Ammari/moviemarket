@@ -37,7 +37,7 @@ export default function FavoriteItemList() {
                         return <FavoritedItem 
                             key={item.id}
                             title={item["name"] || item.title || item.title["original_name"]}
-                            subheader={`${item["first_air_date"]} ${item["voting_average"]}/10`}
+                            subheader={item["first_air_date"]}
                             src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                         />
                     })}

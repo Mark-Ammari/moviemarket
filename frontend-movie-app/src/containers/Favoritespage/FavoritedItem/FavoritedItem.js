@@ -18,11 +18,12 @@ import OpenInNewRounded from '@material-ui/icons/OpenInNewRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 300,
+    width: 300,
     background: "#151515",
   },
   media: {
     height: 0,
+    width: "100%",
     paddingTop: '56.25%', // 16:9
   },
   expand: {
