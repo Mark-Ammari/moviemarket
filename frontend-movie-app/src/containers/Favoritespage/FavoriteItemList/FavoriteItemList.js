@@ -12,7 +12,9 @@ export default function FavoriteItemList() {
 
     useEffect(() => {
         dispatch(fetchFavorites())
-    }, [authContext, dispatch])
+    }, [dispatch])
+
+    console.log(getFavorites)
 
     return (
         <section className={classes.FavoriteItemList}>
@@ -22,13 +24,10 @@ export default function FavoriteItemList() {
                     <p>In order to add movies and tv series to your favorites. you must be <NavLink className={classes.NavLink} to="/account/auth">signed in.</NavLink></p>
                 </div>
                 :
-                getFavorites.favorites.length === 0 ?
-                    <div className={classes.FavoritesListMessage}>
-                        <h1>Your Favorites is Empty.</h1>
-                        <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
-                    </div>
-                    :
-                    <p>got iems</p>
+                <div className={classes.FavoritesListMessage}>
+                    <h1>Your Favorites is Empty.</h1>
+                    <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
+                </div>
             }
         </section>
     )
