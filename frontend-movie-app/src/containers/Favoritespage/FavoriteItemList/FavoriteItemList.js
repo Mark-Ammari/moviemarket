@@ -24,7 +24,7 @@ export default function FavoriteItemList() {
                     <p>In order to add movies and tv series to your favorites. you must be <NavLink className={classes.NavLink} to="/account/auth">signed in.</NavLink></p>
                 </div>
                 :
-                getFavorites.favorites === 0 ?
+                getFavorites.favorites.length === 0 ?
                 <div className={classes.FavoritesListMessage}>
                     <h1>Your Favorites is Empty.</h1>
                     <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>

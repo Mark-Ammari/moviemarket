@@ -226,10 +226,12 @@ function addToFavoritesFail(errorMessage) {
     }
 }
 
-export function addToFavorites() {
+export function addToFavorites(favorites) {
     return dispatch => {
         dispatch(addToFavoritesStart());
-        movieURI.post('/user/favorites')
+        movieURI.post('/user/favorites', {
+            favorites: favorites
+        })
         .then(res => {
             dispatch(addToFavoritesSuccess(res.data));
         })

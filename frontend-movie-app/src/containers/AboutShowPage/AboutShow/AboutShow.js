@@ -1,21 +1,55 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutShow.module.css';
 import LoadSkeletonAboutShow from './LoadSkeletonAboutShow/LoadSkeletonAboutShow';
+import { IconButton } from '@material-ui/core';
+import { FavoriteBorderRounded } from '@material-ui/icons';
+import { addToFavorites } from '../../../store/actions/authUser';
+import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
 
 export default function AboutShow() {
     const loadDetails = useSelector(state => state.tvDetails.loading)
     const details = useSelector(state => state.tvDetails.details)
+    const dispatch = useDispatch()
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+      setOpen(true);
+      dispatch(addToFavorites(details))
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };  
+
     return (
         <div className={classes.DetailsContainer} >
-            {loadDetails  ?
+            {loadDetails ?
                 <LoadSkeletonAboutShow />
                 :
                 <div className={classes.Details}>
-                    <h3 className={classes.Title}>{details.name}</h3>
+                    <div className={classes.DetailsHeader}>
+                        <h3 className={classes.Title}>{details.name}</h3>
+                        <SnackbarPopup 
+                        open={open} 
+                        severity="success" 
+                        onClick={handleClick} 
+                        onClose={handleClose} 
+                        size="small" 
+                        color="secondary" 
+                        icon={
+                        <FavoriteBorderRounded fontSize="small" color="error"/>
+                        }>
+                            Item added to favorites.
+                        </SnackbarPopup>
+                    </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>
-                    
+
                     <div className={classes.CatagoriesContainer}>
                         <p className={classes.Catagories}>Catagories:</p>
                         {!details.genres ? <p className={classes.NoList}>No genres listed.</p> :
@@ -45,7 +79,7 @@ export default function AboutShow() {
                             </div>
                         }
                     </div>
-                    
+
                     <div className={classes.PosterCard}>
                         <img
                             src={`https://image.tmdb.org/t/p/original${details.poster_path}`}
