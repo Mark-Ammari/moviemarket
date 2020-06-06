@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import auth from '../../../context/context';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFavorites } from '../../../store/actions/authUser';
-
+import FavoriteItem from '../FavoritedItem/FavoritedItem'
+import FavoritedItem from '../FavoritedItem/FavoritedItem';
 export default function FavoriteItemList() {
     const authContext = useContext(auth).isAuth
     const getFavorites = useSelector(state => state.favorites.favorites)
@@ -31,7 +32,16 @@ export default function FavoriteItemList() {
                     <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
                 </div>
                 :
-                <p>heres item</p>
+                <div className={classes.FavoriteItems}>
+                    {getFavorites.favorites.map((item) => {
+                        return <FavoritedItem 
+                            key={item.id}
+                            title={item.name || item.title || title["original_name"]}
+                            subheader={`${item["first_air_date"]} ${item["voting_average"]}/10`}
+                            src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                        />
+                    })}
+                </div>
             }
         </section>
     )
