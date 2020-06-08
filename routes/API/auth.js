@@ -3,9 +3,10 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const User = require('../../models/User');
 const Favorites = require('../../models/Favorites');
-const auth = require('../../middleware/auth');
+const { auth } = require('../../middleware/auth');
 const router = express.Router();
-
+const jwt = require('jsonwebtoken')
+const config = require('config')
 // POST /account/signup
 router.post('/signup', (req, res) => {
     const uniqueID = uuid.v1()
@@ -100,6 +101,39 @@ router.get('/login', (req, res) => {
     } else {
         res.json({ isAuth: true })
     }
+})
+
+router.post('/guest/login', async (req, res) => {
+    const email = "guest@guest.com"
+    const password = "GuestAccount123456789"
+
+    try {
+        // Check for existing user
+        const user = await User.findOne({ email });
+        if (!user) throw Error('User Does not exist');
+    
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) throw Error('Invalid credentials');
+
+        if (!req.session.user) {
+            req.session.user = user._id
+        } else {
+            req.session.regenerate((error) => {
+                if (error) return res.status(400).json({ message: "Something went wrong, server could not regenerate new session.", error: true })
+                req.session.user = user._id
+            })
+        }
+
+        res.status(200).json({
+          user: {
+            id: user._id,
+            email: user.email
+          },
+          message: "Login Successful."
+        });
+      } catch (e) {
+        res.status(400).json({ message: "Something went wrong with the server.", error: true });
+      }
 })
 
 module.exports = router

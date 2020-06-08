@@ -1,18 +1,53 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutMovie.module.css';
 import LoadSkeletonAboutMovie from './LoadSkeletonAboutMovie/LoadSkeletonAboutMovie';
+import { useLocation } from 'react-router-dom';
+import { addToFavorites } from '../../../store/actions/authUser';
+import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
+import { FavoriteBorderRounded } from '@material-ui/icons';
 
 export default function AboutMovie() {
     const loadDetails = useSelector(state => state.movieDetails.loading)
     const details = useSelector(state => state.movieDetails.details)
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+        const indexOfSlash = location.pathname.slice(1).indexOf('/')
+        dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
     return (
         <div className={classes.DetailsContainer} >
             {loadDetails ?
                 <LoadSkeletonAboutMovie />
                 :
                 <div className={classes.Details}>
-                    <h3 className={classes.Title}>{details.title}</h3>
+                    <div className={classes.DetailsHeader}>
+                        <h3 className={classes.Title}>{details.title}</h3>
+                        <SnackbarPopup
+                            open={open}
+                            severity="success"
+                            onClick={handleClick}
+                            onClose={handleClose}
+                            size="small"
+                            color="secondary"
+                            icon={
+                                <FavoriteBorderRounded fontSize="small" color="error" />
+                            }>
+                            Item added to favorites.
+                        </SnackbarPopup>
+                    </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>
 

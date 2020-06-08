@@ -73,6 +73,19 @@ export function loginUser(email, password) {
         })
     }
 }
+
+export function loginGuest() {
+    return dispatch => {
+        dispatch(loginStart());
+        movieURI.post('/account/guest/login')
+        .then(res => {
+            dispatch(loginSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(loginFail(err.response.data));
+        })
+    }
+}
 // ------------------------------------------------------------------
 function logoutStart() {
     return {
@@ -226,17 +239,50 @@ function addToFavoritesFail(errorMessage) {
     }
 }
 
-export function addToFavorites(favorites) {
+export function addToFavorites(favorites, type) {
     return dispatch => {
         dispatch(addToFavoritesStart());
         movieURI.post('/user/favorites', {
-            favorites: favorites
+            ...favorites, type_of: type
         })
         .then(res => {
             dispatch(addToFavoritesSuccess(res.data));
         })
         .catch(err => {
             dispatch(addToFavoritesFail(err.response.data));
+        })
+    }
+}
+// ------------------------------------------------------------------
+function removeFromFavoritesStart() {
+    return {
+        type: actionTypes.REMOVE_FAVORITES_START
+    }
+}
+
+function removeFromFavoritesSuccess(favorites) {
+    return {
+        type: actionTypes.REMOVE_FAVORITES_SUCCESS,
+        favorites: favorites
+    }
+}
+
+function removeFromFavoritesFail(errorMessage) {
+    return {
+        type: actionTypes.REMOVE_FAVORITES_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export function removeFromFavorites(itemid) {
+    return dispatch => {
+        dispatch(removeFromFavoritesStart());
+        movieURI.post(`/user/favorites/${itemid}`)
+        .then(res => {
+            dispatch(removeFromFavoritesSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(removeFromFavoritesFail(err.response.data));
         })
     }
 }

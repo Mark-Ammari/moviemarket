@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './AuthContainer.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useDispatch, useSelector } from 'react-redux';
-import { signupUser, loginUser } from '../../../store/actions/authUser'
-import auth from '../../../context/context';
+import { signupUser, loginUser, loginGuest } from '../../../store/actions/authUser'
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 300,
+        width: 300,
+        marginBottom: "1em"
     }
 });
 
@@ -25,6 +25,11 @@ export default function AuthContainer() {
                         <h2 onClick={() => setAuthState("signup")}>Signup</h2>
                     </div>
                     {authState === "login" ? <Login /> : <Signup />}
+                </CardContent>
+            </Card>
+            <Card className={styles.root} variant="outlined">
+                <CardContent>
+                    <GuestAccount />
                 </CardContent>
             </Card>
         </div>
@@ -132,6 +137,21 @@ const Signup = () => {
             {error ? <p className={classes.ErrorMessage}>{errorMessage.message}</p> : null}
             <button onClick={handleUserSignup} className={classes.Button}>Signup</button>
             <p className={classes.SignupMessage}>By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></p>
+        </div>
+    )
+}
+
+const GuestAccount = () => {
+    const dispatch = useDispatch()
+
+    function handleGuestLogin() {
+        dispatch(loginGuest())
+    }
+
+    return (
+        <div>
+            <button onClick={handleGuestLogin} className={classes.Button}>Login as guest</button>
+            <p className={classes.SignupMessage}>Please note, this is a <strong>Guest Account</strong>. Users may have used or modified this account.</p>
         </div>
     )
 }

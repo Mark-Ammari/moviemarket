@@ -17,6 +17,10 @@ export default function FavoriteItemList() {
         dispatch(fetchFavorites())
     }, [dispatch])
 
+    // function openNewLink() {
+
+    // }
+
     return (
         <section className={classes.FavoriteItemList}>
             {!authContext ?
@@ -37,12 +41,24 @@ export default function FavoriteItemList() {
                         return <FavoritedItem 
                             key={item.id}
                             title={item["name"] || item.title || item.title["original_name"]}
+                            // onRemove={}
+                            // to={}
                             subheader={item["first_air_date"]}
                             src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                         />
                     })}
                 </div>
             }
+            {/* <div className={classes.FavoriteItem}>
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+                <FavoriteItem />
+            </div> */}
         </section>
     )
 }

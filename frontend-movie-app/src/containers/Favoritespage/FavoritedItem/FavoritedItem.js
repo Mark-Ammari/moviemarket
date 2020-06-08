@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function FavoritedItem({title, subheader, src}) {
+export default function FavoritedItem({title, subheader, src, onRemove, to}) {
   const classes = useStyles();
 //   const [expanded, setExpanded] = React.useState(false);
 
@@ -76,10 +76,10 @@ export default function FavoritedItem({title, subheader, src}) {
         title={title}
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton onClick={onRemove} aria-label="add to favorites">
           <FavoriteIcon className={classes.favoriteColor}/>
         </IconButton>
-        <IconButton aria-label="goto content details">
+        <IconButton onClick={to} aria-label="goto content details">
           <OpenInNewRounded className={classes.iconColor}/>
         </IconButton>
         {/* <IconButton

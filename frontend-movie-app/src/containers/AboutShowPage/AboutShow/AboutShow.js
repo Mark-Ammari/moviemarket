@@ -2,29 +2,30 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutShow.module.css';
 import LoadSkeletonAboutShow from './LoadSkeletonAboutShow/LoadSkeletonAboutShow';
-import { IconButton } from '@material-ui/core';
 import { FavoriteBorderRounded } from '@material-ui/icons';
 import { addToFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
+import { useRouteMatch, useLocation } from 'react-router-dom';
 
 export default function AboutShow() {
     const loadDetails = useSelector(state => state.tvDetails.loading)
     const details = useSelector(state => state.tvDetails.details)
     const dispatch = useDispatch()
-
+    const location = useLocation()
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
-      setOpen(true);
-      dispatch(addToFavorites(details))
+        setOpen(true);
+        const indexOfSlash = location.pathname.slice(1).indexOf('/')
+        dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash+1)))
     };
   
     const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpen(false);
-    };  
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     return (
         <div className={classes.DetailsContainer} >
@@ -34,16 +35,16 @@ export default function AboutShow() {
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
-                        <SnackbarPopup 
-                        open={open} 
-                        severity="success" 
-                        onClick={handleClick} 
-                        onClose={handleClose} 
-                        size="small" 
-                        color="secondary" 
-                        icon={
-                        <FavoriteBorderRounded fontSize="small" color="error"/>
-                        }>
+                        <SnackbarPopup
+                            open={open}
+                            severity="success"
+                            onClick={handleClick}
+                            onClose={handleClose}
+                            size="small"
+                            color="secondary"
+                            icon={
+                                <FavoriteBorderRounded fontSize="small" color="error" />
+                            }>
                             Item added to favorites.
                         </SnackbarPopup>
                     </div>
