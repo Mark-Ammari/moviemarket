@@ -123,7 +123,6 @@ router.post('/guest/login', async (req, res) => {
                 req.session.user = user._id
             })
         }
-
         res.status(200).json({
           user: {
             id: user._id,

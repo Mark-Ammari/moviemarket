@@ -29,12 +29,12 @@ export function signupUser(email, password) {
             email: email,
             password: password
         })
-        .then(res => {
-            dispatch(signupSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(signupFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(signupSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(signupFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -65,12 +65,12 @@ export function loginUser(email, password) {
             email: email,
             password: password
         })
-        .then(res => {
-            dispatch(loginSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(loginFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(loginSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(loginFail(err.response.data));
+            })
     }
 }
 
@@ -78,12 +78,12 @@ export function loginGuest() {
     return dispatch => {
         dispatch(loginStart());
         movieURI.post('/account/guest/login')
-        .then(res => {
-            dispatch(loginSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(loginFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(loginSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(loginFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -111,12 +111,12 @@ export function logoutUser() {
     return dispatch => {
         dispatch(logoutStart());
         movieURI.post('/account/logout')
-        .then(res => {
-            dispatch(logoutSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(logoutFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(logoutSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(logoutFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -144,12 +144,12 @@ export function isAuthUser() {
     return dispatch => {
         dispatch(isAuthStart());
         movieURI.get('/account/login')
-        .then(res => {
-            dispatch(isAuthSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(isAuthFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(isAuthSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(isAuthFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -177,12 +177,12 @@ export function fetchUserDetails() {
     return dispatch => {
         dispatch(userDetailsStart());
         movieURI.get('/user/details')
-        .then(res => {
-            dispatch(userDetailsSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(userDetailsFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(userDetailsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(userDetailsFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -210,12 +210,12 @@ export function fetchFavorites() {
     return dispatch => {
         dispatch(favoritesStart());
         movieURI.get('/user/favorites')
-        .then(res => {
-            dispatch(favoritesSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(favoritesFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(favoritesSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(favoritesFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -243,14 +243,14 @@ export function addToFavorites(favorites, type) {
     return dispatch => {
         dispatch(addToFavoritesStart());
         movieURI.post('/user/favorites', {
-            ...favorites, type_of: type
+            favorites: { ...favorites, type_of: type }
         })
-        .then(res => {
-            dispatch(addToFavoritesSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(addToFavoritesFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(addToFavoritesSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(addToFavoritesFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
@@ -278,12 +278,12 @@ export function removeFromFavorites(itemid) {
     return dispatch => {
         dispatch(removeFromFavoritesStart());
         movieURI.post(`/user/favorites/${itemid}`)
-        .then(res => {
-            dispatch(removeFromFavoritesSuccess(res.data));
-        })
-        .catch(err => {
-            dispatch(removeFromFavoritesFail(err.response.data));
-        })
+            .then(res => {
+                dispatch(removeFromFavoritesSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(removeFromFavoritesFail(err.response.data));
+            })
     }
 }
 // ------------------------------------------------------------------
