@@ -19,12 +19,13 @@ export default function FavoriteItemList() {
 
     function openNewLink(type, name, itemid) {
         history.push({
-            pathname: `${type}/${name}/${itemid}`
+            pathname: `/${type}/${name}/${itemid}`
         })
     }
 
-    function removeItem(itemid) {
-        dispatch(removeFromFavorites(itemid))
+    function removeItem(itemID) {
+        console.log(itemID)
+        dispatch(removeFromFavorites(itemID))
     }
 
     return (
@@ -56,14 +57,16 @@ export default function FavoriteItemList() {
                 </div>
             }
             {/* <div className={classes.FavoriteItem}>
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
-                <FavoriteItem />
+                <FavoritedItem 
+                    to={() => openNewLink("type", "name", "id")}
+                />
+                <FavoritedItem />
+                <FavoritedItem />
+                <FavoritedItem />
+                <FavoritedItem />
+                <FavoritedItem />
+                <FavoritedItem />
+                <FavoritedItem />
             </div> */}
         </section>
     )

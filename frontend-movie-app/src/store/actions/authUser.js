@@ -277,7 +277,7 @@ function removeFromFavoritesFail(errorMessage) {
 export function removeFromFavorites(itemid) {
     return dispatch => {
         dispatch(removeFromFavoritesStart());
-        movieURI.post(`/user/favorites/${itemid}`)
+        movieURI.delete(`/user/favorites/${itemid}`)
             .then(res => {
                 dispatch(removeFromFavoritesSuccess(res.data));
             })
