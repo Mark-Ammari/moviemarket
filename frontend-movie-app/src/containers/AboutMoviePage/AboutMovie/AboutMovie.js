@@ -43,7 +43,7 @@ export default function AboutMovie() {
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
-                        {favorites.favorites.find(item => item.id === details.id) ?
+                        {favorites.favorites.includes(details.id) ?
                             <SnackbarPopup
                                 open={open}
                                 severity="success"

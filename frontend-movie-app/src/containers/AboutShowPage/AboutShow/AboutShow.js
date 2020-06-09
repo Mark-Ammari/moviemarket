@@ -44,7 +44,7 @@ export default function AboutShow() {
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
-                        {favorites.favorites.find(item => item.id === details.id) ?
+                        {favorites.favorites.includes(details.id) ?
                             <SnackbarPopup
                                 open={open}
                                 severity="success"
