@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutMovie.module.css';
 import LoadSkeletonAboutMovie from './LoadSkeletonAboutMovie/LoadSkeletonAboutMovie';
 import { useLocation } from 'react-router-dom';
-import { addToFavorites } from '../../../store/actions/authUser';
+import { addToFavorites, removeFromFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
-import { FavoriteBorderRounded } from '@material-ui/icons';
+import { FavoriteBorderRounded, FavoriteRounded } from '@material-ui/icons';
+import { IconButton } from '@material-ui/core';
 
 export default function AboutMovie() {
     const loadDetails = useSelector(state => state.movieDetails.loading)
@@ -13,11 +14,18 @@ export default function AboutMovie() {
     const dispatch = useDispatch()
     const location = useLocation()
     const [open, setOpen] = React.useState(false);
+    const favorites = useSelector(state => state.favorites.favorites)
+    const loadFavorites = useSelector(state => state.favorites.loading)
 
-    const handleClick = () => {
+    const addFavorites = () => {
         setOpen(true);
         const indexOfSlash = location.pathname.slice(1).indexOf('/')
         dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
+    };
+
+    const removeFavorites = () => {
+        setOpen(true);
+        dispatch(removeFromFavorites(details.id))
     };
 
     const handleClose = (event, reason) => {
@@ -29,24 +37,37 @@ export default function AboutMovie() {
 
     return (
         <div className={classes.DetailsContainer} >
-            {loadDetails ?
+            {loadDetails && loadFavorites ?
                 <LoadSkeletonAboutMovie />
                 :
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
-                        <SnackbarPopup
-                            open={open}
-                            severity="success"
-                            onClick={handleClick}
-                            onClose={handleClose}
-                            size="small"
-                            color="secondary"
-                            icon={
-                                <FavoriteBorderRounded fontSize="small" color="error" />
-                            }>
-                            Item added to favorites.
-                        </SnackbarPopup>
+                        {favorites.favorites.find(item => item.id === details.id) ?
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                        <FavoriteRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Removed Item from favorites.
+                            </SnackbarPopup>
+                            :
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteBorderRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Item added to favorites.
+                            </SnackbarPopup>
+                        }
                     </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>

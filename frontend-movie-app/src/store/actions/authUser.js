@@ -280,6 +280,7 @@ export function removeFromFavorites(itemid) {
         movieURI.delete(`/user/favorites/${itemid}`)
             .then(res => {
                 dispatch(removeFromFavoritesSuccess(res.data));
+                dispatch(fetchFavorites())
             })
             .catch(err => {
                 dispatch(removeFromFavoritesFail(err.response.data));

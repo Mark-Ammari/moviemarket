@@ -24,7 +24,6 @@ export default function FavoriteItemList() {
     }
 
     function removeItem(itemID) {
-        console.log(itemID)
         dispatch(removeFromFavorites(itemID))
     }
 

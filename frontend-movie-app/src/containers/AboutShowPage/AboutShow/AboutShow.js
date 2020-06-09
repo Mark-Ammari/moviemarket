@@ -3,23 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutShow.module.css';
 import LoadSkeletonAboutShow from './LoadSkeletonAboutShow/LoadSkeletonAboutShow';
 import { FavoriteBorderRounded } from '@material-ui/icons';
-import { addToFavorites } from '../../../store/actions/authUser';
+import { addToFavorites, removeFromFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
 import { useRouteMatch, useLocation } from 'react-router-dom';
+import { IconButton } from '@material-ui/core';
 
 export default function AboutShow() {
     const loadDetails = useSelector(state => state.tvDetails.loading)
     const details = useSelector(state => state.tvDetails.details)
     const dispatch = useDispatch()
     const location = useLocation()
+    const favorites = useSelector(state => state.favorites.favorites)
+    const loadFavorites = useSelector(state => state.favorites.loading)
+
     const [open, setOpen] = React.useState(false);
 
-    const handleClick = () => {
+    const addFavorites = () => {
         setOpen(true);
         const indexOfSlash = location.pathname.slice(1).indexOf('/')
-        dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash+1)))
+        dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
     };
-  
+
+    const removeFavorites = () => {
+        setOpen(true);
+        dispatch(removeFromFavorites(details.id))
+    };
+
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -29,24 +38,37 @@ export default function AboutShow() {
 
     return (
         <div className={classes.DetailsContainer} >
-            {loadDetails ?
+            {loadDetails && loadFavorites ?
                 <LoadSkeletonAboutShow />
                 :
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
-                        <SnackbarPopup
-                            open={open}
-                            severity="success"
-                            onClick={handleClick}
-                            onClose={handleClose}
-                            size="small"
-                            color="secondary"
-                            icon={
-                                <FavoriteBorderRounded fontSize="small" color="error" />
-                            }>
-                            Item added to favorites.
-                        </SnackbarPopup>
+                        {favorites.favorites.find(item => item.id === details.id) ?
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                        <FavoriteRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Removed Item from favorites.
+                            </SnackbarPopup>
+                            :
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteBorderRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Item added to favorites.
+                            </SnackbarPopup>
+                        }
                     </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>

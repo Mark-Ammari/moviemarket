@@ -7,6 +7,7 @@ import SimilarSection from './SimilarSection/SimilarSection';
 import AboutShow from './AboutShow/AboutShow';
 import CastSection from './CastSection/CastSection';
 import ReviewSection from './ReviewSection/ReviewSection';
+import { fetchFavorites } from '../../store/actions/authUser';
 
 class AboutShowpage extends Component {
 
@@ -19,6 +20,7 @@ class AboutShowpage extends Component {
         this.props.onFetchTVReviews(this.props.match.params.id)
         this.props.onFetchTVCredits(this.props.match.params.id)
         this.props.onFetchTVImages(this.props.match.params.id)
+        this.props.onFetchFavorites()
     }
 
     componentDidUpdate(prevProps) {
@@ -57,7 +59,8 @@ const mapDispatchTopProps = dispatch => {
         onFetchTVReviews: (id) => dispatch(FetchTVReviews(id)),
         onFetchTVCredits: (id) => dispatch(FetchTVCredits(id)),
         onFetchTVKeywords: (id) => dispatch(FetchTVKeywords(id)),
-        onFetchTVImages: (id) => dispatch(FetchTVImages(id))
+        onFetchTVImages: (id) => dispatch(FetchTVImages(id)),
+        onFetchFavorites: () => dispatch(fetchFavorites())
     };
 };
 

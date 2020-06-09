@@ -17,14 +17,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SnackbarPopup({ icon, color, size, onClick, severity, children, onClose, open }) {
+export default function SnackbarPopup({ icon, color, size, button, severity, children, onClose, open }) {
     const classes = useStyles();
     const authContext = useContext(auth).isAuth
     return (
         <div className={classes.root}>
-            <IconButton onClick={onClick} color={color} size={size}>
+            {/* <IconButton onClick={onClick} color={color} size={size}>
                 {icon}
-            </IconButton>
+            </IconButton> */}
+            {button}
             {authContext ?
                 <Snackbar
                     anchorOrigin={{ vertical: "top", horizontal: "right" }}
