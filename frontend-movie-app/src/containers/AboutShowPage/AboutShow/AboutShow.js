@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutShow.module.css';
 import LoadSkeletonAboutShow from './LoadSkeletonAboutShow/LoadSkeletonAboutShow';
-import { FavoriteBorderRounded } from '@material-ui/icons';
+import { FavoriteBorderRounded, FavoriteRounded } from '@material-ui/icons';
 import { addToFavorites, removeFromFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
-import { useRouteMatch, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 
 export default function AboutShow() {
