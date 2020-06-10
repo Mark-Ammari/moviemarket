@@ -7,6 +7,7 @@ import SimilarSection from './SimilarSection/SimilarSection';
 import AboutMovie from './AboutMovie/AboutMovie';
 import CastSection from './CastSection/CastSection';
 import ReviewSection from './ReviewSection/ReviewSection';
+import { fetchFavorites } from '../../store/actions/authUser';
 
 class AboutMoviepage extends Component {
 
@@ -19,6 +20,7 @@ class AboutMoviepage extends Component {
         this.props.onFetchMovieReviews(this.props.match.params.id)
         this.props.onFetchMovieCredits(this.props.match.params.id)
         this.props.onFetchMovieImages(this.props.match.params.id)
+        this.props.onFetchFavorites()
     }
 
     componentDidUpdate(prevProps) {
@@ -50,6 +52,7 @@ class AboutMoviepage extends Component {
 
 const mapDispatchTopProps = dispatch => {
     return {
+        onFetchFavorites: () => dispatch(fetchFavorites()),
         onFetchMovieVideo: (id) => dispatch(FetchMovieVideos(id)),
         onFetchMovieDetails: (id) => dispatch(FetchMovieDetails(id)),
         onFetchMovieRecommendations: (id) => dispatch(FetchMovieRecommendations(id)),
