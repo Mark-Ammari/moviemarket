@@ -33,6 +33,7 @@ class AboutShowpage extends Component {
             this.props.onFetchTVReviews(this.props.match.params.id)
             this.props.onFetchTVCredits(this.props.match.params.id)
             this.props.onFetchTVImages(this.props.match.params.id)
+            this.props.onFetchFavorites()
         }
     }
     

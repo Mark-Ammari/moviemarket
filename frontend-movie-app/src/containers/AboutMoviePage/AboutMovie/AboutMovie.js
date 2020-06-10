@@ -37,40 +37,38 @@ export default function AboutMovie() {
 
     return (
         <div className={classes.DetailsContainer} >
-            {loadDetails && loadFavorites ?
+            {loadDetails ?
                 <LoadSkeletonAboutMovie />
                 :
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
-                        {/* {favorites.favorites.includes(details.id) ?
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                        <FavoriteRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Removed Item from favorites.
+                        {loadFavorites ? null :
+                            favorites.favorites.includes(details.id) ?
+                                <SnackbarPopup
+                                    open={open}
+                                    severity="success"
+                                    onClose={handleClose}
+                                    button={
+                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                            <FavoriteRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                    }>
+                                    Removed Item from favorites.
                             </SnackbarPopup>
-                            :
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteBorderRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Item added to favorites.
+                                :
+                                <SnackbarPopup
+                                    open={open}
+                                    severity="success"
+                                    onClose={handleClose}
+                                    button={
+                                        <IconButton onClick={addFavorites} size="small" color="secondary">
+                                            <FavoriteBorderRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                    }>
+                                    Item added to favorites.
                             </SnackbarPopup>
-                        } */}
-                        {console.log(favorites)}
-                        {console.log(favorites.favorites)}
-                        {console.log(favorites.favorites.includes(details.id))}
+                        }
                     </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>

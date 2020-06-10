@@ -38,35 +38,36 @@ export default function AboutShow() {
 
     return (
         <div className={classes.DetailsContainer} >
-            {loadDetails && loadFavorites ?
+            {loadDetails ?
                 <LoadSkeletonAboutShow />
                 :
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
-                        {favorites.favorites.includes(details.id) ?
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                        <FavoriteRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Removed Item from favorites.
+                        {loadFavorites ? null :
+                            favorites.favorites.includes(details.id) ?
+                                <SnackbarPopup
+                                    open={open}
+                                    severity="success"
+                                    onClose={handleClose}
+                                    button={
+                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                            <FavoriteRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                    }>
+                                    Removed Item from favorites.
                             </SnackbarPopup>
-                            :
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteBorderRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Item added to favorites.
+                                :
+                                <SnackbarPopup
+                                    open={open}
+                                    severity="success"
+                                    onClose={handleClose}
+                                    button={
+                                        <IconButton onClick={addFavorites} size="small" color="secondary">
+                                            <FavoriteBorderRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                    }>
+                                    Item added to favorites.
                             </SnackbarPopup>
                         }
                     </div>
