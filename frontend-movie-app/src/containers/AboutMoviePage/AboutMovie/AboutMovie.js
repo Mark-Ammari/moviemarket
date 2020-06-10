@@ -5,7 +5,7 @@ import LoadSkeletonAboutMovie from './LoadSkeletonAboutMovie/LoadSkeletonAboutMo
 import { useLocation, useParams } from 'react-router-dom';
 import { addToFavorites, removeFromFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
-import { FavoriteBorderRounded, FavoriteRounded } from '@material-ui/icons';
+import { FavoriteRounded, FavoriteBorderRounded } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core';
 
 export default function AboutMovie() {
@@ -13,11 +13,11 @@ export default function AboutMovie() {
 
     return (
         <div>
-            { type === "movie" ? 
+            {type === "movie" ?
                 <MovieDetails />
                 :
                 <TVDetails />
-            } 
+            }
         </div>
     )
 };
@@ -30,8 +30,8 @@ const MovieDetails = () => {
     const location = useLocation()
 
     const [open, setOpen] = React.useState(false);
-    const favorites = useSelector(state => state.favorites.favorites)
     const loadFavorites = useSelector(state => state.favorites.loading)
+    const favorites = useSelector(state => state.favorites.favorites)
 
     const addFavorites = () => {
         setOpen(true);
@@ -60,29 +60,29 @@ const MovieDetails = () => {
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
                         {loadFavorites ? null :
-                            favorites.favorites.includes(details.id) ?
-                                <SnackbarPopup
-                                    open={open}
-                                    severity="success"
-                                    onClose={handleClose}
-                                    button={
-                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                            <FavoriteRounded fontSize="small" color="error" />
-                                        </IconButton>
-                                    }>
-                                    Removed Item from favorites.
+                            favorites.favorites.some(el => el.id === details.id) ?
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Remove Item from Favorites.
                             </SnackbarPopup>
-                                :
-                                <SnackbarPopup
-                                    open={open}
-                                    severity="success"
-                                    onClose={handleClose}
-                                    button={
-                                        <IconButton onClick={addFavorites} size="small" color="secondary">
-                                            <FavoriteBorderRounded fontSize="small" color="error" />
-                                        </IconButton>
-                                    }>
-                                    Item added to favorites.
+                            :
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteBorderRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Add Item to Favorites.
                             </SnackbarPopup>
                         }
                     </div>
@@ -144,8 +144,8 @@ const TVDetails = () => {
     const location = useLocation()
 
     const [open, setOpen] = React.useState(false);
-    const favorites = useSelector(state => state.favorites.favorites)
     const loadFavorites = useSelector(state => state.favorites.loading)
+    const favorites = useSelector(state => state.favorites.favorites)
 
     const addFavorites = () => {
         setOpen(true);
@@ -174,33 +174,33 @@ const TVDetails = () => {
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
                         {loadFavorites ? null :
-                            favorites.favorites.includes(details.id) ?
-                                <SnackbarPopup
-                                    open={open}
-                                    severity="success"
-                                    onClose={handleClose}
-                                    button={
-                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                            <FavoriteRounded fontSize="small" color="error" />
-                                        </IconButton>
-                                    }>
-                                    Removed Item from favorites.
+                            favorites.favorites.some(el => el.id === details.id) ?
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Remove Item from Favorites.
                             </SnackbarPopup>
-                                :
-                                <SnackbarPopup
-                                    open={open}
-                                    severity="success"
-                                    onClose={handleClose}
-                                    button={
-                                        <IconButton onClick={addFavorites} size="small" color="secondary">
-                                            <FavoriteBorderRounded fontSize="small" color="error" />
-                                        </IconButton>
-                                    }>
-                                    Item added to favorites.
+                            :
+                            <SnackbarPopup
+                                open={open}
+                                severity="success"
+                                onClose={handleClose}
+                                button={
+                                    <IconButton onClick={addFavorites} size="small" color="secondary">
+                                        <FavoriteBorderRounded fontSize="small" color="error" />
+                                    </IconButton>
+                                }>
+                                Add Item to Favorites.
                             </SnackbarPopup>
                         }
                     </div>
-                    <p className={classes.Date}>{details["release_date"]}</p>
+                    <p className={classes.Date}>{details["release_date"] || details["first_air_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>
 
                     <div className={classes.CatagoriesContainer}>
