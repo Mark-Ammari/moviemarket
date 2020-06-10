@@ -48,10 +48,8 @@ class App extends Component {
                     {value => value.isAuth ? <Redirect to="/"/> : <Authenticate />}
                   </Auth.Consumer>
                 </Route>
-                <Route path="/movies/genre/:name/:id/:page" component={Moviepage} />
-                <Route path="/shows/genre/:name/:id/:page" component={Showpage} />
-                <Route path="/movie/:title/:id" component={AboutMoviepage} />
-                <Route path="/show/:title/:id" component={AboutShowpage} />
+                <Route path="/:type/genre/:name/:id/:page" component={Moviepage} />
+                <Route path="/:type/:title/:id" component={AboutMoviepage} />
                 <Route path="/account/favorites" component={Favoritespage} />
                 <Route component={Errorpage} />
               </Switch>
