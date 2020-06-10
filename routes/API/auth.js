@@ -5,8 +5,7 @@ const User = require('../../models/User');
 const Favorites = require('../../models/Favorites');
 const { auth } = require('../../middleware/auth');
 const router = express.Router();
-const jwt = require('jsonwebtoken')
-const config = require('config')
+
 // POST /account/signup
 router.post('/signup', (req, res) => {
     const uniqueID = uuid.v1()

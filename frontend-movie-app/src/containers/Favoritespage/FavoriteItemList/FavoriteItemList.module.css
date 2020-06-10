@@ -1,6 +1,8 @@
 .FavoriteItemList {
     min-height: calc(100vh - 180px);
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -27,10 +29,22 @@
     grid-template-columns: 300px 300px 300px 300px;
     column-gap: 41.5px;
     row-gap: 41.5px;
-    align-content: center;
     padding: 1em 0;
     margin: auto;
-    justify-content: center;
+}
+
+.FavoritesContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.FavoritesContainer h1 {
+    color: #F5C519;
+    margin: auto;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -98,15 +112,3 @@
     }
 }
 
-.FavoritesContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.FavoritesContainer h1 {
-    color: #F5C519;
-    margin: auto
-}

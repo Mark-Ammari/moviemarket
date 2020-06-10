@@ -20,7 +20,7 @@
     "@hapi/joi": "^17.1.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
-    "concurrently": "^5.1.0",
+    "concurrently": "^5.2.0",
     "config": "^3.3.1",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
@@ -29,8 +29,8 @@
     "express-validator": "^6.5.0",
     "flatted": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.9",
-    "nodemon": "^2.0.3",
-    "uuid": "^8.0.0"
+    "mongoose": "^5.9.18",
+    "nodemon": "^2.0.4",
+    "uuid": "^8.1.0"
   }
 }

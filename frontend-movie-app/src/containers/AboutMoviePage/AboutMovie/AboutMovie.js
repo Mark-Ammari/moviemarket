@@ -75,7 +75,7 @@ const MovieDetails = () => {
                                         </IconButton>
                                 }>
                                 {favorites.favorites.some(el => el.id === details.id) ?
-                                    "Remove Item from Favorites." : "Add Item to Favorites"
+                                    "Add Item to Favorites" : "Remove Item from Favorites."
                                 }
                             </SnackbarPopup>
                         }
@@ -183,7 +183,7 @@ const TVDetails = () => {
                                         </IconButton>
                                 }>
                                 {favorites.favorites.some(el => el.id === details.id) ?
-                                    "Remove Item from Favorites." : "Add Item to Favorites"
+                                    "Add Item to Favorites" : "Remove Item from Favorites."
                                 }
                             </SnackbarPopup>
                         }

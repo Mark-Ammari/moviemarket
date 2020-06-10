@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }))
 server.set('trust proxy', 1) // trust first proxy
 server.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.NODE_ENV === "production" ? proccess.env.SESSION_SECRET : 'keyboard cat',
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection }),

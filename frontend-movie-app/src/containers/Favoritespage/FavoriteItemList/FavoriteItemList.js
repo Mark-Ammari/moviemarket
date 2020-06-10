@@ -58,19 +58,15 @@ export default function FavoriteItemList() {
                             </div>
                         </div>
             }
-            {/* <div className={classes.FavoriteItem}>
-                <FavoritedItem
-                    to={() => openNewLink("type", "name", "id")}
-                />
-                <FavoritedItem />
-                <FavoritedItem />
-                <FavoritedItem />
-                <FavoritedItem />
-                <FavoritedItem />
-                <FavoritedItem />
-                <FavoritedItem />
-            </div>
-                        </div> */}
+            {/* <div className={classes.FavoritesContainer}>
+                <h1>My Favorites</h1>
+                <div className={classes.FavoriteItem}>
+                    <FavoritedItem
+                        to={() => openNewLink("type", "name", "id")}
+                    />
+                    
+                </div>
+            </div> */}
         </section >
     )
 }
