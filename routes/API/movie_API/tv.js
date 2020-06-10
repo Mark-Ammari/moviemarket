@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/popular', (req, res) => {
     movieURI.get('/tv/popular', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             page: req.query.page
         }
     })
@@ -20,7 +20,7 @@ router.get('/popular', (req, res) => {
 router.get('/on_the_air', (req, res) => {
     movieURI.get('/tv/on_the_air', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             page: req.query.page
         }
     })
@@ -32,7 +32,7 @@ router.get('/on_the_air', (req, res) => {
 router.get('/airing_today', (req, res) => {
     movieURI.get('/tv/airing_today', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             page: req.query.page
         }
     })
@@ -44,7 +44,7 @@ router.get('/airing_today', (req, res) => {
 router.get('/top_rated', (req, res) => {
     movieURI.get('/tv/top_rated', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             page: req.query.page
         }
     })
@@ -56,7 +56,7 @@ router.get('/top_rated', (req, res) => {
 router.get('/genre/list', (req, res) => {
     movieURI.get('/genre/tv/list', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key
+            "api_key": config.get("api_key") || process.env.api_key
         }
     })
         .then(response => res.json(response.data))
@@ -67,7 +67,7 @@ router.get('/genre/list', (req, res) => {
 router.get('/discover', (req, res) => {
     movieURI.get('/discover/tv', {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "sort_by": req.query["sort_by"],
             "include_adult": req.query["include_adult"],
             "include_video": req.query["include_video"],
@@ -83,7 +83,7 @@ router.get('/discover', (req, res) => {
 router.get('/images/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/images`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key
         }
     })
         .then(response => res.json(response.data))
@@ -94,7 +94,7 @@ router.get('/images/:id', (req, res) => {
 router.get('/keywords/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/keywords`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key
         }
     })
         .then(response => res.json(response.data))
@@ -105,7 +105,7 @@ router.get('/keywords/:id', (req, res) => {
 router.get('/reviews/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/reviews`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "page": req.query.page
         }
     })
@@ -117,7 +117,7 @@ router.get('/reviews/:id', (req, res) => {
 router.get('/videos/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/videos`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key
         }
     })
         .then(response => res.json(response.data))
@@ -128,7 +128,7 @@ router.get('/videos/:id', (req, res) => {
 router.get('/details/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key
         }
     })
         .then(response => res.json(response.data))
@@ -139,7 +139,7 @@ router.get('/details/:id', (req, res) => {
 router.get('/recommendations/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/recommendations`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "page": req.query.page
         }
     })
@@ -151,7 +151,7 @@ router.get('/recommendations/:id', (req, res) => {
 router.get('/similar/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/similar`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "page": req.query.page
         }
     })
@@ -163,7 +163,7 @@ router.get('/similar/:id', (req, res) => {
 router.get('/credits/:id', (req, res) => {
     movieURI.get(`/tv/${req.params.id}/credits`, {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "page": req.query.page
         }
     })
@@ -175,7 +175,7 @@ router.get('/credits/:id', (req, res) => {
 router.get('/search', (req, res) => {
     movieURI.get("/search/tv", {
         params: {
-            "api_key": config.get("api_key") || proccess.env.api_key,
+            "api_key": config.get("api_key") || process.env.api_key,
             "include_adult": true,
             "query": req.query.query,
             "page": req.query.page

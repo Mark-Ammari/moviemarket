@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }))
 server.set('trust proxy', 1) // trust first proxy
 server.use(session({
-  secret: process.env.NODE_ENV === "production" ? proccess.env.SESSION_SECRET : 'keyboard cat',
+  secret: process.env.NODE_ENV === "production" ? process.env.SESSION_SECRET : 'keyboard cat',
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection }),
@@ -42,7 +42,7 @@ server.use((req, res, next) => {
 
 const config = require('config')
 
-mongoose.connect(process.env.MONGODB_URI || config.get("mongo_db_key"),
+mongoose.connect(config.get("mongo_db_key") || process.env.MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
