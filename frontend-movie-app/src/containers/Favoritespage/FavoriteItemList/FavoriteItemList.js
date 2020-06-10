@@ -36,27 +36,30 @@ export default function FavoriteItemList() {
                 </div>
                 :
                 loadFavorites ? null :
-                getFavorites.favorites.length === 0 ?
-                <div className={classes.FavoritesListMessage}>
-                    <h1>Your Favorites is Empty.</h1>
-                    <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
-                </div>
-                :
-                <div className={classes.FavoriteItem}>
-                    {getFavorites.favorites.map((item) => {
-                        return <FavoritedItem 
-                            key={item.id}
-                            title={item["name"] || item.title || item.title["original_name"]}
-                            onRemove={() => removeItem(item.id)}
-                            to={() => openNewLink(item["type_of"], item["name"] || item.title || item.title["original_name"], item.id)}
-                            subheader={item["first_air_date"]}
-                            src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                        />
-                    })}
-                </div>
+                    getFavorites.favorites.length === 0 ?
+                        <div className={classes.FavoritesListMessage}>
+                            <h1>Your Favorites is Empty.</h1>
+                            <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
+                        </div>
+                        :
+                        <div className={classes.FavoritesContainer}>
+                            <h1>My Favorites</h1>
+                            <div className={classes.FavoriteItem}>
+                                {getFavorites.favorites.map((item) => {
+                                    return <FavoritedItem
+                                        key={item.id}
+                                        title={item["name"] || item.title || item.title["original_name"]}
+                                        onRemove={() => removeItem(item.id)}
+                                        to={() => openNewLink(item["type_of"], item["name"] || item.title || item.title["original_name"], item.id)}
+                                        subheader={item["first_air_date"]}
+                                        src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                                    />
+                                })}
+                            </div>
+                        </div>
             }
             {/* <div className={classes.FavoriteItem}>
-                <FavoritedItem 
+                <FavoritedItem
                     to={() => openNewLink("type", "name", "id")}
                 />
                 <FavoritedItem />
@@ -66,8 +69,9 @@ export default function FavoriteItemList() {
                 <FavoritedItem />
                 <FavoritedItem />
                 <FavoritedItem />
-            </div> */}
-        </section>
+            </div>
+                        </div> */}
+        </section >
     )
 }
 

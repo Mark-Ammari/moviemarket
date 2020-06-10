@@ -43,7 +43,7 @@ export default function AboutMovie() {
                 <div className={classes.Details}>
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
-                        {favorites.favorites.includes(details.id) ?
+                        {/* {favorites.favorites.includes(details.id) ?
                             <SnackbarPopup
                                 open={open}
                                 severity="success"
@@ -67,7 +67,10 @@ export default function AboutMovie() {
                                 }>
                                 Item added to favorites.
                             </SnackbarPopup>
-                        }
+                        } */}
+                        {console.log(favorites)}
+                        {console.log(favorites.favorites)}
+                        {console.log(favorites.favorites.includes(details.id))}
                     </div>
                     <p className={classes.Date}>{details["release_date"]}</p>
                     <p className={classes.Overview}>{details.overview}</p>

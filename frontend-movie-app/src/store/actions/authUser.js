@@ -247,6 +247,7 @@ export function addToFavorites(favorites, type) {
         })
             .then(res => {
                 dispatch(addToFavoritesSuccess(res.data));
+                dispatch(fetchFavorites())
             })
             .catch(err => {
                 dispatch(addToFavoritesFail(err.response.data));
