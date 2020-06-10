@@ -60,29 +60,23 @@ const MovieDetails = () => {
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.title}</h3>
                         {loadFavorites ? null :
-                            favorites.favorites.some(el => el.id === details.id) ?
                             <SnackbarPopup
                                 open={open}
                                 severity="success"
                                 onClose={handleClose}
                                 button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteRounded fontSize="small" color="error" />
-                                    </IconButton>
+                                    favorites.favorites.some(el => el.id === details.id) ?
+                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                            <FavoriteRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                        :
+                                        <IconButton onClick={addFavorites} size="small" color="secondary">
+                                            <FavoriteBorderRounded fontSize="small" color="error" />
+                                        </IconButton>
                                 }>
-                                Remove Item from Favorites.
-                            </SnackbarPopup>
-                            :
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteBorderRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Add Item to Favorites.
+                                {favorites.favorites.some(el => el.id === details.id) ?
+                                    "Remove Item from Favorites." : "Add Item to Favorites"
+                                }
                             </SnackbarPopup>
                         }
                     </div>
@@ -174,29 +168,23 @@ const TVDetails = () => {
                     <div className={classes.DetailsHeader}>
                         <h3 className={classes.Title}>{details.name}</h3>
                         {loadFavorites ? null :
-                            favorites.favorites.some(el => el.id === details.id) ?
                             <SnackbarPopup
                                 open={open}
                                 severity="success"
                                 onClose={handleClose}
                                 button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteRounded fontSize="small" color="error" />
-                                    </IconButton>
+                                    favorites.favorites.some(el => el.id === details.id) ?
+                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                            <FavoriteRounded fontSize="small" color="error" />
+                                        </IconButton>
+                                        :
+                                        <IconButton onClick={addFavorites} size="small" color="secondary">
+                                            <FavoriteBorderRounded fontSize="small" color="error" />
+                                        </IconButton>
                                 }>
-                                Remove Item from Favorites.
-                            </SnackbarPopup>
-                            :
-                            <SnackbarPopup
-                                open={open}
-                                severity="success"
-                                onClose={handleClose}
-                                button={
-                                    <IconButton onClick={addFavorites} size="small" color="secondary">
-                                        <FavoriteBorderRounded fontSize="small" color="error" />
-                                    </IconButton>
-                                }>
-                                Add Item to Favorites.
+                                {favorites.favorites.some(el => el.id === details.id) ?
+                                    "Remove Item from Favorites." : "Add Item to Favorites"
+                                }
                             </SnackbarPopup>
                         }
                     </div>
