@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SnackbarPopup({ icon, color, size, button, severity, children, onClose, open }) {
+export default function SnackbarPopup({ button, severity, children, onClose, open }) {
     const classes = useStyles();
     return (
         <div className={classes.root}>

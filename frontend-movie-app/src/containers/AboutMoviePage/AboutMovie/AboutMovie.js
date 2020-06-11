@@ -30,23 +30,20 @@ const MovieDetails = () => {
     const dispatch = useDispatch()
     const location = useLocation()
 
-    const [open, setOpen] = React.useState(false);
+    const [openSnackbar, setOpenSnackbar] = React.useState(false)
+    const [openDialog, setOpenDialog] = React.useState(false);
     const loadFavorites = useSelector(state => state.favorites.loading)
     const favorites = useSelector(state => state.favorites.favorites)
     const authContext = useContext(auth).isAuth
 
     const addFavorites = () => {
-        setOpen(true);
+        setOpenSnackbar(true);
         const indexOfSlash = location.pathname.slice(1).indexOf('/')
         dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
     };
 
-    const openDialog = () => {
-        setOpen(true);
-    }
-
     const removeFavorites = () => {
-        setOpen(true);
+        setOpenSnackbar(true);
         dispatch(removeFromFavorites(details.id))
     };
 
@@ -54,7 +51,7 @@ const MovieDetails = () => {
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        setOpenSnackbar(false);
     };
 
     return (
@@ -67,27 +64,27 @@ const MovieDetails = () => {
                         <h3 className={classes.Title}>{details.title}</h3>
                         {loadFavorites ? null :
                             <SnackbarPopup
-                                open={open}
+                                open={openSnackbar}
                                 onClose={handleClose}
                                 severity="success"
                                 button={
                                     !authContext ?
                                         <>
-                                            <IconButton onClick={openDialog} size="small" color="secondary">
+                                            <IconButton onClick={() => setOpenDialog(true)} size="small" color="secondary">
                                                 <FavoriteBorderRounded fontSize="small" color="error" />
                                             </IconButton>
                                             <Dialog
-                                                open={open}
-                                                onClose={handleClose}
+                                                open={openDialog}
+                                                onClose={() => setOpenDialog(false)}
                                                 aria-labelledby="alert-dialog-title"
                                                 aria-describedby="alert-dialog-description"
                                             >
                                                 <DialogTitle id="alert-dialog-title">You must be signed in to add to favorites.</DialogTitle>
                                                 <DialogActions>
-                                                    <Button onClick={handleClose} color="primary">
+                                                    <Button onClick={() => setOpenDialog(false)} color="primary">
                                                         Okay
                                                 </Button>
-                                                    <Button onClick={handleClose} color="secondary">
+                                                    <Button onClick={() => setOpenDialog(false)} color="secondary">
                                                         Cancel
                                                 </Button>
                                                 </DialogActions>
@@ -167,31 +164,28 @@ const TVDetails = () => {
     const dispatch = useDispatch()
     const location = useLocation()
 
-    const [open, setOpen] = React.useState(false);
+    const [openSnackbar, setOpenSnackbar] = React.useState(false)
+    const [openDialog, setOpenDialog] = React.useState(false);
     const loadFavorites = useSelector(state => state.favorites.loading)
     const favorites = useSelector(state => state.favorites.favorites)
     const authContext = useContext(auth).isAuth
 
     const addFavorites = () => {
-        setOpen(true);
+        setOpenSnackbar(true);
         const indexOfSlash = location.pathname.slice(1).indexOf('/')
         dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
     };
 
     const removeFavorites = () => {
-        setOpen(true);
+        setOpenSnackbar(true);
         dispatch(removeFromFavorites(details.id))
     };
-
-    const openDialog = () => {
-        setOpen(true);
-    }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        setOpenSnackbar(false);
     };
 
     return (
@@ -204,27 +198,27 @@ const TVDetails = () => {
                         <h3 className={classes.Title}>{details.name}</h3>
                         {loadFavorites ? null :
                             <SnackbarPopup
-                                severity="success"
-                                open={open}
+                                open={openSnackbar}
                                 onClose={handleClose}
+                                severity="success"
                                 button={
                                     !authContext ?
                                         <>
-                                            <IconButton onClick={openDialog} size="small" color="secondary">
+                                            <IconButton onClick={() => setOpenDialog(true)} size="small" color="secondary">
                                                 <FavoriteBorderRounded fontSize="small" color="error" />
                                             </IconButton>
                                             <Dialog
-                                                open={open}
-                                                onClose={handleClose}
+                                                open={openDialog}
+                                                onClose={() => setOpenDialog(false)}
                                                 aria-labelledby="alert-dialog-title"
                                                 aria-describedby="alert-dialog-description"
                                             >
                                                 <DialogTitle id="alert-dialog-title">You must be signed in to add to favorites.</DialogTitle>
                                                 <DialogActions>
-                                                    <Button onClick={handleClose} color="primary">
+                                                    <Button onClick={() => setOpenDialog(false)} color="primary">
                                                         Okay
                                                 </Button>
-                                                    <Button onClick={handleClose} color="secondary">
+                                                    <Button onClick={() => setOpenDialog(false)} color="secondary">
                                                         Cancel
                                                 </Button>
                                                 </DialogActions>
@@ -296,4 +290,3 @@ const TVDetails = () => {
         </div >
     );
 }
-
