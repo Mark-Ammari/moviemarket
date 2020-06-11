@@ -67,6 +67,8 @@ const MovieDetails = () => {
                         <h3 className={classes.Title}>{details.title}</h3>
                         {loadFavorites ? null :
                             <SnackbarPopup
+                                open={open}
+                                onClose={handleClose}
                                 severity="success"
                                 button={
                                     !authContext ?
@@ -203,6 +205,8 @@ const TVDetails = () => {
                         {loadFavorites ? null :
                             <SnackbarPopup
                                 severity="success"
+                                open={open}
+                                onClose={handleClose}
                                 button={
                                     !authContext ?
                                         <>
