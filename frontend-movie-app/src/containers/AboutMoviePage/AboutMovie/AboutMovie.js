@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './AboutMovie.module.css';
 import LoadSkeletonAboutMovie from './LoadSkeletonAboutMovie/LoadSkeletonAboutMovie';
@@ -6,7 +6,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import { addToFavorites, removeFromFavorites } from '../../../store/actions/authUser';
 import SnackbarPopup from '../../../components/SnackbarPopup/SnackbarPopup';
 import { FavoriteRounded, FavoriteBorderRounded } from '@material-ui/icons';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Dialog, DialogTitle, DialogActions, Button } from '@material-ui/core';
+import auth from '../../../context/context';
 
 export default function AboutMovie() {
     const { type } = useParams()
@@ -32,12 +33,17 @@ const MovieDetails = () => {
     const [open, setOpen] = React.useState(false);
     const loadFavorites = useSelector(state => state.favorites.loading)
     const favorites = useSelector(state => state.favorites.favorites)
+    const authContext = useContext(auth).isAuth
 
     const addFavorites = () => {
         setOpen(true);
         const indexOfSlash = location.pathname.slice(1).indexOf('/')
         dispatch(addToFavorites(details, location.pathname.slice(1, indexOfSlash + 1)))
     };
+
+    const openDialog = () => {
+        setOpen(true);
+    }
 
     const removeFavorites = () => {
         setOpen(true);
@@ -61,21 +67,43 @@ const MovieDetails = () => {
                         <h3 className={classes.Title}>{details.title}</h3>
                         {loadFavorites ? null :
                             <SnackbarPopup
-                                open={open}
                                 severity="success"
-                                onClose={handleClose}
                                 button={
-                                    favorites.favorites.some(el => el.id === details.id) ?
-                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                            <FavoriteRounded fontSize="small" color="error" />
-                                        </IconButton>
+                                    !authContext ?
+                                        <>
+                                            <IconButton onClick={openDialog} size="small" color="secondary">
+                                                <FavoriteBorderRounded fontSize="small" color="error" />
+                                            </IconButton>
+                                            <Dialog
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">You must be signed in to add to favorites.</DialogTitle>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        Okay
+                                                </Button>
+                                                    <Button onClick={handleClose} color="secondary">
+                                                        Cancel
+                                                </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </>
                                         :
-                                        <IconButton onClick={addFavorites} size="small" color="secondary">
-                                            <FavoriteBorderRounded fontSize="small" color="error" />
-                                        </IconButton>
+                                        favorites.favorites.some(el => el.id === details.id) ?
+                                            <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                                <FavoriteRounded fontSize="small" color="error" />
+                                            </IconButton>
+                                            :
+                                            <IconButton onClick={addFavorites} size="small" color="secondary">
+                                                <FavoriteBorderRounded fontSize="small" color="error" />
+                                            </IconButton>
                                 }>
-                                {favorites.favorites.some(el => el.id === details.id) ?
-                                    "Add Item to Favorites" : "Remove Item from Favorites."
+                                {!authContext ? null :
+                                    favorites.favorites.some(el => el.id === details.id) ?
+                                        "Added Item to Favorites." : "Removed Item from Favorites."
                                 }
                             </SnackbarPopup>
                         }
@@ -140,6 +168,7 @@ const TVDetails = () => {
     const [open, setOpen] = React.useState(false);
     const loadFavorites = useSelector(state => state.favorites.loading)
     const favorites = useSelector(state => state.favorites.favorites)
+    const authContext = useContext(auth).isAuth
 
     const addFavorites = () => {
         setOpen(true);
@@ -151,6 +180,10 @@ const TVDetails = () => {
         setOpen(true);
         dispatch(removeFromFavorites(details.id))
     };
+
+    const openDialog = () => {
+        setOpen(true);
+    }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -169,21 +202,43 @@ const TVDetails = () => {
                         <h3 className={classes.Title}>{details.name}</h3>
                         {loadFavorites ? null :
                             <SnackbarPopup
-                                open={open}
                                 severity="success"
-                                onClose={handleClose}
                                 button={
-                                    favorites.favorites.some(el => el.id === details.id) ?
-                                        <IconButton onClick={removeFavorites} size="small" color="secondary">
-                                            <FavoriteRounded fontSize="small" color="error" />
-                                        </IconButton>
+                                    !authContext ?
+                                        <>
+                                            <IconButton onClick={openDialog} size="small" color="secondary">
+                                                <FavoriteBorderRounded fontSize="small" color="error" />
+                                            </IconButton>
+                                            <Dialog
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">You must be signed in to add to favorites.</DialogTitle>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        Okay
+                                                </Button>
+                                                    <Button onClick={handleClose} color="secondary">
+                                                        Cancel
+                                                </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </>
                                         :
-                                        <IconButton onClick={addFavorites} size="small" color="secondary">
-                                            <FavoriteBorderRounded fontSize="small" color="error" />
-                                        </IconButton>
+                                        favorites.favorites.some(el => el.id === details.id) ?
+                                            <IconButton onClick={removeFavorites} size="small" color="secondary">
+                                                <FavoriteRounded fontSize="small" color="error" />
+                                            </IconButton>
+                                            :
+                                            <IconButton onClick={addFavorites} size="small" color="secondary">
+                                                <FavoriteBorderRounded fontSize="small" color="error" />
+                                            </IconButton>
                                 }>
-                                {favorites.favorites.some(el => el.id === details.id) ?
-                                    "Add Item to Favorites" : "Remove Item from Favorites."
+                                {!authContext ? null :
+                                    favorites.favorites.some(el => el.id === details.id) ?
+                                        "Added Item to Favorites." : "Removed Item from Favorites."
                                 }
                             </SnackbarPopup>
                         }
