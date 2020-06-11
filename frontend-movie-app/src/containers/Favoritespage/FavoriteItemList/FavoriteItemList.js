@@ -35,38 +35,31 @@ export default function FavoriteItemList() {
                     <p>In order to add movies and tv series to your favorites. you must be <NavLink className={classes.NavLink} to="/account/auth">signed in.</NavLink></p>
                 </div>
                 :
-                loadFavorites ? null :
-                    getFavorites.favorites.length === 0 ?
-                        <div className={classes.FavoritesListMessage}>
-                            <h1>Your Favorites is Empty.</h1>
-                            <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
-                        </div>
-                        :
-                        <div className={classes.FavoritesContainer}>
-                            <h1>My Favorites</h1>
-                            <div className={classes.FavoriteItem}>
-                                {getFavorites.favorites.map((item) => {
-                                    return <FavoritedItem
-                                        key={item.id}
-                                        title={item["name"] || item.title || item.title["original_name"]}
-                                        onRemove={() => removeItem(item.id)}
-                                        to={() => openNewLink(item["type_of"], item["name"] || item.title || item.title["original_name"], item.id)}
-                                        subheader={item["first_air_date"]}
-                                        src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                                    />
-                                })}
-                            </div>
-                        </div>
-            }
-            {/* <div className={classes.FavoritesContainer}>
-                <h1>My Favorites</h1>
-                <div className={classes.FavoriteItem}>
-                    <FavoritedItem
-                        to={() => openNewLink("type", "name", "id")}
-                    />
-                    
+                <div className={classes.FavoritesContainer}>
+                    <h1>My Favorites</h1>
+                    {
+                        loadFavorites ? null :
+                            getFavorites.favorites.length === 0 ?
+                                <div className={classes.FavoritesListMessage}>
+                                    <h1>Your Favorites is Empty.</h1>
+                                    <p>You haven't saved any items to your favorites yet. Start searching and add your items to your favorites.</p>
+                                </div>
+                                :
+                                <div className={classes.FavoriteItem}>
+                                    {getFavorites.favorites.map((item) => {
+                                        return <FavoritedItem
+                                            key={item.id}
+                                            title={item["name"] || item.title || item.title["original_name"]}
+                                            onRemove={() => removeItem(item.id)}
+                                            to={() => openNewLink(item["type_of"], item["name"] || item.title || item.title["original_name"], item.id)}
+                                            subheader={item["first_air_date"] || item["release_date"]}
+                                            src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                                        />
+                                    })}
+                                </div>
+                    }
                 </div>
-            </div> */}
+            }
         </section >
     )
 }
