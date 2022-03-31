@@ -10,7 +10,7 @@ MovieMarket is built with React, Redux, and Material-UI for UI/UX and state mana
 
 **Mark Ammari** 
 * *Repository* - [Github Repo][repository-url] (Repository space)
-* *Live Website* [Webimizr][cloud-provider-url] (Demo Website)
+* *Live Website* [MovieMarket][cloud-provider-url] (Demo Website)
 
 ## Current Issues
 * N/A
