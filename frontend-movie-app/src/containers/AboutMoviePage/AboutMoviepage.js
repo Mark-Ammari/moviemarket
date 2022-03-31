@@ -9,9 +9,8 @@ import CastSection from './CastSection/CastSection';
 import ReviewSection from './ReviewSection/ReviewSection';
 import { fetchFavorites } from '../../store/actions/authUser';
 import { FetchTVVideos, FetchTVDetails, FetchTVRecommendations, FetchTVSimilar, FetchTVKeywords, FetchTVCredits, FetchTVImages, FetchTVReviews } from '../../store/actions/aboutShow';
-
+import withRouter from '../../utils/withRouter';
 class AboutMoviepage extends Component {
-
     componentDidMount() {
         if (this.props.match.params.type === "movie") {
             this.props.onFetchMovieVideo(this.props.match.params.id)
@@ -100,4 +99,4 @@ const mapDispatchTopProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchTopProps)(AboutMoviepage)
+export default connect(null, mapDispatchTopProps)(withRouter(AboutMoviepage));

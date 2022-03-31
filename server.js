@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 const PORT = process.env.PORT || 8080;
 
 const server = express();
@@ -14,7 +14,7 @@ server.use(session({
   secret: process.env.NODE_ENV === "production" ? process.env.SESSION_SECRET : 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({mongooseConnection: mongoose.connection }),
+  store: MongoStore.create({mongoUrl: "mongodb+srv://mark:f9DwV9jotUFL6iSx@moviemarket.vnw5h.mongodb.net/moviemarket" }),
   cookie: {
     secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "none",
@@ -44,10 +44,7 @@ const config = require('config')
 
 mongoose.connect(config.get("mongo_db_key") || process.env.MONGODB_URI,
   {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
+    
   })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err))

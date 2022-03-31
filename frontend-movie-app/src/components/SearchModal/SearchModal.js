@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchTVSearch } from '../../store/actions/tv';
 import { fetchMovieSearch } from '../../store/actions/movie';
 import classes from './SearchModal.module.css';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MobileLoader from '../Loader/MobileLoader';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,13 +67,11 @@ export default function SearchModal() {
     const loadMovieSearch = useSelector(state => state.movieSearch.loading)
     const loadShowSearch = useSelector(state => state.tvSearch.loading)
     const searchShow = useSelector(state => state.tvSearch.search)
-    const history = useHistory()
+    const history = useNavigate()
 
     function linkToFilm(typeOf, title, id) {
         handleClose()
-        history.push({
-            pathname: `/${typeOf}/${title.split(" ").join("-").toLowerCase()}/${id}`
-        })
+        history(`/${typeOf}/${title.split(" ").join("-").toLowerCase()}/${id}`)
     }
 
     const handleClickOpen = () => {
@@ -140,8 +138,8 @@ export default function SearchModal() {
                                 <p>No Results Found.</p>
                             </div>
                             :
-                            searchMovie.results.map(movie => {
-                                return <div>
+                            searchMovie.results.map((movie, index) => {
+                                return <div key={index}>
                                     <ListItem onClick={() => linkToFilm("movie", movie.name || movie["original_name"] || movie["original_title"], movie.id)} className={styles.listItem} button >
                                         <ListItemText className={classes.ListItemText} primary={movie.name || movie["original_name"] || movie["original_title"]} />
                                         <ListItemIcon><SubdirectoryArrowRight className={styles.icon} /></ListItemIcon>

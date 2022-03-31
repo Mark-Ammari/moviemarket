@@ -7,25 +7,21 @@ import SearchBar from '../SearchBar/SearchBar';
 import { OpenInNewRounded, FavoriteRounded } from '@material-ui/icons';
 import SearchModal from '../SearchModal/SearchModal';
 import { useMediaQuery } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../context/context';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/actions/authUser';
 
 export default function Header() {
     const matches = useMediaQuery('(min-width:767px)');
-    const history = useHistory()
+    const history = useNavigate()
     const dispatch = useDispatch()
     const authContext = useContext(auth)
     const authenticatePath = () => {
-        history.push({
-            pathname: "/account/auth"
-        })
+        history("/account/auth")
     }
     const myFavoritesHandler = () => {
-        history.push({
-            pathname: "/account/favorites"
-        })
+        history("/account/favorites")
     }
 
     const logoutUserHandler = () => {

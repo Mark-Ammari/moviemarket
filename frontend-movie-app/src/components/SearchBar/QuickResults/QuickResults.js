@@ -3,19 +3,17 @@ import classes from './QuickResults.module.css';
 import { Paper, List, ListItem, ListItemText, ClickAwayListener } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Loader from '../../Loader/Loader';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function QuickResults({ type, show, onClickAway }) {
     const searchMovie = useSelector(state => state.movieSearch.search)
     const loadMovieSearch = useSelector(state => state.movieSearch.loading)
     const loadShowSearch = useSelector(state => state.tvSearch.loading)
     const searchShow = useSelector(state => state.tvSearch.search)
-    const history = useHistory()
+    const history = useNavigate()
 
     function linkToFilm(typeOf, title, id) {
-        history.push({
-            pathname: `/${typeOf}/${title.split(" ").join("-").toLowerCase()}/${id}`
-        })
+        history(`/${typeOf}/${title.split(" ").join("-").toLowerCase()}/${id}`)
         onClickAway()
     }
 

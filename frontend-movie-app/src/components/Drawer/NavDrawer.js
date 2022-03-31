@@ -14,7 +14,7 @@ import { MenuRounded, CloseRounded, MovieRounded, TvRounded } from '@material-ui
 import Logo from '../Logo/Logo';
 import NavDropdown from '../NavDropdown/NavDropdown';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -54,7 +54,7 @@ export default function NavDrawer() {
   const [state, setState] = React.useState({
     left: false
   });
-  const history = useHistory()
+  const history = useNavigate()
   const tvGenreList = useSelector(state => state.tvGenreList.genreList)
   const loadTVGenreList = useSelector(state => state.tvGenreList.loading)
   const movieGenreList = useSelector(state => state.movieGenreList.genreList)
@@ -65,9 +65,7 @@ export default function NavDrawer() {
   };
 
   const goToGenrePage = (type, name, id) => {
-    history.push({
-      pathname: `/${type}/genre/${name}/${id}/1`,
-    })
+    history(`/${type}/genre/${name}/${id}/1`)
   }
 
   const list = (anchor) => (

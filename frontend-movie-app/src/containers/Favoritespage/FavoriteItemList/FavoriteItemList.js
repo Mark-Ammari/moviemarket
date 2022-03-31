@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import classes from './FavoriteItemList.module.css';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import auth from '../../../context/context';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFavorites, removeFromFavorites } from '../../../store/actions/authUser';
@@ -11,16 +11,14 @@ export default function FavoriteItemList() {
     const getFavorites = useSelector(state => state.favorites.favorites)
     const loadFavorites = useSelector(state => state.favorites.loading)
     const dispatch = useDispatch()
-    const history = useHistory()
+    const history = useNavigate()
 
     useEffect(() => {
         dispatch(fetchFavorites())
     }, [dispatch])
 
     function openNewLink(type, name, itemid) {
-        history.push({
-            pathname: `/${type}/${name}/${itemid}`
-        })
+        history(`/${type}/${name}/${itemid}`)
     }
 
     function removeItem(itemID) {

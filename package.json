@@ -18,19 +18,20 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
-    "concurrently": "^5.3.0",
+    "concurrently": "^7.0.0",
     "config": "^3.3.3",
-    "connect-mongo": "^3.2.0",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.9.2",
-    "flatted": "^2.0.2",
+    "flatted": "^3.2.5",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.17",
+    "mongoose": "^6.2.8",
     "nodemon": "^2.0.7",
+    "react-router-dom": "^6.2.2",
     "uuid": "^8.3.2"
   }
 }

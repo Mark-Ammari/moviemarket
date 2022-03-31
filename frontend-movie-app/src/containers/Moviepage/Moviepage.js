@@ -5,11 +5,12 @@ import FilmBanner from '../../components/FilmBanner/FilmBanner';
 import MovieList from './MovieList/MovieList';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import { FetchTVDiscover } from '../../store/actions/tv';
+import withRouter from '../../utils/withRouter';
 
 class Moviepage extends Component {
     state = {
         page: parseInt(this.props.match.params.page),
-        sort: this.props.location.search.slice(6)
+        sort: this.props.match.location.search.slice(6)
     }
 
     handleSortChange = (event) => {
@@ -18,15 +19,9 @@ class Moviepage extends Component {
 
     pushHistory = () => {
         if (this.props.match.params.type === "movies") {
-            this.props.history.push({
-                pathname: `/movies/genre/${this.props.match.params.name}/${this.props.match.params.id}/${this.state.page.toString()}`,
-                search: `?sort=${this.state.sort}`
-            })
+            this.props.match.history(`/movies/genre/${this.props.match.params.name}/${this.props.match.params.id}/${this.state.page.toString()}?sort=${this.state.sort}`)
         } else {
-            this.props.history.push({
-                pathname: `/shows/genre/${this.props.match.params.name}/${this.props.match.params.id}/${this.state.page.toString()}`,
-                search: `?sort=${this.state.sort}`
-            })
+            this.props.match.history(`/shows/genre/${this.props.match.params.name}/${this.props.match.params.id}/${this.state.page.toString()}?sort=${this.state.sort}`)
         }
     }
 
@@ -88,4 +83,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Moviepage);
+export default connect(null, mapDispatchToProps)(withRouter(Moviepage));

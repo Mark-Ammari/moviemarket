@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux'
 import {
   FetchMovieGenreList
@@ -41,18 +41,18 @@ class App extends Component {
             <ScrollToTop />
             <Header />
             <Suspense fallback={<div className="fallback"><MobileLoader /></div>}>
-              <Switch>
-                <Route exact path="/" component={Homepage} />
-                <Route exact path="/account/auth">
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/account/auth" element={
                   <Auth.Consumer>
-                    {value => value.isAuth ? <Redirect to="/"/> : <Authenticate />}
+                    {value => value.isAuth ? <Navigate to='/' /> : <Authenticate />}
                   </Auth.Consumer>
-                </Route>
-                <Route path="/:type/genre/:name/:id/:page" component={Moviepage} />
-                <Route path="/:type/:title/:id" component={AboutMoviepage} />
-                <Route path="/account/favorites" component={Favoritespage} />
-                <Route component={Errorpage} />
-              </Switch>
+                } />
+                <Route path="/:type/genre/:name/:id/:page" element={<Moviepage />} />
+                <Route path="/:type/:title/:id" element={<AboutMoviepage />} />
+                <Route path="/account/favorites" element={<Favoritespage />} />
+                <Route element={<Errorpage />} />
+              </Routes>
             </Suspense>
             <Footer />
           </BrowserRouter>
